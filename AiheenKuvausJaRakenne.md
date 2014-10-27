@@ -3,11 +3,11 @@ koneelta ja samalla tavalla. Pelilaudalla on 64 peliruutua. Peliruudun päällä
 väri ja tyyppi, jotka päättävät miten nappula pystyy liikkua. Peli loppuu kun tulee shakki-matti tilanne jonka jälkeen voi pelata
 uusintaottelun tai palata aloitus sivulle.
 
-Kayttäjät: Pelaaja
+Käyttäjät: Pelaaja
 
-Pelaajan toiminnot:
-  -Pystyy aloittaa uuden pelin
-  -Pystyy lopettamaan pelin kesken kaiken
-  -Pystyy sulkemaan ohjelman
-  -Pystyy siirtää nappulioita
+Pelaajan toiminnot:  
+  -Pystyy aloittaa uuden pelin  
+  -Pystyy lopettamaan pelin kesken kaiken  
+  -Pystyy sulkemaan ohjelman  
+  -Pystyy siirtää nappulioita  
   -Pystyy pelata uusintaottelun
