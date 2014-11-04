@@ -3,20 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.chessmaster.chessmaster2014.Nappulat;
+package Nappulat;
 
 /**
  *
  * @author Sebbe
  */
-public class Lahetti extends Nappula{
-
-
+public class Sotilas extends Nappula{
     
-    public Lahetti(String vari) {
+    
+
+    public Sotilas(String vari) {
         super(vari);
-        setTyyppi(Tyyppi.LAHETTI);
+        setTyyppi(Tyyppi.SOTILAS);
+        
     }
     
-   
+    
 }

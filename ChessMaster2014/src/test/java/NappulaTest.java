@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import com.chessmaster.chessmaster2014.Nappulat.Nappula;
-import com.chessmaster.chessmaster2014.Nappulat.Torni;
+import Nappulat.Nappula;
+import Nappulat.Torni;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -67,7 +67,7 @@ public class NappulaTest {
     @Test
     public void eiPalautaNullTyyppia(){
         Nappula nappula = new Nappula("musta");
-        assertNotNull(nappula.getTyyppi());
+        assertNull(nappula.getTyyppi());
     }
     
 

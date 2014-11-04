@@ -3,18 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.chessmaster.chessmaster2014.Nappulat;
+package Nappulat;
 
 /**
  *
  * @author Sebbe
  */
-public class Kuningas extends Nappula {
+public class Kuningatar extends Nappula{
 
-    public Kuningas(String vari) {
+   
+    
+    public Kuningatar(String vari) {
         super(vari);
-        setTyyppi(Tyyppi.KUNINGAS);
+        setTyyppi(Tyyppi.KUNINGATAR);
     }
     
-    
+  
 }

@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.chessmaster.chessmaster2014;
+package ChessMaster;
 
-import com.chessmaster.chessmaster2014.Nappulat.Torni;
-import com.chessmaster.chessmaster2014.Nappulat.Lahetti;
-import com.chessmaster.chessmaster2014.Nappulat.Kuningatar;
-import com.chessmaster.chessmaster2014.Nappulat.Sotilas;
-import com.chessmaster.chessmaster2014.Nappulat.Nappula;
-import com.chessmaster.chessmaster2014.Nappulat.Ratsu;
-import com.chessmaster.chessmaster2014.Nappulat.Kuningas;
+import Nappulat.Torni;
+import Nappulat.Lahetti;
+import Nappulat.Kuningatar;
+import Nappulat.Sotilas;
+import Nappulat.Nappula;
+import Nappulat.Ratsu;
+import Nappulat.Kuningas;
 import java.util.Arrays;
 
 /**

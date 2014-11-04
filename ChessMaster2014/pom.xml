@@ -38,6 +38,18 @@
                 <groupId>org.pitest</groupId>
                 <artifactId>pitest-maven</artifactId>
                 <version>0.30</version>
+                <configuration>
+                    <targetClasses>
+                        <param>ChessMaster.Pelilauta</param>
+                        <param>ChessMaster.Ruutu</param>
+                        <param>com.chessmaster.chessmaster2014.Nappulat.*</param>
+                    </targetClasses>
+                    <targetTests>
+                        <param>ChessMaster.Pelilauta</param>
+                        <param>ChessMaster.Ruutu</param>
+                        <param>com.chessmaster.chessmaster2014.Nappulat.*</param>
+                    </targetTests>
+                </configuration>
             </plugin>
         </plugins>
     </build>

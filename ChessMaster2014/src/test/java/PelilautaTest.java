@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import com.chessmaster.chessmaster2014.Nappulat.Nappula;
-import com.chessmaster.chessmaster2014.Pelilauta;
+import Nappulat.Nappula;
+import ChessMaster.Pelilauta;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;

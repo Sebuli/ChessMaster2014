@@ -3,20 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.chessmaster.chessmaster2014.Nappulat;
+package ChessMaster;
 
 /**
  *
  * @author Sebbe
  */
-public class Sotilas extends Nappula{
-    
-    
+public class Main {
 
-    public Sotilas(String vari) {
-        super(vari);
-        setTyyppi(Tyyppi.SOTILAS);
-        
+    public static void main(String args[]){
+        Pelilauta pelilauta = new Pelilauta();
+        KayttoLiittyma kayttoliittyma = new KayttoLiittyma(pelilauta);
+        kayttoliittyma.kaynnista();
     }
     
     
