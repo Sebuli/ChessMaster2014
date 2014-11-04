@@ -12,4 +12,4 @@
   
 4.11.2014  
   -4 tuntia  
-  -Lisää ohjelmointia
+  -Lisää ohjelmointia, testien tekemistä
