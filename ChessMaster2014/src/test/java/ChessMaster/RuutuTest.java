@@ -1,3 +1,5 @@
+package ChessMaster;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -58,5 +60,12 @@ public class RuutuTest {
         Nappula nappula = new Kuningas("musta");
         ruutu.asetaNappula(nappula);
         assertEquals(nappula, ruutu.getNappula());
+    }
+    
+    @Test
+    public void eiPalautaNullNappulaaJosNappulaOnMaaritelty(){
+        Nappula nappula = new Kuningas("musta");
+        ruutu.asetaNappula(nappula);
+        assertNotNull(ruutu.getNappula());
     }
 }

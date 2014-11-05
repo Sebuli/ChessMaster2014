@@ -23,13 +23,9 @@ public class Pelilauta {
     private Ruutu[][] ruudukko;
 
     public void uusiPeli() {
-        ruudukko = new Ruutu[8][8];
-
-        for (int i = 0; i <= 7; i++) {
-            for (int t = 0; t <= 7; t++) {
-                ruudukko[i][t] = new Ruutu();
-            }
-        }
+        
+        uusiPelilauta();
+      
 
         for (int i = 0; i <= 7; i++) {
             if (i == 0 || i == 7) {
@@ -72,10 +68,18 @@ public class Pelilauta {
 
     }
     
+    public void uusiPelilauta(){
+        ruudukko = new Ruutu[8][8];
+        for (int i = 0; i <= 7; i++) {
+            for (int t = 0; t <= 7; t++) {
+                ruudukko[i][t] = new Ruutu();
+            }
+        }
+    }
+    
     public void siirra(int vanhaX, int vanhaY, int uusiX, int uusiY){
         
         Nappula nappula = ruudukko[vanhaX][vanhaY].getNappula();
-        
         
         if (ruudukko[uusiX][uusiY].getNappula() == null){
             ruudukko[vanhaX][vanhaY].poistaNappula();

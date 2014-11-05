@@ -42,12 +42,12 @@
                     <targetClasses>
                         <param>ChessMaster.Pelilauta</param>
                         <param>ChessMaster.Ruutu</param>
-                        <param>com.chessmaster.chessmaster2014.Nappulat.*</param>
+                        <param>Nappulat.*</param>
                     </targetClasses>
                     <targetTests>
                         <param>ChessMaster.Pelilauta</param>
                         <param>ChessMaster.Ruutu</param>
-                        <param>com.chessmaster.chessmaster2014.Nappulat.*</param>
+                        <param>Nappulat.*</param>
                     </targetTests>
                 </configuration>
             </plugin>

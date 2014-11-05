@@ -1,3 +1,5 @@
+package Nappulat;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -33,9 +35,35 @@ public class NappulaTest {
     }
     
     @Test
-    public void nappulaSaaOikeanTyypin(){
+    public void torniSaaOikeanTyypin(){
         Nappula nappula = new Torni("musta");
         assertEquals(Nappula.Tyyppi.TORNI, nappula.getTyyppi());
+    }
+    
+    @Test
+    public void kuningasSaaOikeanTyypin(){
+        Nappula nappula = new Kuningas("musta");
+        assertEquals(Nappula.Tyyppi.KUNINGAS, nappula.getTyyppi());
+    }
+    @Test
+    public void kuningatarSaaOikeanTyypin(){
+        Nappula nappula = new Kuningatar("musta");
+        assertEquals(Nappula.Tyyppi.KUNINGATAR, nappula.getTyyppi());
+    }
+    @Test
+    public void lahettiSaaOikeanTyypin(){
+        Nappula nappula = new Lahetti("musta");
+        assertEquals(Nappula.Tyyppi.LAHETTI, nappula.getTyyppi());
+    }
+    @Test
+    public void ratsuSaaOikeanTyypin(){
+        Nappula nappula = new Ratsu("musta");
+        assertEquals(Nappula.Tyyppi.RATSU, nappula.getTyyppi());
+    }
+    @Test
+    public void sotilasSaaOikeanTyypin(){
+        Nappula nappula = new Sotilas("musta");
+        assertEquals(Nappula.Tyyppi.SOTILAS, nappula.getTyyppi());
     }
     
     @Test
@@ -44,12 +72,7 @@ public class NappulaTest {
         assertEquals("musta", nappula.getVari());
     }
     
-    @Test
-    public void palauttaaOikeanTyypin(){
-        Nappula nappula = new Nappula("musta");
-        nappula.setTyyppi(Nappula.Tyyppi.RATSU);
-        assertEquals(Nappula.Tyyppi.RATSU, nappula.getTyyppi());
-    }
+    
     
     @Test
     public void palauttaaNullJosVariaEiOleMaaratty(){
@@ -69,6 +92,8 @@ public class NappulaTest {
         Nappula nappula = new Nappula("musta");
         assertNull(nappula.getTyyppi());
     }
+    
+    
     
 
 }
