@@ -23,10 +23,21 @@ public class Pelilauta {
     private Ruutu[][] ruudukko;
 
     public void uusiPeli() {
-        
-        uusiPelilauta();
-      
+        luoRuudukko();
+        lisaaNappulatLaudalle();
 
+    }
+    
+    public void luoRuudukko(){
+        ruudukko = new Ruutu[8][8];
+        for (int i = 0; i <= 7; i++) {
+            for (int t = 0; t <= 7; t++) {
+                ruudukko[i][t] = new Ruutu();
+            }
+        }
+    }
+    
+    public void lisaaNappulatLaudalle(){
         for (int i = 0; i <= 7; i++) {
             if (i == 0 || i == 7) {
                 Torni mtorni = new Torni("musta");
@@ -65,16 +76,6 @@ public class Pelilauta {
             ruudukko[6][i].asetaNappula(vsotilas);
 
         }
-
-    }
-    
-    public void uusiPelilauta(){
-        ruudukko = new Ruutu[8][8];
-        for (int i = 0; i <= 7; i++) {
-            for (int t = 0; t <= 7; t++) {
-                ruudukko[i][t] = new Ruutu();
-            }
-        }
     }
     
     public void siirra(int vanhaX, int vanhaY, int uusiX, int uusiY){
@@ -85,20 +86,13 @@ public class Pelilauta {
             ruudukko[vanhaX][vanhaY].poistaNappula();
             ruudukko[uusiX][uusiY].asetaNappula(nappula);
                     
-        }else if (!onkoSamaVari(nappula, ruudukko[uusiX][uusiY].getNappula())){
+        }else if (!nappula.onkoSamaVari(ruudukko[uusiX][uusiY].getNappula())){
             ruudukko[vanhaX][vanhaY].poistaNappula();
             ruudukko[uusiX][uusiY].asetaNappula(nappula);
             
         }else{
-            System.out.println("Ei sallittu siirto!");
-        }
-    }
-    
-    public boolean onkoSamaVari(Nappula ensimmainen, Nappula toinen){
-        if (ensimmainen.getVari().equals("valkoinen") && toinen.getVari().equals("valkoinen")){
-            return true;
             
-        } return ensimmainen.getVari().equals("musta") && toinen.getVari().equals("musta");
+        }
     }
 
     public Ruutu[][] getRuudukko() {

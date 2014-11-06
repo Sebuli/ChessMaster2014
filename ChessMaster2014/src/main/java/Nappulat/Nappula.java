@@ -34,6 +34,10 @@ public class Nappula {
         return tyyppi;
     }
     
+    public boolean onkoSamaVari(Nappula nappula){
+        return vari.equals(nappula.getVari());
+    }
+    
     
     
 }

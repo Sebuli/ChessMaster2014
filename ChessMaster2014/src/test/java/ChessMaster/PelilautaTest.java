@@ -10,6 +10,8 @@ import ChessMaster.Pelilauta;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -31,32 +33,53 @@ public class PelilautaTest {
     @Test
     public void poistaaNappulanVanhastaRuudustaKunSiirretäänTyhjaan(){
         lauta.siirra(1, 0, 2, 0);
-        Assert.assertEquals(null, lauta.getRuudukko()[1][0].getNappula());
+        assertEquals(null, lauta.getRuudukko()[1][0].getNappula());
     }
     
     @Test
-    public void siirtaaUuteenRuutuunKunOnTyhja(){
+    public void siirtaaMustanUuteenRuutuunKunOnTyhja(){
         lauta.siirra(1, 0, 2, 0);
-        Assert.assertEquals(Nappula.Tyyppi.SOTILAS, lauta.getRuudukko()[2][0].getNappula().getTyyppi());
+        assertEquals(Nappula.Tyyppi.SOTILAS, lauta.getRuudukko()[2][0].getNappula().getTyyppi());
     }
     
     @Test
-    public void eiSiirraRuutuunKunSiinaOnSamanVarinenNappula(){
+    public void siirtaaValkoisenUuteenRuutuunKunOnTyhja(){
+        lauta.siirra(6, 0, 5, 0);
+        assertEquals(Nappula.Tyyppi.SOTILAS, lauta.getRuudukko()[5][0].getNappula().getTyyppi());
+    }
+    
+    @Test
+    public void eiSiirraRuutuunKunSiinaOnSamanVarinenNappulaMusta(){
         lauta.siirra(1, 0, 1, 1);
-        Assert.assertEquals(Nappula.Tyyppi.SOTILAS, lauta.getRuudukko()[1][0].getNappula().getTyyppi());
+        assertEquals(Nappula.Tyyppi.SOTILAS, lauta.getRuudukko()[1][0].getNappula().getTyyppi());
+    }
+    
+    @Test
+    public void eiSiirraRuutuunKunSiinaOnSamanVarinenNappulaValkoinen(){
+        lauta.siirra(6, 0, 6, 1);
+        assertEquals(Nappula.Tyyppi.SOTILAS, lauta.getRuudukko()[1][0].getNappula().getTyyppi());
     }
     
     @Test
     public void syoNappulanJosOnEriVarinenKunSiirretaan(){
         lauta.siirra(1, 0, 6, 0);
-        Assert.assertEquals("musta", lauta.getRuudukko()[6][0].getNappula().getVari());
+        assertEquals("musta", lauta.getRuudukko()[6][0].getNappula().getVari());
     }
     
     @Test
     public void poistaaNappulanAlkuperaisestaRuudustaKunSiirretaanRuutuunJossaEriVarinenNappula(){
         lauta.siirra(1, 0, 6, 0);
-        Assert.assertEquals(null, lauta.getRuudukko()[1][0].getNappula());
+        assertEquals(null, lauta.getRuudukko()[1][0].getNappula());
     }
+    
+    @Test
+    public void ruudukkoLuodaanOikein(){
+        Pelilauta pelilauta = new Pelilauta();
+        pelilauta.luoRuudukko();
+        assertNotNull(pelilauta.getRuudukko());
+    }
+    
+    
 
    
 }

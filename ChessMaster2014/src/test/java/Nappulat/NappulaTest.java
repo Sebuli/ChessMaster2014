@@ -93,6 +93,13 @@ public class NappulaTest {
         assertNull(nappula.getTyyppi());
     }
     
+    @Test
+    public void kaksiSamanVaristaNappulaaOnSamanvarisia(){
+        Nappula nappula = new Nappula("musta");
+        Nappula toinen = new Nappula("musta");
+        assertEquals(true, nappula.onkoSamaVari(toinen));
+    }
+    
     
     
 

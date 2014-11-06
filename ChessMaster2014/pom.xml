@@ -45,8 +45,8 @@
                         <param>Nappulat.*</param>
                     </targetClasses>
                     <targetTests>
-                        <param>ChessMaster.Pelilauta</param>
-                        <param>ChessMaster.Ruutu</param>
+                        <param>ChessMaster.PelilautaTest</param>
+                        <param>ChessMaster.RuutuTest</param>
                         <param>Nappulat.*</param>
                     </targetTests>
                 </configuration>

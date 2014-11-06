@@ -68,4 +68,11 @@ public class RuutuTest {
         ruutu.asetaNappula(nappula);
         assertNotNull(ruutu.getNappula());
     }
+    
+     @Test
+    public void palauttaaNullNappulaJosNappulaaEiOleMaaritelty(){
+        Nappula nappula = new Kuningas("musta");
+        
+        assertNull(ruutu.getNappula());
+    }
 }
