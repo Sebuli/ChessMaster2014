@@ -15,5 +15,5 @@
   -Lisää ohjelmointia, testien tekemistä  
   
 6.11.2014  
-  -1 tunti
+  -1 tunti  
   -Sain pit testien mutaatiot kuolemaan, minulla oli pom tiedostossa väärin
