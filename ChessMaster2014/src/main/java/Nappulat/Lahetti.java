@@ -9,18 +9,15 @@ package Nappulat;
  *
  * @author Sebbe
  */
-public class Lahetti extends Nappula{
+public class Lahetti extends Nappula {
 
-
-    
     public Lahetti(String vari) {
         super(vari);
-        if ( vari.equals("valkoinen")){
+        if (vari.equals("valkoinen")) {
             setTyyppi(Tyyppi.VLAHETTI);
-        }else{
+        } else {
             setTyyppi(Tyyppi.MLAHETTI);
         }
     }
-    
-   
+
 }

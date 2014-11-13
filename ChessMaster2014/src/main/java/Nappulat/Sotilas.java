@@ -9,19 +9,16 @@ package Nappulat;
  *
  * @author Sebbe
  */
-public class Sotilas extends Nappula{
-    
-    
+public class Sotilas extends Nappula {
 
     public Sotilas(String vari) {
         super(vari);
-        if ( vari.equals("valkoinen")){
+        if (vari.equals("valkoinen")) {
             setTyyppi(Tyyppi.VSOTILAS);
-        }else{
+        } else {
             setTyyppi(Tyyppi.MSOTILAS);
         }
-        
+
     }
-    
-    
+
 }

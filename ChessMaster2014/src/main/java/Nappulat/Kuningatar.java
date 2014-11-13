@@ -9,18 +9,15 @@ package Nappulat;
  *
  * @author Sebbe
  */
-public class Kuningatar extends Nappula{
+public class Kuningatar extends Nappula {
 
-   
-    
     public Kuningatar(String vari) {
         super(vari);
-        if ( vari.equals("valkoinen")){
+        if (vari.equals("valkoinen")) {
             setTyyppi(Tyyppi.VKUNINGATAR);
-        }else{
+        } else {
             setTyyppi(Tyyppi.MKUNINGATAR);
         }
     }
-    
-  
+
 }

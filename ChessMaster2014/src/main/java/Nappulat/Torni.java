@@ -9,20 +9,15 @@ package Nappulat;
  *
  * @author Sebbe
  */
-public class Torni extends Nappula{
+public class Torni extends Nappula {
 
-    
-    
     public Torni(String vari) {
         super(vari);
-        if ( vari.equals("valkoinen")){
+        if (vari.equals("valkoinen")) {
             setTyyppi(Tyyppi.VTORNI);
-        }else{
+        } else {
             setTyyppi(Tyyppi.MTORNI);
         }
     }
-    
 
-   
-    
 }

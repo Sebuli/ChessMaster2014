@@ -9,19 +9,15 @@ package Nappulat;
  *
  * @author Sebbe
  */
-public class Ratsu extends Nappula{
-    
-    
-    
+public class Ratsu extends Nappula {
+
     public Ratsu(String vari) {
         super(vari);
-        if ( vari.equals("valkoinen")){
+        if (vari.equals("valkoinen")) {
             setTyyppi(Tyyppi.VRATSU);
-        }else{
+        } else {
             setTyyppi(Tyyppi.MRATSU);
         }
     }
 
-   
-    
 }

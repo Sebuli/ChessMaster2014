@@ -21,65 +21,81 @@ import org.junit.Test;
  * @author Sebbe
  */
 public class PelilautaTest {
-    
+
     private Pelilauta lauta;
-    
+
     @Before
     public void setUp() {
         lauta = new Pelilauta();
         lauta.uusiPeli();
     }
-    
+
     @Test
-    public void poistaaNappulanVanhastaRuudustaKunSiirretäänTyhjaan(){
+    public void poistaaNappulanVanhastaRuudustaKunSiirretäänTyhjaan() {
         lauta.siirra(1, 0, 2, 0);
         assertEquals(null, lauta.getRuudukko()[1][0].getNappula());
     }
-    
+
     @Test
-    public void siirtaaMustanUuteenRuutuunKunOnTyhja(){
+    public void siirtaaMustanUuteenRuutuunKunOnTyhja() {
         lauta.siirra(1, 0, 2, 0);
         assertEquals(Nappula.Tyyppi.MSOTILAS, lauta.getRuudukko()[2][0].getNappula().getTyyppi());
     }
-    
+
     @Test
-    public void siirtaaValkoisenUuteenRuutuunKunOnTyhja(){
+    public void siirtaaValkoisenUuteenRuutuunKunOnTyhja() {
         lauta.siirra(6, 0, 5, 0);
         assertEquals(Nappula.Tyyppi.VSOTILAS, lauta.getRuudukko()[5][0].getNappula().getTyyppi());
     }
-    
+
     @Test
-    public void eiSiirraRuutuunKunSiinaOnSamanVarinenNappulaMusta(){
+    public void eiSiirraRuutuunKunSiinaOnSamanVarinenNappulaMusta() {
         lauta.siirra(1, 0, 1, 1);
         assertEquals(Nappula.Tyyppi.MSOTILAS, lauta.getRuudukko()[1][0].getNappula().getTyyppi());
     }
-    
+
     @Test
-    public void eiSiirraRuutuunKunSiinaOnSamanVarinenNappulaValkoinen(){
+    public void eiSiirraRuutuunKunSiinaOnSamanVarinenNappulaValkoinen() {
         lauta.siirra(6, 0, 6, 1);
-        assertEquals(Nappula.Tyyppi.VSOTILAS, lauta.getRuudukko()[1][0].getNappula().getTyyppi());
+        assertEquals(Nappula.Tyyppi.VSOTILAS, lauta.getRuudukko()[6][0].getNappula().getTyyppi());
     }
-    
+
     @Test
-    public void syoNappulanJosOnEriVarinenKunSiirretaan(){
+    public void syoNappulanJosOnEriVarinenKunSiirretaan() {
         lauta.siirra(1, 0, 6, 0);
         assertEquals("musta", lauta.getRuudukko()[6][0].getNappula().getVari());
     }
-    
+
     @Test
-    public void poistaaNappulanAlkuperaisestaRuudustaKunSiirretaanRuutuunJossaEriVarinenNappula(){
+    public void poistaaNappulanAlkuperaisestaRuudustaKunSiirretaanRuutuunJossaEriVarinenNappula() {
         lauta.siirra(1, 0, 6, 0);
         assertEquals(null, lauta.getRuudukko()[1][0].getNappula());
     }
-    
+
     @Test
-    public void ruudukkoLuodaanOikein(){
+    public void ruudukkoLuodaanOikein() {
         Pelilauta pelilauta = new Pelilauta();
         pelilauta.luoRuudukko();
         assertNotNull(pelilauta.getRuudukko());
     }
-    
-    
 
-   
+    @Test
+    public void onkoMustaShakkiMattiPalauttaaFalse() {
+        assertEquals(false, lauta.onkoMustaShakkiMatti());
+    }
+    @Test
+    public void onkoValkoinenShakkiMattiPalauttaaFalse() {
+        assertEquals(false, lauta.onkoValkoinenShakkiMatti());
+    }
+    
+    @Test
+    public void onkoValkoinenMattiPalauttaaFalse(){
+        assertEquals(false, lauta.onkoValkoinenMatti());
+    }
+    
+    @Test
+    public void onkoMustaMattiPalauttaaFalse(){
+        assertEquals(false, lauta.onkoMustaMatti());
+    }
+
 }

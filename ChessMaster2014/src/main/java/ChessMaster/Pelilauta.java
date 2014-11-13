@@ -27,8 +27,8 @@ public class Pelilauta {
         lisaaNappulatLaudalle();
 
     }
-    
-    public void luoRuudukko(){
+
+    public void luoRuudukko() {
         ruudukko = new Ruutu[8][8];
         for (int i = 0; i <= 7; i++) {
             for (int t = 0; t <= 7; t++) {
@@ -36,8 +36,8 @@ public class Pelilauta {
             }
         }
     }
-    
-    public void lisaaNappulatLaudalle(){
+
+    public void lisaaNappulatLaudalle() {
         for (int i = 0; i <= 7; i++) {
             if (i == 0 || i == 7) {
                 Torni mtorni = new Torni("musta");
@@ -77,16 +77,16 @@ public class Pelilauta {
 
         }
     }
-    
-    public void siirra(int vanhaX, int vanhaY, int uusiX, int uusiY){
-        
+
+    public void siirra(int vanhaX, int vanhaY, int uusiX, int uusiY) {
+
         Nappula nappula = ruudukko[vanhaX][vanhaY].getNappula();
-        
-        if (ruudukko[uusiX][uusiY].getNappula() == null){
+
+        if (ruudukko[uusiX][uusiY].getNappula() == null) {
             ruudukko[vanhaX][vanhaY].poistaNappula();
             ruudukko[uusiX][uusiY].asetaNappula(nappula);
-                    
-        }else{
+
+        } else if (!ruudukko[vanhaX][vanhaY].getNappula().onkoSamaVari(ruudukko[uusiX][uusiY].getNappula())) {
             ruudukko[vanhaX][vanhaY].poistaNappula();
             ruudukko[uusiX][uusiY].poistaNappula();
             ruudukko[uusiX][uusiY].asetaNappula(nappula);
@@ -97,7 +97,43 @@ public class Pelilauta {
         return ruudukko;
     }
     
+    public boolean onkoMustaMatti(){
+        int x = 0;
+        int y = 0;
+        for (int i = 0; i <= 7; i++){
+            for (int t = 0; t <= 7; t++){
+                if (ruudukko[i][t].getNappula() != null && ruudukko[i][t].getNappula().getTyyppi() == Nappula.Tyyppi.MKUNINGAS){
+                    x = i;
+                    y = t;
+                    break;
+                }
+            }
+        }
+        
+        
+        
+        
+        return false;
+    }
     
+    public boolean onkoValkoinenMatti(){
+        for (int i = 0; i <= 7; i++){
+            for (int t = 0; t <= 7; t++){
+                
+            }
+        }
+        return false;
+    }
 
+    public boolean onkoMustaShakkiMatti() {
+        
+        
+        
+        return false;
+    }
+    
+    public boolean onkoValkoinenShakkiMatti() {
+        return false;
+    }
 
 }

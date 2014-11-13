@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Nappulat;
+package ChessMaster;
 
+import javax.swing.JComponent;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -16,6 +17,19 @@ import static org.junit.Assert.*;
  *
  * @author Sebbe
  */
-public class KuningasTest {
+public class KayttojarjestelmaTest {
+
+    private Kayttojarjestelma kayttis;
+
+    @Before
+    public void setUp() {
+        kayttis = new Kayttojarjestelma();
+
+    }
+
+    @Test
+    public void luoKayttojarjestelmanOikein() {
+        assertNotNull(kayttis.getGui());
+    }
 
 }

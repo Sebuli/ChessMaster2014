@@ -12,21 +12,19 @@ import Nappulat.Nappula;
  * @author Sebbe
  */
 public class Ruutu {
-    
+
     private Nappula nappula;
 
     public void asetaNappula(Nappula nappula) {
         this.nappula = nappula;
     }
-    
-    public void poistaNappula(){
+
+    public void poistaNappula() {
         this.nappula = null;
     }
 
     public Nappula getNappula() {
         return nappula;
     }
-    
-    
-    
+
 }
