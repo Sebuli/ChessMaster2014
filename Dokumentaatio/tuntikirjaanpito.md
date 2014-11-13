@@ -25,3 +25,7 @@
 12.11.2014  
   -5 tuntia  
   -Työskentelin taas käyttiksen kanssa. Nappuloita voi painaa ja siirtäminen toimii joten kuten. Minun mahdollisetSiirrot metodi on huonosti tehty (ei kerro kaikkia mahdollisia siirtoja), sitä pitää vielä korjata. Minun pelini ei vielä lopu, pelilauta ei vielä tiedä milloin on shakki-matti tilanne.
+  
+13.11.2014  
+  -4 tuntia  
+  -mahdollisetSiirrot metodi korjattu, nytten se palauttaa oikeasti kaikki mahdolliset siirrot. Lisäsin kayttikseen mahdollisuuden näyttää kaikki nappulan mahdolliset siirrot kun pelaaja on valinnut nappulan jonka hän haluaa siirtää. Lisäsin testejä kaikille luokille ja tein uuden pit-raportin ja luokkakaavion. Minun pitää vielä keksiä miten toteutan metodin pelilaudalle joka tietää milloin on shakki-matti tilanne.
