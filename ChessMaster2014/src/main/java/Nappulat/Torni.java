@@ -15,7 +15,11 @@ public class Torni extends Nappula{
     
     public Torni(String vari) {
         super(vari);
-        setTyyppi(Tyyppi.TORNI);
+        if ( vari.equals("valkoinen")){
+            setTyyppi(Tyyppi.VTORNI);
+        }else{
+            setTyyppi(Tyyppi.MTORNI);
+        }
     }
     
 

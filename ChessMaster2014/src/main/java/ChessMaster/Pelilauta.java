@@ -12,7 +12,7 @@ import Nappulat.Sotilas;
 import Nappulat.Nappula;
 import Nappulat.Ratsu;
 import Nappulat.Kuningas;
-import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  *
@@ -86,12 +86,10 @@ public class Pelilauta {
             ruudukko[vanhaX][vanhaY].poistaNappula();
             ruudukko[uusiX][uusiY].asetaNappula(nappula);
                     
-        }else if (!nappula.onkoSamaVari(ruudukko[uusiX][uusiY].getNappula())){
-            ruudukko[vanhaX][vanhaY].poistaNappula();
-            ruudukko[uusiX][uusiY].asetaNappula(nappula);
-            
         }else{
-            
+            ruudukko[vanhaX][vanhaY].poistaNappula();
+            ruudukko[uusiX][uusiY].poistaNappula();
+            ruudukko[uusiX][uusiY].asetaNappula(nappula);
         }
     }
 

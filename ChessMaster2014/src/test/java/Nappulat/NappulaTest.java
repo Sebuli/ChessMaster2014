@@ -37,33 +37,33 @@ public class NappulaTest {
     @Test
     public void torniSaaOikeanTyypin(){
         Nappula nappula = new Torni("musta");
-        assertEquals(Nappula.Tyyppi.TORNI, nappula.getTyyppi());
+        assertEquals(Nappula.Tyyppi.MTORNI, nappula.getTyyppi());
     }
     
     @Test
     public void kuningasSaaOikeanTyypin(){
         Nappula nappula = new Kuningas("musta");
-        assertEquals(Nappula.Tyyppi.KUNINGAS, nappula.getTyyppi());
+        assertEquals(Nappula.Tyyppi.MKUNINGAS, nappula.getTyyppi());
     }
     @Test
     public void kuningatarSaaOikeanTyypin(){
         Nappula nappula = new Kuningatar("musta");
-        assertEquals(Nappula.Tyyppi.KUNINGATAR, nappula.getTyyppi());
+        assertEquals(Nappula.Tyyppi.MKUNINGATAR, nappula.getTyyppi());
     }
     @Test
     public void lahettiSaaOikeanTyypin(){
         Nappula nappula = new Lahetti("musta");
-        assertEquals(Nappula.Tyyppi.LAHETTI, nappula.getTyyppi());
+        assertEquals(Nappula.Tyyppi.MLAHETTI, nappula.getTyyppi());
     }
     @Test
     public void ratsuSaaOikeanTyypin(){
         Nappula nappula = new Ratsu("musta");
-        assertEquals(Nappula.Tyyppi.RATSU, nappula.getTyyppi());
+        assertEquals(Nappula.Tyyppi.MRATSU, nappula.getTyyppi());
     }
     @Test
     public void sotilasSaaOikeanTyypin(){
         Nappula nappula = new Sotilas("musta");
-        assertEquals(Nappula.Tyyppi.SOTILAS, nappula.getTyyppi());
+        assertEquals(Nappula.Tyyppi.MSOTILAS, nappula.getTyyppi());
     }
     
     @Test
@@ -83,7 +83,7 @@ public class NappulaTest {
     @Test
     public void eiPalautaNullJosTyyppiOnMaaratty(){
         Nappula nappula = new Nappula(null);
-        nappula.setTyyppi(Nappula.Tyyppi.RATSU);
+        nappula.setTyyppi(Nappula.Tyyppi.MRATSU);
         assertNotNull(nappula.getTyyppi());
     }
     

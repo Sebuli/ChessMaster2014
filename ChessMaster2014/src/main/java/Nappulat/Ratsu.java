@@ -15,7 +15,11 @@ public class Ratsu extends Nappula{
     
     public Ratsu(String vari) {
         super(vari);
-        setTyyppi(Tyyppi.RATSU);
+        if ( vari.equals("valkoinen")){
+            setTyyppi(Tyyppi.VRATSU);
+        }else{
+            setTyyppi(Tyyppi.MRATSU);
+        }
     }
 
    

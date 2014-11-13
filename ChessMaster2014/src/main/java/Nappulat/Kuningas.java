@@ -13,7 +13,11 @@ public class Kuningas extends Nappula {
 
     public Kuningas(String vari) {
         super(vari);
-        setTyyppi(Tyyppi.KUNINGAS);
+        if ( vari.equals("valkoinen")){
+            setTyyppi(Tyyppi.VKUNINGAS);
+        }else{
+            setTyyppi(Tyyppi.MKUNINGAS);
+        }
     }
     
     

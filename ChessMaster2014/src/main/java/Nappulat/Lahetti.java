@@ -15,7 +15,11 @@ public class Lahetti extends Nappula{
     
     public Lahetti(String vari) {
         super(vari);
-        setTyyppi(Tyyppi.LAHETTI);
+        if ( vari.equals("valkoinen")){
+            setTyyppi(Tyyppi.VLAHETTI);
+        }else{
+            setTyyppi(Tyyppi.MLAHETTI);
+        }
     }
     
    

@@ -15,7 +15,11 @@ public class Sotilas extends Nappula{
 
     public Sotilas(String vari) {
         super(vari);
-        setTyyppi(Tyyppi.SOTILAS);
+        if ( vari.equals("valkoinen")){
+            setTyyppi(Tyyppi.VSOTILAS);
+        }else{
+            setTyyppi(Tyyppi.MSOTILAS);
+        }
         
     }
     

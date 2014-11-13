@@ -52,7 +52,7 @@ public class RuutuTest {
         Nappula uusiNappula = new Kuningatar("valkoinen");
         ruutu.asetaNappula(nappula);
         ruutu.asetaNappula(uusiNappula);
-        assertEquals(Nappula.Tyyppi.KUNINGATAR, ruutu.getNappula().getTyyppi());
+        assertEquals(Nappula.Tyyppi.VKUNINGATAR, ruutu.getNappula().getTyyppi());
     }
     
     @Test

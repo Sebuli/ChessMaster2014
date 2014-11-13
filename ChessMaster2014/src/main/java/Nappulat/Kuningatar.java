@@ -15,7 +15,11 @@ public class Kuningatar extends Nappula{
     
     public Kuningatar(String vari) {
         super(vari);
-        setTyyppi(Tyyppi.KUNINGATAR);
+        if ( vari.equals("valkoinen")){
+            setTyyppi(Tyyppi.VKUNINGATAR);
+        }else{
+            setTyyppi(Tyyppi.MKUNINGATAR);
+        }
     }
     
   
