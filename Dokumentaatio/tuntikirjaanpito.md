@@ -17,3 +17,11 @@
 6.11.2014  
   -1 tunti  
   -Sain pit testien mutaatiot kuolemaan, minulla oli pom tiedostossa väärin
+  
+11.11.2014  
+  -4 tuntia  
+  -Taistelin todella paljon käyttiksen kanssa mutta sain sen lopulta näyttämään ihan hyvältä. Aloitustila piirretään    oikein mutta nappuloita ei voi vielä siirtää.
+
+12.11.2014  
+  -5 tuntia  
+  -Työskentelin taas käyttiksen kanssa. Nappuloita voi painaa ja siirtäminen toimii joten kuten. Minun mahdollisetSiirrot metodi on huonosti tehty (ei kerro kaikkia mahdollisia siirtoja), sitä pitää vielä korjata. Minun pelini ei vielä lopu, pelilauta ei vielä tiedä milloin on shakki-matti tilanne.
