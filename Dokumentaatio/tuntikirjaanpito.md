@@ -29,3 +29,7 @@
 13.11.2014  
   -4 tuntia  
   -mahdollisetSiirrot metodi korjattu, nytten se palauttaa oikeasti kaikki mahdolliset siirrot. Lisäsin kayttikseen mahdollisuuden näyttää kaikki nappulan mahdolliset siirrot kun pelaaja on valinnut nappulan jonka hän haluaa siirtää. Lisäsin testejä kaikille luokille ja tein uuden pit-raportin ja luokkakaavion. Minun pitää vielä keksiä miten toteutan metodin pelilaudalle joka tietää milloin on shakki-matti tilanne. Jotta nappuloitten kuvien lataus toimisi niin koodissa pitää ensin muuttaa luoNappulaKuvat() metodille käyttiksessä niin että ohjelma lataa kuvat oikeasta osoitteesta.
+  
+18.11.2014  
+  -2 tuntia  
+  -Muokkasin käyttistä niin että Enable help toimi myös silloin kun nappula on jo valittu ja tein vähän javadocia
