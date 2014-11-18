@@ -89,13 +89,13 @@ public class PelilautaTest {
     }
     
     @Test
-    public void onkoValkoinenMattiPalauttaaFalse(){
-        assertEquals(false, lauta.onkoValkoinenMatti());
+    public void onkoValkoinenShakkiPalauttaaFalse(){
+        assertEquals(false, lauta.onkoValkoinenShakki());
     }
     
     @Test
-    public void onkoMustaMattiPalauttaaFalse(){
-        assertEquals(false, lauta.onkoMustaMatti());
+    public void onkoMustaShakkiPalauttaaFalse(){
+        assertEquals(false, lauta.onkoMustaShakki());
     }
 
 }

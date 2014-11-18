@@ -6,7 +6,7 @@
 package Nappulat;
 
 /**
- *
+ * Luokka perii Nappula luokan ja asettaa tyyppiksi joko VRATSU tai MRATSU
  * @author Sebbe
  */
 public class Ratsu extends Nappula {

@@ -1,5 +1,6 @@
 package ChessMaster;
 
+import Nappulat.Kuningatar;
 import Nappulat.Nappula;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -35,10 +36,6 @@ import javax.swing.border.EmptyBorder;
  *
  * @author Sebbe
  */
-/**
- *
- * @author Sebbe
- */
 public class Kayttojarjestelma {
 
     private JButton[][] ruudukko = new JButton[8][8];
@@ -67,15 +64,18 @@ public class Kayttojarjestelma {
 
     private boolean valkoisenVuoro;
 
+    
     public Kayttojarjestelma() {
-        this.pelilauta = new Pelilauta();
-        peliAlkanut = false;
-
         initComponents();
     }
 
+    /**
+     * Metodi luo käyttöjärjestelmälle kaikki tarvittavas komponentit ja alustaa muuttujia.
+     */
     @SuppressWarnings("unchecked")
     private void initComponents() {
+        this.pelilauta = new Pelilauta();
+        peliAlkanut = false;
         luoNappulaKuvat();
         onkoNaytaMahdollisetSiirrot = false;
 
@@ -140,8 +140,15 @@ public class Kayttojarjestelma {
             public void actionPerformed(ActionEvent e) {
                 if (onkoNaytaMahdollisetSiirrot) {
                     onkoNaytaMahdollisetSiirrot = false;
+                    varitaPelilauta();
+                    if ( ekaX != -1){
+                        ruudukko[ekaX][ekaY].setBackground(Color.orange);
+                    }
                 } else {
                     onkoNaytaMahdollisetSiirrot = true;
+                    if (ekaX != -1) {
+                        varitaMahdollisetSiirrot();
+                    }
                 }
             }
         });
@@ -217,6 +224,9 @@ public class Kayttojarjestelma {
         }
     }
 
+    /**
+     * Tyhjentää ruudukon nappuloista
+     */
     private final void annaPeriksi() {
         for (int i = 0; i <= 7; i++) {
             for (int t = 0; t <= 7; t++) {
@@ -224,41 +234,53 @@ public class Kayttojarjestelma {
             }
         }
         peliAlkanut = false;
+        varitaPelilauta();
         pelilauta.uusiPeli();
         viesti.setText("Coward...");
         kenenVuoro.setText("");
     }
-    
-    private final void aloitaPeli(){
+
+    /**
+     * Värittää pelilaudan ja laittaa nappulat oikeisiin paikkoihin. Ruutuja voi metodin suorituksen jälkeen painaa.
+     */
+    private final void aloitaPeli() {
         peliAlkanut = true;
-                pelilauta.uusiPeli();
-                for (int i = 0; i <= 7; i++) {
-                    for (int t = 0; t <= 7; t++) {
-                        ruudukko[i][t].setEnabled(true);
-                    }
-                }
-                kenenVuoro.setText("White to move");
-                ekaX = -1;
-                ekaY = -1;
-                tokaX = -1;
-                tokaY = -1;
+        pelilauta.uusiPeli();
+        for (int i = 0; i <= 7; i++) {
+            for (int t = 0; t <= 7; t++) {
+                ruudukko[i][t].setEnabled(true);
+            }
+        }
+        kenenVuoro.setText("White to move");
+        ekaX = -1;
+        ekaY = -1;
+        tokaX = -1;
+        tokaY = -1;
 
-                valkoisenVuoro = true;
+        valkoisenVuoro = true;
 
-                piirraNappulat();
+        varitaPelilauta();
+
+        piirraNappulat();
     }
-    
+
+    /**
+     * Lopettaa pelin ja nollaa pelilaudan.
+     */
     private void lopetaPeli() {
-        if (valkoisenVuoro) {
-            viesti.setText("Check Mate, Black wins!");
+        if (!valkoisenVuoro) {
+            viesti.setText("Checkmate, Black wins!");
         } else {
-            viesti.setText("Check Mate, White wins!");
+            viesti.setText("Checkmate, White wins!");
         }
         peliAlkanut = false;
         pelilauta.uusiPeli();
 
     }
-
+    
+    /**
+     * Piirtää pelinappulat niihin sijanteihin missä ne ovat pelilaudassa.
+     */
     private final void piirraNappulat() {
         viesti.setText("");
         for (int i = 0; i <= 7; i++) {
@@ -308,29 +330,50 @@ public class Kayttojarjestelma {
 
         }
     }
-    
-    private void varitaPelilauta() {
-            for (int k = 0; k <= 7; k++) {
-                for (int j = 0; j <= 7; j++) {
-                    if ((j % 2 == 1 && k % 2 == 1) || (j % 2 == 0 && k % 2 == 0)) {
-                        ruudukko[k][j].setBackground(Color.WHITE);
-                    } else {
-                        ruudukko[k][j].setBackground(Color.BLACK);
-                    }
 
+    /**
+     * Värittää pelilaudan ruudut mustavalkoisiksi
+     */
+    private void varitaPelilauta() {
+        for (int k = 0; k <= 7; k++) {
+            for (int j = 0; j <= 7; j++) {
+                if ((j % 2 == 1 && k % 2 == 1) || (j % 2 == 0 && k % 2 == 0)) {
+                    ruudukko[k][j].setBackground(Color.WHITE);
+                } else {
+                    ruudukko[k][j].setBackground(Color.BLACK);
                 }
+
             }
         }
+    }
 
+    /**
+     * Siirtää nappulan ekaX,ekaY sijainnista tokaX,tokaY sijaintiin.
+     */
     private void siirra() {
+
         pelilauta.siirra(ekaX, ekaY, tokaX, tokaY);
+
+        if (tokaX == 0 && pelilauta.getRuudukko()[tokaX][tokaY].getNappula().getTyyppi() == Nappula.Tyyppi.VSOTILAS) {
+            pelilauta.getRuudukko()[tokaX][tokaY].asetaNappula(new Kuningatar("valkoinen"));
+        }
+
+        if (tokaX == 7 && pelilauta.getRuudukko()[tokaX][tokaY].getNappula().getTyyppi() == Nappula.Tyyppi.MSOTILAS) {
+            pelilauta.getRuudukko()[tokaX][tokaY].asetaNappula(new Kuningatar("musta"));
+        }
+        varitaPelilauta();
+        ekaX = -1;
+        ekaY = -1;
+        tokaX = -1;
+        tokaY = -1;
+
         piirraNappulat();
         if (valkoisenVuoro && pelilauta.onkoMustaShakkiMatti()) {
             lopetaPeli();
-        } else if (!valkoisenVuoro && pelilauta.onkoValkoinenShakkiMatti()){
+        } else if (!valkoisenVuoro && pelilauta.onkoValkoinenShakkiMatti()) {
             lopetaPeli();
         }
-        
+
         if (valkoisenVuoro) {
             valkoisenVuoro = false;
             kenenVuoro.setText("Black to move");
@@ -338,11 +381,9 @@ public class Kayttojarjestelma {
             valkoisenVuoro = true;
             kenenVuoro.setText("White to move");
         }
-        
-        
-        
     }
 
+  
     private final void luoNappulaKuvat() {
         try {
 
@@ -382,8 +423,6 @@ public class Kayttojarjestelma {
         SwingUtilities.invokeLater(r);
     }
 
-    
-
     public class Mouse implements MouseListener {
 
         @Override
@@ -395,55 +434,48 @@ public class Kayttojarjestelma {
 
                 for (int i = 0; i <= 7; i++) {
                     for (int t = 0; t <= 7; t++) {
+                        if (e.getComponent() == ruudukko[i][t]) {
+                            if (pelilauta.getRuudukko()[i][t].getNappula() != null
+                                    && ((pelilauta.getRuudukko()[i][t].getNappula().getVari().equals("musta") && !valkoisenVuoro)
+                                    || (pelilauta.getRuudukko()[i][t].getNappula().getVari().equals("valkoinen") && valkoisenVuoro))
+                                    && ekaX == -1) {
 
-                        if (ekaX == -1 && e.getComponent() == ruudukko[i][t] && pelilauta.getRuudukko()[i][t].getNappula() != null) {
+                                ekaX = i;
+                                ekaY = t;
 
-                            ekaX = i;
-                            ekaY = t;
-
-                            if ((pelilauta.getRuudukko()[ekaX][ekaY].getNappula().getVari().equals("musta") && !valkoisenVuoro)
-                                    || (pelilauta.getRuudukko()[ekaX][ekaY].getNappula().getVari().equals("valkoinen") && valkoisenVuoro)) {
                                 e.getComponent().setBackground(Color.ORANGE);
 
                                 if (onkoNaytaMahdollisetSiirrot) {
-                                    ArrayList<String> mahdolliset = pelilauta.getRuudukko()[ekaX][ekaY].getNappula().mahdollisetSiirrot(ekaX, ekaY, pelilauta.getRuudukko());
+                                    varitaMahdollisetSiirrot();
+                                }
+                                break;
+                            } else if (ekaX != -1) {
 
-                                    for (int a = 0; a <= 7; a++) {
-                                        for (int b = 0; b <= 7; b++) {
+                                tokaX = i;
+                                tokaY = t;
 
-                                            if (mahdolliset.contains("" + a + b)) {
-                                                ruudukko[a][b].setBackground(Color.yellow);
-                                            }
-                                        }
-                                    }
+                                ArrayList<String> mahdollisetSiirrot = pelilauta.getRuudukko()[ekaX][ekaY].getNappula().mahdollisetSiirrot(ekaX, ekaY, pelilauta.getRuudukko());
+                                if (mahdollisetSiirrot.contains("" + tokaX + tokaY)) {
+                                    siirra();
                                     break;
                                 }
+                                varitaPelilauta();
+                                if (ekaX != tokaX || ekaY != tokaY) {
+                                    viesti.setText("Illeagal move");
+                                }
+                                ekaX = -1;
+                                ekaY = -1;
+                                tokaX = -1;
+                                tokaY = -1;
+
+                                break;
+
                             }
-                        } else if (ekaX != -1 && e.getComponent() == ruudukko[i][t]) {
-
-                            tokaX = i;
-                            tokaY = t;
-
-                            ArrayList<String> mahdollisetSiirrot = pelilauta.getRuudukko()[ekaX][ekaY].getNappula().mahdollisetSiirrot(ekaX, ekaY, pelilauta.getRuudukko());
-                            if (mahdollisetSiirrot.contains("" + i + t)) {
-                                siirra();
-                            } else if (ekaX != tokaX || ekaY != tokaY) {
-                                viesti.setText("Illeagal move");
-                            }
-
-                            varitaPelilauta();
-                            ekaX = -1;
-                            ekaY = -1;
-                            tokaX = -1;
-                            tokaY = -1;
-                            break;
                         }
                     }
                 }
             }
         }
-
-        
 
         @Override
         public void mousePressed(MouseEvent e) {
@@ -460,6 +492,23 @@ public class Kayttojarjestelma {
 
         @Override
         public void mouseExited(MouseEvent e) {
+        }
+
+    }
+
+    /**
+     * Kun ruutu on valitti niin metodi piirtää sen nappulan joka on ruudusa mahdolliset siirtoruudut keltaisiksi.
+     */
+    private void varitaMahdollisetSiirrot() {
+        ArrayList<String> mahdolliset = pelilauta.getRuudukko()[ekaX][ekaY].getNappula().mahdollisetSiirrot(ekaX, ekaY, pelilauta.getRuudukko());
+
+        for (int a = 0; a <= 7; a++) {
+            for (int b = 0; b <= 7; b++) {
+
+                if (mahdolliset.contains("" + a + b)) {
+                    ruudukko[a][b].setBackground(Color.yellow);
+                }
+            }
         }
     }
 }

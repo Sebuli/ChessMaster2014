@@ -6,7 +6,7 @@
 package Nappulat;
 
 /**
- *
+ * Luokka perii Nappula luokan ja asettaa tyyppiksi joko VKUNINGAS tai MKUNINGAS
  * @author Sebbe
  */
 public class Kuningas extends Nappula {

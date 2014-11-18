@@ -6,7 +6,7 @@
 package Nappulat;
 
 /**
- *
+ * Luokka perii Nappula luokan ja asettaa tyyppiksi joko VSOTILAS tai MSOTILAS
  * @author Sebbe
  */
 public class Sotilas extends Nappula {

@@ -6,7 +6,7 @@
 package Nappulat;
 
 /**
- *
+ * Luokka perii Nappula luokan ja asettaa tyyppiksi joko VLAHETTI tai MLAHETTI
  * @author Sebbe
  */
 public class Lahetti extends Nappula {

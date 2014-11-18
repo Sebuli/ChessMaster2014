@@ -6,7 +6,7 @@
 package Nappulat;
 
 /**
- *
+ * Luokka perii Nappula luokan ja asettaa tyyppiksi joko VTORNI tai MTORNI
  * @author Sebbe
  */
 public class Torni extends Nappula {
