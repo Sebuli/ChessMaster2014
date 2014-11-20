@@ -369,15 +369,15 @@ public class Kayttojarjestelma {
         tokaY = -1;
 
         piirraNappulat();
-        if (valkoisenVuoro && pelilauta.onkoMustaShakkiMatti()) {
+        if (pelilauta.onkoMustaShakkiMatti()) {
             lopetaPeli();
-        } else if (!valkoisenVuoro && pelilauta.onkoValkoinenShakkiMatti()) {
+        } else if (pelilauta.onkoValkoinenShakkiMatti()) {
             lopetaPeli();
         }
         
-        if (valkoisenVuoro && pelilauta.onkoMustaShakki()) {
+        if (pelilauta.onkoMustaShakki()) {
             viesti.setText("Chess against Black!");
-        } else if (!valkoisenVuoro && pelilauta.onkoValkoinenShakki()) {
+        } else if (pelilauta.onkoValkoinenShakki()) {
             viesti.setText("Chess against White!");
         }
 
@@ -393,8 +393,8 @@ public class Kayttojarjestelma {
   
     private final void luoNappulaKuvat() {
         try {
-
-            BufferedImage bi = ImageIO.read(new File("C:/Users/Sebbe/Documents/GitHub/ChessMaster2014/Assets/shakkikuva.png"));
+            
+            BufferedImage bi = ImageIO.read(new File(System.getProperty("user.dir") + "/Shakkikuva.png"));
             for (int i = 0; i < 2; i++) {
                 for (int j = 0; j < 6; j++) {
                     chessPieceImages[i][j] = bi.getSubimage(

@@ -371,23 +371,9 @@ public class Pelilauta {
             return false;
         }
         ArrayList<String> mahdollisetSiirrot = ruudukko[x][y].getNappula().mahdollisetSiirrot(x, y, ruudukko);
-        Pelilauta p = new Pelilauta();
 
-        for (String siirto : mahdollisetSiirrot) {
-            Ruutu[][] uusi = new Ruutu[8][8];
-            for (int i = 0; i <= 7; i++) {
-                for (int t = 0; t <= 7; t++) {
-                    uusi[i][t] = new Ruutu();
-                    uusi[i][t].asetaNappula(ruudukko[i][t].getNappula());
-                }
-            }
-            p.setRuudukko(uusi);
-            int uusiX = Integer.parseInt("" + siirto.charAt(0));
-            int uusiY = Integer.parseInt("" + siirto.charAt(1));
-            p.siirra(x, y, uusiX, uusiY);
-            if (!p.onkoMustaShakki()) {
-                return false;
-            }
+        if (!mahdollisetSiirrot.isEmpty()) {
+            return false;
         }
 
         for (int i = 0; i <= 7; i++) {
