@@ -33,3 +33,7 @@
 18.11.2014  
   -2 tuntia  
   -Muokkasin käyttistä niin että Enable help toimi myös silloin kun nappula on jo valittu ja tein vähän javadocia
+  
+20.11.2014  
+  -3 tuntia  
+  -Tein shakkimatti tilanteen päättäjää, se toimii nytten jotenkuten mutta ei ole ihan vielä valmis. Koodi näyttää nytten todella sekavalta mutta teen siitä hienomman heti kun olen onnistunut shakkimatin kanssa. Testikattavuus taitaa olla hieman huono tässä vaiheessa mutta isoin syy on for lauseet, lisään testejä heti kun ehdin.
