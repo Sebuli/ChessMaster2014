@@ -244,6 +244,7 @@ public class Kayttojarjestelma {
      * Värittää pelilaudan ja laittaa nappulat oikeisiin paikkoihin. Ruutuja voi metodin suorituksen jälkeen painaa.
      */
     private final void aloitaPeli() {
+        viesti.setText("");
         peliAlkanut = true;
         pelilauta.uusiPeli();
         for (int i = 0; i <= 7; i++) {
@@ -373,6 +374,12 @@ public class Kayttojarjestelma {
         } else if (!valkoisenVuoro && pelilauta.onkoValkoinenShakkiMatti()) {
             lopetaPeli();
         }
+        
+        if (valkoisenVuoro && pelilauta.onkoMustaShakki()) {
+            viesti.setText("Chess against Black!");
+        } else if (!valkoisenVuoro && pelilauta.onkoValkoinenShakki()) {
+            viesti.setText("Chess against White!");
+        }
 
         if (valkoisenVuoro) {
             valkoisenVuoro = false;
@@ -430,7 +437,7 @@ public class Kayttojarjestelma {
 
             if (peliAlkanut) {
 
-                viesti.setText("");
+                
 
                 for (int i = 0; i <= 7; i++) {
                     for (int t = 0; t <= 7; t++) {

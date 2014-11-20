@@ -15,7 +15,7 @@ import Nappulat.Kuningas;
 import java.util.ArrayList;
 
 /**
- * Luokalla on metodeja pelilaudan muunteluun.  
+ * Luokalla on metodeja pelilaudan muunteluun.
  *
  * @author Sebbe
  */
@@ -27,7 +27,7 @@ public class Pelilauta {
     private Ruutu[][] ruudukko;
 
     /**
-     * Metodi kutsuu kahta metodia ja ne tekevät uuden pelilaudan jossa on 64
+     * Metodi kutsuu kahta metodia ja ne tekevÃ¤t uuden pelilaudan jossa on 64
      * nappulaa.
      */
     public void uusiPeli() {
@@ -37,7 +37,7 @@ public class Pelilauta {
     }
 
     /**
-     * Metodi alustaa ruudukon ja lisää jokaiseen paikkaan uuden Ruudun
+     * Metodi alustaa ruudukon ja lisÃ¤Ã¤ jokaiseen paikkaan uuden Ruudun
      */
     public void luoRuudukko() {
         ruudukko = new Ruutu[8][8];
@@ -94,13 +94,13 @@ public class Pelilauta {
     }
 
     /**
-     * Metodi siirtää nappulan joka sijaitsee vanhaX ja vanhaY koordinaattien
-     * päättämässä paikassa uusiX:n ja uusiY:n määrittämään paikkaan.
+     * Metodi siirtÃ¤Ã¤ nappulan joka sijaitsee vanhaX ja vanhaY koordinaattien
+     * pÃ¤Ã¤ttÃ¤mÃ¤ssÃ¤ paikassa uusiX:n ja uusiY:n mÃ¤Ã¤rittÃ¤mÃ¤Ã¤n paikkaan.
      *
-     * @param vanhaX Nappulan jota halutaan siirtää x sijainti ruudukossa
-     * @param vanhaY Nappulan jota halutaan siirtää y sijainti ruudukossa
-     * @param uusiX x sijainti minne halutaan siirtää nappula
-     * @param uusiY y sijainti minne halutaan siirtää nappula
+     * @param vanhaX Nappulan jota halutaan siirtÃ¤Ã¤ x sijainti ruudukossa
+     * @param vanhaY Nappulan jota halutaan siirtÃ¤Ã¤ y sijainti ruudukossa
+     * @param uusiX x sijainti minne halutaan siirtÃ¤Ã¤ nappula
+     * @param uusiY y sijainti minne halutaan siirtÃ¤Ã¤ nappula
      */
     public void siirra(int vanhaX, int vanhaY, int uusiX, int uusiY) {
 
@@ -126,9 +126,10 @@ public class Pelilauta {
     }
 
     /**
-     * Metodi tarkistaa uhkaako mikään valkoinen nappula mustaa kuningasta
+     * Metodi tarkistaa uhkaako mikÃ¤Ã¤n valkoinen nappula mustaa kuningasta
      *
-     * @return Palauttaa totta jos valkoinen nappula uhkaa mustaa kuningasta ei totta muuten
+     * @return Palauttaa totta jos valkoinen nappula uhkaa mustaa kuningasta ei
+     * totta muuten
      */
     public boolean onkoMustaShakki() {
         int x = 0;
@@ -236,9 +237,10 @@ public class Pelilauta {
     }
 
     /**
-     * Metodi tarkistaa uhkaako mikään musta nappula valkoista kuningasta
+     * Metodi tarkistaa uhkaako mikÃ¤Ã¤n musta nappula valkoista kuningasta
      *
-     * @return Palauttaa totta jos musta nappula uhkaa valkoista kuningasta ei totta muuten
+     * @return Palauttaa totta jos musta nappula uhkaa valkoista kuningasta ei
+     * totta muuten
      */
     public boolean onkoValkoinenShakki() {
         int x = 0;
@@ -347,14 +349,14 @@ public class Pelilauta {
 
     /**
      * Metodi tarkistaa onko mustalla shakkimatti tilanne
+     *
      * @return Palauttaa totta jos valkoinen on voittanut
      */
     public boolean onkoMustaShakkiMatti() {
         int x = 0;
         int y = 0;
-
-        Pelilauta kopio = new Pelilauta();
-        kopio.setRuudukko(ruudukko);
+        int uhkaavaX = -1;
+        int uhkaavaY = -1;
 
         for (int i = 0; i <= 7; i++) {
             for (int t = 0; t <= 7; t++) {
@@ -365,22 +367,45 @@ public class Pelilauta {
                 }
             }
         }
-
-        if (!kopio.onkoMustaShakki()) {
+        if (!onkoMustaShakki()) {
             return false;
         }
-
         ArrayList<String> mahdollisetSiirrot = ruudukko[x][y].getNappula().mahdollisetSiirrot(x, y, ruudukko);
+        Pelilauta p = new Pelilauta();
 
         for (String siirto : mahdollisetSiirrot) {
+            Ruutu[][] uusi = new Ruutu[8][8];
+            for (int i = 0; i <= 7; i++) {
+                for (int t = 0; t <= 7; t++) {
+                    uusi[i][t] = new Ruutu();
+                    uusi[i][t].asetaNappula(ruudukko[i][t].getNappula());
+                }
+            }
+            p.setRuudukko(uusi);
             int uusiX = Integer.parseInt("" + siirto.charAt(0));
             int uusiY = Integer.parseInt("" + siirto.charAt(1));
-
-            if (!kopio.onkoMustaShakki()) {
-                setRuudukko(kopio.getRuudukko());
+            p.siirra(x, y, uusiX, uusiY);
+            if (!p.onkoMustaShakki()) {
                 return false;
             }
-            setRuudukko(kopio.getRuudukko());
+        }
+
+        for (int i = 0; i <= 7; i++) {
+            for (int t = 0; t <= 7; t++) {
+                if (ruudukko[i][t].getNappula() != null && ruudukko[i][t].getNappula().mahdollisetSiirrot(i, t, ruudukko).contains("" + x + y)) {
+                    uhkaavaX = i;
+                    uhkaavaY = t;
+                    break;
+                }
+            }
+        }
+        for (int i = 0; i <= 7; i++) {
+            for (int t = 0; t <= 7; t++) {
+                if (ruudukko[i][t].getNappula() != null && ruudukko[i][t].getNappula().mahdollisetSiirrot(i, t, ruudukko).contains("" + uhkaavaX + uhkaavaY)) {
+                    return false;
+                }
+            }
+
         }
 
         return true;
@@ -388,10 +413,46 @@ public class Pelilauta {
 
     /**
      * Metodi tarkistaa onko valkoisella shakkimatti tilanne
+     *
      * @return Palauttaa totta jos musta on voittanut
      */
     public boolean onkoValkoinenShakkiMatti() {
-        return false;
+        int x = 0;
+        int y = 0;
+
+        for (int i = 0; i <= 7; i++) {
+            for (int t = 0; t <= 7; t++) {
+                if (ruudukko[i][t].getNappula() != null && ruudukko[i][t].getNappula().getTyyppi() == Nappula.Tyyppi.VKUNINGAS) {
+                    x = i;
+                    y = t;
+                    break;
+                }
+            }
+        }
+        if (!onkoValkoinenShakki()) {
+            return false;
+        }
+        ArrayList<String> mahdollisetSiirrot = ruudukko[x][y].getNappula().mahdollisetSiirrot(x, y, ruudukko);
+        Pelilauta p = new Pelilauta();
+
+        for (String siirto : mahdollisetSiirrot) {
+            Ruutu[][] uusi = new Ruutu[8][8];
+            for (int i = 0; i <= 7; i++) {
+                for (int t = 0; t <= 7; t++) {
+                    uusi[i][t] = new Ruutu();
+                    uusi[i][t].asetaNappula(ruudukko[i][t].getNappula());
+                }
+            }
+            p.setRuudukko(uusi);
+            int uusiX = Integer.parseInt("" + siirto.charAt(0));
+            int uusiY = Integer.parseInt("" + siirto.charAt(1));
+            p.siirra(x, y, uusiX, uusiY);
+            if (!p.onkoValkoinenShakki()) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
 }

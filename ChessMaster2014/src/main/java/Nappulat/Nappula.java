@@ -1,6 +1,6 @@
-
 package Nappulat;
 
+import ChessMaster.Pelilauta;
 import ChessMaster.Ruutu;
 import com.sun.org.apache.bcel.internal.generic.InstructionConstants;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.HashMap;
 /**
  *
  * Luokassa on metodeja joiden avulla saadaan tietoja nappulasta
- * 
+ *
  * @author Sebbe
  */
 public class Nappula {
@@ -50,10 +50,11 @@ public class Nappula {
     public Tyyppi getTyyppi() {
         return tyyppi;
     }
-    
+
     /**
-     * Metodi kertoo onko nykyisen nappulan väri sama kuin parametrissä saadun nappulan väri
-     * 
+     * Metodi kertoo onko nykyisen nappulan väri sama kuin parametrissä saadun
+     * nappulan väri
+     *
      * @param nappula Nappula jonka väriä halutaan verrata
      * @return totuusarvon joka kertoo ovatko nappulat samaa väriä
      */
@@ -62,16 +63,17 @@ public class Nappula {
     }
 
     /**
-     * Metodi palauttaa listan mahdollisia siirtoja nappulalle. Mahdolliset siirrot ovat String 
-     * muodossa niin että ensimmäinen kirjain on siirron x arvo ja toinen on y arvo
-     * 
+     * Metodi palauttaa listan mahdollisia siirtoja nappulalle. Mahdolliset
+     * siirrot ovat String muodossa niin että ensimmäinen kirjain on siirron x
+     * arvo ja toinen on y arvo
+     *
      * @param x Nappulan x sijainti ruudukossa
      * @param y Nappulan y sijainti ruudukossa
      * @param ruudukko Ruudukko ruutuja jossa nappula sijaitsee
      * @return lista mahdollisista siirroista nappulalle
      */
     public ArrayList<String> mahdollisetSiirrot(int x, int y, Ruutu[][] ruudukko) {
-        
+
         mahdollisetSiirrot = new ArrayList<String>();
 
         if (this.tyyppi == Tyyppi.VKUNINGAS || tyyppi == Tyyppi.MKUNINGAS) {
@@ -104,40 +106,115 @@ public class Nappula {
 
     /**
      * Metodia kutsutaan kun nappula on Kuningas
+     *
      * @param x Nappulan x sijainti ruudukossa
      * @param y Nappulan y sijainti ruudukossa
      * @param ruudukko Ruudukko ruutuja jossa nappula sijaitsee
      */
     private void mahdollisetSiirrotKuningas(int x, int y, Ruutu[][] ruudukko) {
-        if (x + 1 <= 7 && (ruudukko[x + 1][y].getNappula() == null || !onkoSamaVari(ruudukko[x + 1][y].getNappula()))) {
-            mahdollisetSiirrot.add("" + (x + 1) + (y));
+        Pelilauta kopioLauta = new Pelilauta();
+        kopioLauta.setRuudukko(ruudukko);
+        String vari = ruudukko[x][y].getNappula().getVari();
+        if ((vari.equals("musta") && kopioLauta.onkoMustaShakki())
+                || (vari.equals("valkoinen") && kopioLauta.onkoValkoinenShakki())) {
 
-        }
-        if (y + 1 <= 7 && (ruudukko[x][y + 1].getNappula() == null || !onkoSamaVari(ruudukko[x][y + 1].getNappula()))) {
-            mahdollisetSiirrot.add("" + (x) + (y + 1));
-        }
-        if (x + 1 <= 7 && y + 1 <= 7 && (ruudukko[x + 1][y + 1].getNappula() == null || !onkoSamaVari(ruudukko[x + 1][y + 1].getNappula()))) {
-            mahdollisetSiirrot.add("" + (x + 1) + (y + 1));
-        }
-        if (x - 1 >= 0 && (ruudukko[x - 1][y].getNappula() == null || !onkoSamaVari(ruudukko[x - 1][y].getNappula()))) {
-            mahdollisetSiirrot.add("" + (x - 1) + (y));
-        }
-        if (y - 1 >= 0 && (ruudukko[x][y - 1].getNappula() == null || !onkoSamaVari(ruudukko[x][y - 1].getNappula()))) {
-            mahdollisetSiirrot.add("" + (x) + (y - 1));
-        }
-        if (x - 1 >= 0 && y - 1 >= 0 && (ruudukko[x - 1][y - 1].getNappula() == null || !onkoSamaVari(ruudukko[x - 1][y - 1].getNappula()))) {
-            mahdollisetSiirrot.add("" + (x - 1) + (y - 1));
-        }
-        if (x + 1 <= 7 && y - 1 >= 0 && (ruudukko[x + 1][y - 1].getNappula() == null || !onkoSamaVari(ruudukko[x + 1][y - 1].getNappula()))) {
-            mahdollisetSiirrot.add("" + (x + 1) + (y - 1));
-        }
-        if (x - 1 >= 0 && y + 1 <= 7 && (ruudukko[x - 1][y + 1].getNappula() == null || !onkoSamaVari(ruudukko[x - 1][y + 1].getNappula()))) {
-            mahdollisetSiirrot.add("" + (x - 1) + (y + 1));
+            if (x + 1 <= 7 && (ruudukko[x + 1][y].getNappula() == null || !onkoSamaVari(ruudukko[x + 1][y].getNappula()))) {
+                kopioLauta.siirra(x, y, x + 1, y);
+                if ((vari.equals("musta") && kopioLauta.onkoMustaShakki())
+                        || (vari.equals("valkoinen") && kopioLauta.onkoValkoinenShakki())) {
+                    mahdollisetSiirrot.add("" + (x + 1) + (y));
+                }
+                kopioLauta.setRuudukko(ruudukko);
+            }
+            if (y + 1 <= 7 && (ruudukko[x][y + 1].getNappula() == null || !onkoSamaVari(ruudukko[x][y + 1].getNappula()))) {
+                kopioLauta.siirra(x, y, x, y + 1);
+                if ((vari.equals("musta") && kopioLauta.onkoMustaShakki())
+                        || (vari.equals("valkoinen") && kopioLauta.onkoValkoinenShakki())) {
+                    mahdollisetSiirrot.add("" + (x) + (y + 1));
+                }
+                kopioLauta.setRuudukko(ruudukko);
+            }
+            if (x + 1 <= 7 && y + 1 <= 7 && (ruudukko[x + 1][y + 1].getNappula() == null || !onkoSamaVari(ruudukko[x + 1][y + 1].getNappula()))) {
+                kopioLauta.siirra(x, y, x + 1, y + 1);
+                if ((vari.equals("musta") && kopioLauta.onkoMustaShakki())
+                        || (vari.equals("valkoinen") && kopioLauta.onkoValkoinenShakki())) {
+                    mahdollisetSiirrot.add("" + (x + 1) + (y + 1));
+                }
+                kopioLauta.setRuudukko(ruudukko);
+            }
+            if (x - 1 >= 0 && (ruudukko[x - 1][y].getNappula() == null || !onkoSamaVari(ruudukko[x - 1][y].getNappula()))) {
+                kopioLauta.siirra(x, y, x - 1, y);
+                if ((vari.equals("musta") && kopioLauta.onkoMustaShakki())
+                        || (vari.equals("valkoinen") && kopioLauta.onkoValkoinenShakki())) {
+                    mahdollisetSiirrot.add("" + (x - 1) + (y));
+                }
+                kopioLauta.setRuudukko(ruudukko);
+            }
+            if (y - 1 >= 0 && (ruudukko[x][y - 1].getNappula() == null || !onkoSamaVari(ruudukko[x][y - 1].getNappula()))) {
+                kopioLauta.siirra(x, y, x, y - 1);
+                if ((vari.equals("musta") && kopioLauta.onkoMustaShakki())
+                        || (vari.equals("valkoinen") && kopioLauta.onkoValkoinenShakki())) {
+                    mahdollisetSiirrot.add("" + (x) + (y - 1));
+                }
+                kopioLauta.setRuudukko(ruudukko);
+            }
+            if (x - 1 >= 0 && y - 1 >= 0 && (ruudukko[x - 1][y - 1].getNappula() == null || !onkoSamaVari(ruudukko[x - 1][y - 1].getNappula()))) {
+                kopioLauta.siirra(x, y, x - 1, y - 1);
+                if ((vari.equals("musta") && kopioLauta.onkoMustaShakki())
+                        || (vari.equals("valkoinen") && kopioLauta.onkoValkoinenShakki())) {
+                    mahdollisetSiirrot.add("" + (x - 1) + (y - 1));
+                }
+                kopioLauta.setRuudukko(ruudukko);
+            }
+            if (x + 1 <= 7 && y - 1 >= 0 && (ruudukko[x + 1][y - 1].getNappula() == null || !onkoSamaVari(ruudukko[x + 1][y - 1].getNappula()))) {
+                kopioLauta.siirra(x, y, x + 1, y - 1);
+                if ((vari.equals("musta") && kopioLauta.onkoMustaShakki())
+                        || (vari.equals("valkoinen") && kopioLauta.onkoValkoinenShakki())) {
+                    mahdollisetSiirrot.add("" + (x + 1) + (y - 1));
+                }
+                kopioLauta.setRuudukko(ruudukko);
+            }
+            if (x - 1 >= 0 && y + 1 <= 7 && (ruudukko[x - 1][y + 1].getNappula() == null || !onkoSamaVari(ruudukko[x - 1][y + 1].getNappula()))) {
+                kopioLauta.siirra(x, y, x - 1, y + 1);
+                if ((vari.equals("musta") && kopioLauta.onkoMustaShakki())
+                        || (vari.equals("valkoinen") && kopioLauta.onkoValkoinenShakki())) {
+                    mahdollisetSiirrot.add("" + (x - 1) + (y + 1));
+                }
+                kopioLauta.setRuudukko(ruudukko);
+            }
+
+        } else {
+
+            if (x + 1 <= 7 && (ruudukko[x + 1][y].getNappula() == null || !onkoSamaVari(ruudukko[x + 1][y].getNappula()))) {
+                mahdollisetSiirrot.add("" + (x + 1) + (y));
+            }
+            if (y + 1 <= 7 && (ruudukko[x][y + 1].getNappula() == null || !onkoSamaVari(ruudukko[x][y + 1].getNappula()))) {
+                mahdollisetSiirrot.add("" + (x) + (y + 1));
+            }
+            if (x + 1 <= 7 && y + 1 <= 7 && (ruudukko[x + 1][y + 1].getNappula() == null || !onkoSamaVari(ruudukko[x + 1][y + 1].getNappula()))) {
+                mahdollisetSiirrot.add("" + (x + 1) + (y + 1));
+            }
+            if (x - 1 >= 0 && (ruudukko[x - 1][y].getNappula() == null || !onkoSamaVari(ruudukko[x - 1][y].getNappula()))) {
+                mahdollisetSiirrot.add("" + (x - 1) + (y));
+            }
+            if (y - 1 >= 0 && (ruudukko[x][y - 1].getNappula() == null || !onkoSamaVari(ruudukko[x][y - 1].getNappula()))) {
+                mahdollisetSiirrot.add("" + (x) + (y - 1));
+            }
+            if (x - 1 >= 0 && y - 1 >= 0 && (ruudukko[x - 1][y - 1].getNappula() == null || !onkoSamaVari(ruudukko[x - 1][y - 1].getNappula()))) {
+                mahdollisetSiirrot.add("" + (x - 1) + (y - 1));
+            }
+            if (x + 1 <= 7 && y - 1 >= 0 && (ruudukko[x + 1][y - 1].getNappula() == null || !onkoSamaVari(ruudukko[x + 1][y - 1].getNappula()))) {
+                mahdollisetSiirrot.add("" + (x + 1) + (y - 1));
+            }
+            if (x - 1 >= 0 && y + 1 <= 7 && (ruudukko[x - 1][y + 1].getNappula() == null || !onkoSamaVari(ruudukko[x - 1][y + 1].getNappula()))) {
+                mahdollisetSiirrot.add("" + (x - 1) + (y + 1));
+            }
         }
     }
-    
+
     /**
      * Metodia kutsutaan kun nappula on valkoinen Sotilas
+     *
      * @param x Nappulan x sijainti ruudukossa
      * @param y Nappulan y sijainti ruudukossa
      * @param ruudukko Ruudukko ruutuja jossa nappula sijaitsee
@@ -158,9 +235,10 @@ public class Nappula {
             mahdollisetSiirrot.add("" + (x - 1) + (y + 1));
         }
     }
-    
+
     /**
      * Metodia kutsutaan kun nappula on musta Sotilas
+     *
      * @param x Nappulan x sijainti ruudukossa
      * @param y Nappulan y sijainti ruudukossa
      * @param ruudukko Ruudukko ruutuja jossa nappula sijaitsee
@@ -180,9 +258,10 @@ public class Nappula {
             mahdollisetSiirrot.add("" + (x + 1) + (y - 1));
         }
     }
-    
+
     /**
      * Metodia kutsutaan kun nappula on Torni
+     *
      * @param x Nappulan x sijainti ruudukossa
      * @param y Nappulan y sijainti ruudukossa
      * @param ruudukko Ruudukko ruutuja jossa nappula sijaitsee
@@ -243,6 +322,7 @@ public class Nappula {
 
     /**
      * Metodia kutsutaan kun nappula on Ratsu
+     *
      * @param x Nappulan x sijainti ruudukossa
      * @param y Nappulan y sijainti ruudukossa
      * @param ruudukko Ruudukko ruutuja jossa nappula sijaitsee
@@ -276,6 +356,7 @@ public class Nappula {
 
     /**
      * Metodia kutsutaan kun nappula on Lahetti
+     *
      * @param x Nappulan x sijainti ruudukossa
      * @param y Nappulan y sijainti ruudukossa
      * @param ruudukko Ruudukko ruutuja jossa nappula sijaitsee
@@ -333,6 +414,7 @@ public class Nappula {
 
     /**
      * Metodia kutsutaan kun nappula on Kuningatar
+     *
      * @param x Nappulan x sijainti ruudukossa
      * @param y Nappulan y sijainti ruudukossa
      * @param ruudukko Ruudukko ruutuja jossa nappula sijaitsee
