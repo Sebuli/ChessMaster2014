@@ -23,7 +23,7 @@ public class Nappula {
      * 
      * @return Lista mahdollisista siirroista
      */
-    private ArrayList<String> mahdollisetSiirrotKuningasKunShakki(int x, int y, Ruutu[][] ruudukko) {
+    public ArrayList<String> mahdollisetSiirrotKuningasKunShakki(int x, int y, Ruutu[][] ruudukko) {
         
         ArrayList<String> siirrot = new ArrayList<>();
         
@@ -156,7 +156,7 @@ public class Nappula {
      * 
      * @return Lista mahdollisista siirroista
      */
-    private ArrayList<String> mahdollisetSiirrotVSotilasKunShakki(int x, int y, Ruutu[][] ruudukko) {
+    public ArrayList<String> mahdollisetSiirrotVSotilasKunShakki(int x, int y, Ruutu[][] ruudukko) {
         int uhkaavaX = 0;
         int uhkaavaY = 0;
         
@@ -202,7 +202,7 @@ public class Nappula {
      * 
      * @return Lista mahdollisista siirroista
      */
-    private ArrayList<String> mahdollisetSiirrotMSotilasKunShakki(int x, int y, Ruutu[][] ruudukko) {
+    public ArrayList<String> mahdollisetSiirrotMSotilasKunShakki(int x, int y, Ruutu[][] ruudukko) {
         int uhkaavaX = 0;
         int uhkaavaY = 0;
         
@@ -249,7 +249,7 @@ public class Nappula {
      * 
      * @return Lista mahdollisista siirroista
      */
-    private ArrayList<String> mahdollisetSiirrotTorniKunShakki(int x, int y, Ruutu[][] ruudukko) {
+    public ArrayList<String> mahdollisetSiirrotTorniKunShakki(int x, int y, Ruutu[][] ruudukko) {
         int uhkaavaX = 0;
         int uhkaavaY = 0;
         ArrayList<String> siirrot = new ArrayList<>();
@@ -294,7 +294,7 @@ public class Nappula {
      * 
      * @return Lista mahdollisista siirroista
      */
-    private ArrayList<String> mahdollisetSiirrotRatsuKunShakki(int x, int y, Ruutu[][] ruudukko) {
+    public ArrayList<String> mahdollisetSiirrotRatsuKunShakki(int x, int y, Ruutu[][] ruudukko) {
         int uhkaavaX = 0;
         int uhkaavaY = 0;
         ArrayList<String> siirrot = new ArrayList<>();
@@ -338,7 +338,7 @@ public class Nappula {
      * 
      * @return Lista mahdollisista siirroista
      */
-    private ArrayList<String> mahdollisetSiirrotLahettiKunShakki(int x, int y, Ruutu[][] ruudukko) {
+    public ArrayList<String> mahdollisetSiirrotLahettiKunShakki(int x, int y, Ruutu[][] ruudukko) {
         int uhkaavaX = 0;
         int uhkaavaY = 0;
         ArrayList<String> siirrot = new ArrayList<>();
@@ -382,7 +382,7 @@ public class Nappula {
      * 
      * @return Lista mahdollisista siirroista
      */
-    private ArrayList<String> mahdollisetSiirrotKuningatarKunShakki(int x, int y, Ruutu[][] ruudukko) {
+    public ArrayList<String> mahdollisetSiirrotKuningatarKunShakki(int x, int y, Ruutu[][] ruudukko) {
         int uhkaavaX = 0;
         int uhkaavaY = 0;
         ArrayList<String> siirrot = new ArrayList<>();
