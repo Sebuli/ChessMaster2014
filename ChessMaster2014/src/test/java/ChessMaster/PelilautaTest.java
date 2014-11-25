@@ -12,6 +12,7 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -96,6 +97,56 @@ public class PelilautaTest {
     @Test
     public void onkoMustaShakkiPalauttaaFalse(){
         assertEquals(false, lauta.onkoMustaShakki());
+    }
+    
+    @Test
+    public void josOnShakkiNiinPalauttaaTrueMusta(){
+        lauta.siirra(6, 2, 1, 3);
+        assertTrue(lauta.onkoMustaShakki());
+    }
+    
+    @Test
+    public void josOnShakkiNiinPalauttaaTrueValkoinen(){
+        lauta.siirra(0, 3, 6, 3);
+        assertTrue(lauta.onkoValkoinenShakki());
+    }
+    
+    @Test
+    public void josOnShakkMattiiNiinPalauttaaTrueMusta(){
+        lauta.siirra(0, 4, 3, 3);
+        lauta.siirra(7, 0, 5, 2);
+        lauta.siirra(7, 7, 5, 3);
+        lauta.siirra(7, 3, 5, 4);
+        assertTrue(lauta.onkoMustaShakkiMatti());
+    }
+    
+    @Test
+    public void josOnShakkMattiiNiinPalauttaaTrueValkoinen(){
+        lauta.siirra(7, 4, 4, 3);
+        lauta.siirra(0, 0, 3, 2);
+        lauta.siirra(0, 7, 3, 3);
+        lauta.siirra(0, 3, 3, 4);
+        assertTrue(lauta.onkoValkoinenShakkiMatti());
+    }
+    
+    @Test
+    public void ruudukossaOnValkoinenRatsu(){
+        assertEquals(Nappula.Tyyppi.VRATSU, lauta.getRuudukko()[7][1].getNappula().getTyyppi());
+    }
+    
+    @Test
+    public void ruudukossaOnMustaRatsu(){
+        assertEquals(Nappula.Tyyppi.MRATSU, lauta.getRuudukko()[0][1].getNappula().getTyyppi());
+    }
+    
+    @Test
+    public void ruudukossaOnValkoinenLahetti(){
+        assertEquals(Nappula.Tyyppi.VLAHETTI, lauta.getRuudukko()[7][2].getNappula().getTyyppi());
+    }
+    
+    @Test
+    public void ruudukossaOnMustaLahetti(){
+        assertEquals(Nappula.Tyyppi.MLAHETTI, lauta.getRuudukko()[0][2].getNappula().getTyyppi());
     }
 
 }

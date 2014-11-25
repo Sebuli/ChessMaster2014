@@ -17,13 +17,13 @@ import static org.junit.Assert.*;
  *
  * @author Sebbe
  */
-public class KayttojarjestelmaTest {
+public class KayttoliittymaTest {
 
-    private Kayttojarjestelma kayttis;
+    private Kayttoliittyma kayttis;
 
     @Before
     public void setUp() {
-        kayttis = new Kayttojarjestelma();
+        kayttis = new Kayttoliittyma();
 
     }
 
@@ -31,5 +31,8 @@ public class KayttojarjestelmaTest {
     public void luoKayttojarjestelmanOikein() {
         assertNotNull(kayttis.getGui());
     }
+    
+    
+    
 
 }

@@ -12,12 +12,11 @@ public class Main {
 
     public static void main(String args[]) {
         
-
         Runnable r = new Runnable() {
 
             @Override
             public void run() {
-                Kayttojarjestelma lauta = new Kayttojarjestelma();
+                Kayttoliittyma lauta = new Kayttoliittyma();
 
                 JFrame f = new JFrame("Chess Master 2014");
                 f.add(lauta.getGui());

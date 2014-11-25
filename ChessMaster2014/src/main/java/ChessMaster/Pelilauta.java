@@ -72,13 +72,13 @@ public class Pelilauta {
                 ruudukko[0][i].asetaNappula(mlahetti);
                 ruudukko[7][i].asetaNappula(vlahetti);
             }
-            if (i == 3) {
+            if (i == 4) {
                 Kuningas mkuningas = new Kuningas("musta");
                 Kuningas vkuningas = new Kuningas("valkoinen");
                 ruudukko[0][i].asetaNappula(mkuningas);
                 ruudukko[7][i].asetaNappula(vkuningas);
             }
-            if (i == 4) {
+            if (i == 3) {
                 Kuningatar mkuningatar = new Kuningatar("musta");
                 Kuningatar vkuningatar = new Kuningatar("valkoinen");
                 ruudukko[0][i].asetaNappula(mkuningatar);
@@ -105,8 +105,15 @@ public class Pelilauta {
     public void siirra(int vanhaX, int vanhaY, int uusiX, int uusiY) {
 
         Nappula nappula = ruudukko[vanhaX][vanhaY].getNappula();
-
+        
         if (ruudukko[uusiX][uusiY].getNappula() == null) {
+            if (vanhaX == 4 && nappula.getTyyppi() == Nappula.Tyyppi.MSOTILAS && uusiY != vanhaY
+                    && ruudukko[uusiX - 1][uusiY].getNappula() != null && ruudukko[uusiX - 1][uusiY].getNappula().getTyyppi() == Nappula.Tyyppi.VSOTILAS) {
+                ruudukko[uusiX - 1][uusiY].poistaNappula();
+            } else if (vanhaX == 3 && nappula.getTyyppi() == Nappula.Tyyppi.VSOTILAS && uusiY != vanhaY
+                    && ruudukko[uusiX + 1][uusiY].getNappula() != null && ruudukko[uusiX + 1][uusiY].getNappula().getTyyppi() == Nappula.Tyyppi.MSOTILAS) {
+                ruudukko[uusiX + 1][uusiY].poistaNappula();
+            }
             ruudukko[vanhaX][vanhaY].poistaNappula();
             ruudukko[uusiX][uusiY].asetaNappula(nappula);
 
@@ -134,6 +141,7 @@ public class Pelilauta {
     public boolean onkoMustaShakki() {
         int x = 0;
         int y = 0;
+
         for (int i = 0; i <= 7; i++) {
             for (int t = 0; t <= 7; t++) {
                 if (ruudukko[i][t].getNappula() != null && ruudukko[i][t].getNappula().getTyyppi() == Nappula.Tyyppi.MKUNINGAS) {
@@ -144,93 +152,35 @@ public class Pelilauta {
             }
         }
 
-        if ((x + 1 <= 7 && y - 1 >= 0 && ruudukko[x + 1][y - 1].getNappula() != null && ruudukko[x + 1][y - 1].getNappula().getTyyppi() == Nappula.Tyyppi.VSOTILAS)
-                || (x + 1 <= 7 && y + 1 <= 7 && ruudukko[x + 1][y + 1].getNappula() != null && ruudukko[x + 1][y + 1].getNappula().getTyyppi() == Nappula.Tyyppi.VSOTILAS)) {
-            return true;
-        }
-        if ((x - 2 >= 0 && y - 1 >= 0 && ruudukko[x - 2][y - 1].getNappula() != null && ruudukko[x - 2][y - 1].getNappula().getTyyppi() == Nappula.Tyyppi.VRATSU)
-                || (x - 1 >= 0 && y - 2 >= 0 && ruudukko[x - 1][y - 2].getNappula() != null && ruudukko[x - 1][y - 2].getNappula().getTyyppi() == Nappula.Tyyppi.VRATSU)
-                || (x - 2 >= 0 && y + 1 <= 7 && ruudukko[x - 2][y + 1].getNappula() != null && ruudukko[x - 2][y + 1].getNappula().getTyyppi() == Nappula.Tyyppi.VRATSU)
-                || (x - 1 >= 0 && y + 2 <= 7 && ruudukko[x - 1][y + 2].getNappula() != null && ruudukko[x - 1][y + 2].getNappula().getTyyppi() == Nappula.Tyyppi.VRATSU)
-                || (x + 2 <= 7 && y - 1 >= 0 && ruudukko[x + 2][y - 1].getNappula() != null && ruudukko[x + 2][y - 1].getNappula().getTyyppi() == Nappula.Tyyppi.VRATSU)
-                || (x + 1 <= 7 && y - 2 >= 0 && ruudukko[x + 1][y - 2].getNappula() != null && ruudukko[x + 1][y - 2].getNappula().getTyyppi() == Nappula.Tyyppi.VRATSU)
-                || (x + 2 <= 7 && y + 1 <= 7 && ruudukko[x + 2][y + 1].getNappula() != null && ruudukko[x + 2][y + 1].getNappula().getTyyppi() == Nappula.Tyyppi.VRATSU)
-                || (x + 1 <= 7 && y + 2 <= 7 && ruudukko[x + 1][y + 2].getNappula() != null && ruudukko[x + 1][y + 2].getNappula().getTyyppi() == Nappula.Tyyppi.VRATSU)) {
-            return true;
-        }
+        for (int i = 0; i <= 7; i++) {
+            for (int t = 0; t <= 7; t++) {
+                if (ruudukko[i][t].getNappula() != null && ruudukko[i][t].getNappula().getVari().equals("valkoinen")) {
+                    Pelilauta kopioLauta = new Pelilauta();
+                    kopioLauta.setRuudukko(ruudukko);
+                    Nappula.Tyyppi tyyppi = ruudukko[i][t].getNappula().getTyyppi();
+                    Nappula napppula = ruudukko[i][t].getNappula();
+                    ArrayList<String> kaikkiMahdollisetSiirrot = new ArrayList<>();
 
-        for (int i = 1; i <= 7; i++) {
-            if (x + i <= 7 && ruudukko[x + i][y].getNappula() != null
-                    && (ruudukko[x + i][y].getNappula().getTyyppi() == Nappula.Tyyppi.VKUNINGATAR || ruudukko[x + i][y].getNappula().getTyyppi() == Nappula.Tyyppi.VTORNI)) {
-                return true;
-            }
-            if (x + i <= 7 && ruudukko[x + i][y].getNappula() != null && ruudukko[x + i][y].getNappula().getVari().equals("musta")) {
-                break;
-            }
-        }
-        for (int i = 1; i <= 7; i++) {
-            if (y + i <= 7 && ruudukko[x][y + i].getNappula() != null
-                    && (ruudukko[x][y + i].getNappula().getTyyppi() == Nappula.Tyyppi.VKUNINGATAR || ruudukko[x][y + i].getNappula().getTyyppi() == Nappula.Tyyppi.VTORNI)) {
-                return true;
-            }
-            if (y + i <= 7 && ruudukko[x][y + i].getNappula() != null && ruudukko[x][y + i].getNappula().getVari().equals("musta")) {
-                break;
-            }
-        }
-        for (int i = 1; i <= 7; i++) {
-            if (x - i >= 0 && ruudukko[x - i][y].getNappula() != null
-                    && (ruudukko[x - i][y].getNappula().getTyyppi() == Nappula.Tyyppi.VKUNINGATAR || ruudukko[x - i][y].getNappula().getTyyppi() == Nappula.Tyyppi.VTORNI)) {
-                return true;
-            }
-            if (x - i >= 0 && ruudukko[x - i][y].getNappula() != null && ruudukko[x - i][y].getNappula().getVari().equals("musta")) {
-                break;
-            }
-        }
-        for (int i = 1; i <= 7; i++) {
-            if (y - i >= 0 && ruudukko[x][y - i].getNappula() != null
-                    && (ruudukko[x][y - i].getNappula().getTyyppi() == Nappula.Tyyppi.VKUNINGATAR || ruudukko[x][y - i].getNappula().getTyyppi() == Nappula.Tyyppi.VTORNI)) {
-                return true;
-            }
-            if (y - i >= 0 && ruudukko[x][y - i].getNappula() != null && ruudukko[x][y - i].getNappula().getVari().equals("musta")) {
-                break;
-            }
-        }
+                    if (tyyppi == Nappula.Tyyppi.VSOTILAS) {
+                        kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotVSotilas(i, t, ruudukko));
+                    } else if (tyyppi == Nappula.Tyyppi.VRATSU) {
+                        kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotRatsu(i, t, ruudukko));
+                    } else if (tyyppi == Nappula.Tyyppi.VTORNI) {
+                        kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotTorni(i, t, ruudukko));
+                    } else if (tyyppi == Nappula.Tyyppi.VLAHETTI) {
+                        kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotLahetti(i, t, ruudukko));
+                    } else if (tyyppi == Nappula.Tyyppi.VKUNINGATAR) {
+                        kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotKuningatar(i, t, ruudukko));
+                    } else if (tyyppi == Nappula.Tyyppi.VKUNINGAS) {
+                        kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotKuningas(i, t, ruudukko));
+                    }
 
-        for (int i = 1; i <= 7; i++) {
-            if (x + i <= 7 && y + i <= 7 && ruudukko[x + i][y + i].getNappula() != null
-                    && (ruudukko[x + i][y + i].getNappula().getTyyppi() == Nappula.Tyyppi.VKUNINGATAR || ruudukko[x + i][y + i].getNappula().getTyyppi() == Nappula.Tyyppi.VLAHETTI)) {
-                return true;
+                    if (kaikkiMahdollisetSiirrot.contains("" + x + y)) {
+                        return true;
+                    }
+                }
             }
-            if (x + i <= 7 && y + i <= 7 && ruudukko[x + i][y + i].getNappula() != null && ruudukko[x + i][y + i].getNappula().getVari().equals("musta")) {
-                break;
-            }
-        }
-        for (int i = 1; i <= 7; i++) {
-            if (x + i <= 7 && y - i >= 0 && ruudukko[x + i][y - i].getNappula() != null
-                    && (ruudukko[x + i][y - i].getNappula().getTyyppi() == Nappula.Tyyppi.VKUNINGATAR || ruudukko[x + i][y - i].getNappula().getTyyppi() == Nappula.Tyyppi.VLAHETTI)) {
-                return true;
-            }
-            if (x + i <= 7 && y - i >= 0 && ruudukko[x + i][y - i].getNappula() != null && ruudukko[x + i][y - i].getNappula().getVari().equals("musta")) {
-                break;
-            }
-        }
-        for (int i = 1; i <= 7; i++) {
-            if (x - i >= 0 && y + i <= 7 && ruudukko[x - i][y + i].getNappula() != null
-                    && (ruudukko[x - i][y + i].getNappula().getTyyppi() == Nappula.Tyyppi.VKUNINGATAR || ruudukko[x - i][y + i].getNappula().getTyyppi() == Nappula.Tyyppi.VLAHETTI)) {
-                return true;
-            }
-            if (x - i >= 0 && y + i <= 7 && ruudukko[x - i][y + i].getNappula() != null && ruudukko[x - i][y + i].getNappula().getVari().equals("musta")) {
-                break;
-            }
-        }
-        for (int i = 1; i <= 7; i++) {
-            if (x - i >= 0 && y - i >= 0 && ruudukko[x - i][y - i].getNappula() != null
-                    && (ruudukko[x - i][y - i].getNappula().getTyyppi() == Nappula.Tyyppi.VKUNINGATAR || ruudukko[x - i][y - i].getNappula().getTyyppi() == Nappula.Tyyppi.VLAHETTI)) {
-                return true;
-            }
-            if (x - i >= 0 && y - i >= 0 && ruudukko[x - i][y - i].getNappula() != null && ruudukko[x - i][y - i].getNappula().getVari().equals("musta")) {
-                break;
-            }
+
         }
 
         return false;
@@ -245,6 +195,7 @@ public class Pelilauta {
     public boolean onkoValkoinenShakki() {
         int x = 0;
         int y = 0;
+
         for (int i = 0; i <= 7; i++) {
             for (int t = 0; t <= 7; t++) {
                 if (ruudukko[i][t].getNappula() != null && ruudukko[i][t].getNappula().getTyyppi() == Nappula.Tyyppi.VKUNINGAS) {
@@ -255,93 +206,35 @@ public class Pelilauta {
             }
         }
 
-        if ((x - 1 >= 0 && y - 1 >= 0 && ruudukko[x - 1][y - 1].getNappula() != null && ruudukko[x - 1][y - 1].getNappula().getTyyppi() == Nappula.Tyyppi.MSOTILAS)
-                || (x - 1 >= 0 && y + 1 <= 7 && ruudukko[x - 1][y + 1].getNappula() != null && ruudukko[x - 1][y + 1].getNappula().getTyyppi() == Nappula.Tyyppi.MSOTILAS)) {
-            return true;
-        }
-        if ((x - 2 >= 0 && y - 1 >= 0 && ruudukko[x - 2][y - 1].getNappula() != null && ruudukko[x - 2][y - 1].getNappula().getTyyppi() == Nappula.Tyyppi.MRATSU)
-                || (x - 1 >= 0 && y - 2 >= 0 && ruudukko[x - 1][y - 2].getNappula() != null && ruudukko[x - 1][y - 2].getNappula().getTyyppi() == Nappula.Tyyppi.MRATSU)
-                || (x - 2 >= 0 && y + 1 <= 7 && ruudukko[x - 2][y + 1].getNappula() != null && ruudukko[x - 2][y + 1].getNappula().getTyyppi() == Nappula.Tyyppi.MRATSU)
-                || (x - 1 >= 0 && y + 2 <= 7 && ruudukko[x - 1][y + 2].getNappula() != null && ruudukko[x - 1][y + 2].getNappula().getTyyppi() == Nappula.Tyyppi.MRATSU)
-                || (x + 2 <= 7 && y - 1 >= 0 && ruudukko[x + 2][y - 1].getNappula() != null && ruudukko[x + 2][y - 1].getNappula().getTyyppi() == Nappula.Tyyppi.MRATSU)
-                || (x + 1 <= 7 && y - 2 >= 0 && ruudukko[x + 1][y - 2].getNappula() != null && ruudukko[x + 1][y - 2].getNappula().getTyyppi() == Nappula.Tyyppi.MRATSU)
-                || (x + 2 <= 7 && y + 1 <= 7 && ruudukko[x + 2][y + 1].getNappula() != null && ruudukko[x + 2][y + 1].getNappula().getTyyppi() == Nappula.Tyyppi.MRATSU)
-                || (x + 1 <= 7 && y + 2 <= 7 && ruudukko[x + 1][y + 2].getNappula() != null && ruudukko[x + 1][y + 2].getNappula().getTyyppi() == Nappula.Tyyppi.MRATSU)) {
-            return true;
-        }
+        for (int i = 0; i <= 7; i++) {
+            for (int t = 0; t <= 7; t++) {
+                if (ruudukko[i][t].getNappula() != null && ruudukko[i][t].getNappula().getVari().equals("musta")) {
+                    Pelilauta kopioLauta = new Pelilauta();
+                    kopioLauta.setRuudukko(ruudukko);
+                    Nappula.Tyyppi tyyppi = ruudukko[i][t].getNappula().getTyyppi();
+                    Nappula napppula = ruudukko[i][t].getNappula();
+                    ArrayList<String> kaikkiMahdollisetSiirrot = new ArrayList<>();
 
-        for (int i = 1; i <= 7; i++) {
-            if (x + i <= 7 && ruudukko[x + i][y].getNappula() != null
-                    && (ruudukko[x + i][y].getNappula().getTyyppi() == Nappula.Tyyppi.MKUNINGATAR || ruudukko[x + i][y].getNappula().getTyyppi() == Nappula.Tyyppi.MTORNI)) {
-                return true;
-            }
-            if (x + i <= 7 && ruudukko[x + i][y].getNappula() != null && ruudukko[x + i][y].getNappula().getVari().equals("valkoinen")) {
-                break;
-            }
-        }
-        for (int i = 1; i <= 7; i++) {
-            if (y + i <= 7 && ruudukko[x][y + i].getNappula() != null
-                    && (ruudukko[x][y + i].getNappula().getTyyppi() == Nappula.Tyyppi.MKUNINGATAR || ruudukko[x][y + i].getNappula().getTyyppi() == Nappula.Tyyppi.MTORNI)) {
-                return true;
-            }
-            if (y + i <= 7 && ruudukko[x][y + i].getNappula() != null && ruudukko[x][y + i].getNappula().getVari().equals("valkoinen")) {
-                break;
-            }
-        }
-        for (int i = 1; i <= 7; i++) {
-            if (x - i >= 0 && ruudukko[x - i][y].getNappula() != null
-                    && (ruudukko[x - i][y].getNappula().getTyyppi() == Nappula.Tyyppi.MKUNINGATAR || ruudukko[x - i][y].getNappula().getTyyppi() == Nappula.Tyyppi.MTORNI)) {
-                return true;
-            }
-            if (x - i >= 0 && ruudukko[x - i][y].getNappula() != null && ruudukko[x - i][y].getNappula().getVari().equals("valkoinen")) {
-                break;
-            }
-        }
-        for (int i = 1; i <= 7; i++) {
-            if (y - i >= 0 && ruudukko[x][y - i].getNappula() != null
-                    && (ruudukko[x][y - i].getNappula().getTyyppi() == Nappula.Tyyppi.MKUNINGATAR || ruudukko[x][y - i].getNappula().getTyyppi() == Nappula.Tyyppi.MTORNI)) {
-                return true;
-            }
-            if (y - i >= 0 && ruudukko[x][y - i].getNappula() != null && ruudukko[x][y - i].getNappula().getVari().equals("valkoinen")) {
-                break;
-            }
-        }
+                    if (tyyppi == Nappula.Tyyppi.MSOTILAS) {
+                        kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotVSotilas(i, t, ruudukko));
+                    } else if (tyyppi == Nappula.Tyyppi.MRATSU) {
+                        kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotRatsu(i, t, ruudukko));
+                    } else if (tyyppi == Nappula.Tyyppi.MTORNI) {
+                        kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotTorni(i, t, ruudukko));
+                    } else if (tyyppi == Nappula.Tyyppi.MLAHETTI) {
+                        kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotLahetti(i, t, ruudukko));
+                    } else if (tyyppi == Nappula.Tyyppi.MKUNINGATAR) {
+                        kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotKuningatar(i, t, ruudukko));
+                    } else if (tyyppi == Nappula.Tyyppi.MKUNINGAS) {
+                        kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotKuningas(i, t, ruudukko));
+                    }
 
-        for (int i = 1; i <= 7; i++) {
-            if (x + i <= 7 && y + i <= 7 && ruudukko[x + i][y + i].getNappula() != null
-                    && (ruudukko[x + i][y + i].getNappula().getTyyppi() == Nappula.Tyyppi.MKUNINGATAR || ruudukko[x + i][y + i].getNappula().getTyyppi() == Nappula.Tyyppi.MLAHETTI)) {
-                return true;
+                    if (kaikkiMahdollisetSiirrot.contains("" + x + y)) {
+                        return true;
+                    }
+                }
             }
-            if (x + i <= 7 && y + i <= 7 && ruudukko[x + i][y + i].getNappula() != null && ruudukko[x + i][y + i].getNappula().getVari().equals("valkoinen")) {
-                break;
-            }
-        }
-        for (int i = 1; i <= 7; i++) {
-            if (x + i <= 7 && y - i >= 0 && ruudukko[x + i][y - i].getNappula() != null
-                    && (ruudukko[x + i][y - i].getNappula().getTyyppi() == Nappula.Tyyppi.MKUNINGATAR || ruudukko[x + i][y - i].getNappula().getTyyppi() == Nappula.Tyyppi.MLAHETTI)) {
-                return true;
-            }
-            if (x + i <= 7 && y - i >= 0 && ruudukko[x + i][y - i].getNappula() != null && ruudukko[x + i][y - i].getNappula().getVari().equals("valkoinen")) {
-                break;
-            }
-        }
-        for (int i = 1; i <= 7; i++) {
-            if (x - i >= 0 && y + i <= 7 && ruudukko[x - i][y + i].getNappula() != null
-                    && (ruudukko[x - i][y + i].getNappula().getTyyppi() == Nappula.Tyyppi.MKUNINGATAR || ruudukko[x - i][y + i].getNappula().getTyyppi() == Nappula.Tyyppi.MLAHETTI)) {
-                return true;
-            }
-            if (x - i >= 0 && y + i <= 7 && ruudukko[x - i][y + i].getNappula() != null && ruudukko[x - i][y + i].getNappula().getVari().equals("valkoinen")) {
-                break;
-            }
-        }
-        for (int i = 1; i <= 7; i++) {
-            if (x - i >= 0 && y - i >= 0 && ruudukko[x - i][y - i].getNappula() != null
-                    && (ruudukko[x - i][y - i].getNappula().getTyyppi() == Nappula.Tyyppi.MKUNINGATAR || ruudukko[x - i][y - i].getNappula().getTyyppi() == Nappula.Tyyppi.MLAHETTI)) {
-                return true;
-            }
-            if (x - i >= 0 && y - i >= 0 && ruudukko[x - i][y - i].getNappula() != null && ruudukko[x - i][y - i].getNappula().getVari().equals("valkoinen")) {
-                break;
-            }
+
         }
 
         return false;
@@ -353,45 +246,14 @@ public class Pelilauta {
      * @return Palauttaa totta jos valkoinen on voittanut
      */
     public boolean onkoMustaShakkiMatti() {
-        int x = 0;
-        int y = 0;
-        int uhkaavaX = -1;
-        int uhkaavaY = -1;
 
         for (int i = 0; i <= 7; i++) {
             for (int t = 0; t <= 7; t++) {
-                if (ruudukko[i][t].getNappula() != null && ruudukko[i][t].getNappula().getTyyppi() == Nappula.Tyyppi.MKUNINGAS) {
-                    x = i;
-                    y = t;
-                    break;
-                }
-            }
-        }
-        if (!onkoMustaShakki()) {
-            return false;
-        }
-        ArrayList<String> mahdollisetSiirrot = ruudukko[x][y].getNappula().mahdollisetSiirrot(x, y, ruudukko);
-
-        if (!mahdollisetSiirrot.isEmpty()) {
-            return false;
-        }
-
-        for (int i = 0; i <= 7; i++) {
-            for (int t = 0; t <= 7; t++) {
-                if (ruudukko[i][t].getNappula() != null && ruudukko[i][t].getNappula().mahdollisetSiirrot(i, t, ruudukko).contains("" + x + y)) {
-                    uhkaavaX = i;
-                    uhkaavaY = t;
-                    break;
-                }
-            }
-        }
-        for (int i = 0; i <= 7; i++) {
-            for (int t = 0; t <= 7; t++) {
-                if (ruudukko[i][t].getNappula() != null && ruudukko[i][t].getNappula().mahdollisetSiirrot(i, t, ruudukko).contains("" + uhkaavaX + uhkaavaY)) {
+                if (ruudukko[i][t].getNappula() != null && ruudukko[i][t].getNappula().getVari().equals("musta")
+                        && !ruudukko[i][t].getNappula().mahdollisetSiirrot(i, t, ruudukko).isEmpty()) {
                     return false;
                 }
             }
-
         }
 
         return true;
@@ -403,38 +265,13 @@ public class Pelilauta {
      * @return Palauttaa totta jos musta on voittanut
      */
     public boolean onkoValkoinenShakkiMatti() {
-        int x = 0;
-        int y = 0;
 
         for (int i = 0; i <= 7; i++) {
             for (int t = 0; t <= 7; t++) {
-                if (ruudukko[i][t].getNappula() != null && ruudukko[i][t].getNappula().getTyyppi() == Nappula.Tyyppi.VKUNINGAS) {
-                    x = i;
-                    y = t;
-                    break;
+                if (ruudukko[i][t].getNappula() != null && ruudukko[i][t].getNappula().getVari().equals("valkoinen")
+                        && !ruudukko[i][t].getNappula().mahdollisetSiirrot(i, t, ruudukko).isEmpty()) {
+                    return false;
                 }
-            }
-        }
-        if (!onkoValkoinenShakki()) {
-            return false;
-        }
-        ArrayList<String> mahdollisetSiirrot = ruudukko[x][y].getNappula().mahdollisetSiirrot(x, y, ruudukko);
-        Pelilauta p = new Pelilauta();
-
-        for (String siirto : mahdollisetSiirrot) {
-            Ruutu[][] uusi = new Ruutu[8][8];
-            for (int i = 0; i <= 7; i++) {
-                for (int t = 0; t <= 7; t++) {
-                    uusi[i][t] = new Ruutu();
-                    uusi[i][t].asetaNappula(ruudukko[i][t].getNappula());
-                }
-            }
-            p.setRuudukko(uusi);
-            int uusiX = Integer.parseInt("" + siirto.charAt(0));
-            int uusiY = Integer.parseInt("" + siirto.charAt(1));
-            p.siirra(x, y, uusiX, uusiY);
-            if (!p.onkoValkoinenShakki()) {
-                return false;
             }
         }
 
