@@ -37,3 +37,8 @@
 20.11.2014  
   -3 tuntia  
   -Tein shakkimatti tilanteen päättäjää, se toimii nytten jotenkuten mutta ei ole ihan vielä valmis. Koodi näyttää nytten todella sekavalta mutta teen siitä hienomman heti kun olen onnistunut shakkimatin kanssa. Testikattavuus taitaa olla hieman huono tässä vaiheessa mutta isoin syy on for lauseet, lisään testejä heti kun ehdin.
+  
+24-25.11.2014  
+ -5 tuntia  
+ -Shakkimatti tilanteen päättäjä on valmis. Testejä on aika sopivasti. En passant toimii jotenkuten. Kaikki alkaa olla valmista, pitää vain vähän tehdä koodista hienompaa, ehkä on copy-pastea mitä voin poistaa.
+
