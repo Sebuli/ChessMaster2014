@@ -41,4 +41,8 @@
 24-25.11.2014  
  -5 tuntia  
  -Shakkimatti tilanteen päättäjä on valmis. Testejä on aika sopivasti. En passant toimii jotenkuten. Kaikki alkaa olla valmista, pitää vain vähän tehdä koodista hienompaa, ehkä on copy-pastea mitä voin poistaa.
+ 
+26.11.2014  
+ -2 tuntia  
+ -Tein koodista vähän hienomman näköisen ja lisäsin testejä. En passant toimii nytten oikein. Kaikki on suunnilleen valmista.
 
