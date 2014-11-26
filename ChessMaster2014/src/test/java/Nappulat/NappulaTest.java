@@ -177,37 +177,72 @@ public class NappulaTest {
     @Test
     public void mahdollisetSiirrotPalauttaaOikeinVKuningatar() {
         Nappula kuningatar = new Kuningatar("valkoinen");
-        assertTrue(kuningatar.mahdollisetSiirrot(6, 1, pelilauta.getRuudukko()).size() > 1);
+        pelilauta.siirra(7, 3, 3, 3);
+        assertTrue(kuningatar.mahdollisetSiirrot(3, 3, pelilauta.getRuudukko()).size() > 1);
     }
 
     @Test
     public void mahdollisetSiirrotPalauttaaOikeinMKuningatar() {
         Nappula kuningatar = new Kuningatar("musta");
-        assertTrue(kuningatar.mahdollisetSiirrot(6, 1, pelilauta.getRuudukko()).size() > 1);
+        pelilauta.siirra(0, 3, 3, 3);
+        assertTrue(kuningatar.mahdollisetSiirrot(3, 3, pelilauta.getRuudukko()).size() > 1);
     }
 
     @Test
     public void mahdollisetSiirrotPalauttaaOikeinMLahetti() {
         Nappula lahetti = new Lahetti("musta");
-        assertTrue(lahetti.mahdollisetSiirrot(6, 1, pelilauta.getRuudukko()).size() > 1);
+        pelilauta.siirra(0, 2, 3, 3);
+        assertTrue(lahetti.mahdollisetSiirrot(3, 3, pelilauta.getRuudukko()).size() > 1);
     }
 
     @Test
     public void mahdollisetSiirrotPalauttaaOikeinVLahetti() {
         Nappula lahetti = new Lahetti("valkoinen");
-        assertTrue(lahetti.mahdollisetSiirrot(6, 1, pelilauta.getRuudukko()).size() > 1);
+        pelilauta.siirra(7, 2, 3, 3);
+        assertTrue(lahetti.mahdollisetSiirrot(3, 3, pelilauta.getRuudukko()).size() > 1);
+    }
+    
+    @Test
+    public void mahdollisetSiirrotPalauttaaOikeinMLahettiToinen() {
+        Nappula lahetti = new Lahetti("musta");
+        pelilauta.siirra(0, 2, 4, 1);
+        assertTrue(lahetti.mahdollisetSiirrot(4, 1, pelilauta.getRuudukko()).size() > 1);
+    }
+
+    @Test
+    public void mahdollisetSiirrotPalauttaaOikeinVLahettiToinen() {
+        Nappula lahetti = new Lahetti("valkoinen");
+        pelilauta.siirra(7, 2, 4, 1);
+        assertTrue(lahetti.mahdollisetSiirrot(4, 1, pelilauta.getRuudukko()).size() > 1);
     }
 
     @Test
     public void mahdollisetSiirrotPalauttaaOikeinMRatsu() {
         Nappula ratsu = new Ratsu("musta");
-        assertTrue(ratsu.mahdollisetSiirrot(6, 1, pelilauta.getRuudukko()).size() > 1);
+        pelilauta.siirra(0, 1, 3, 3);
+        assertTrue(ratsu.mahdollisetSiirrot(3, 3, pelilauta.getRuudukko()).size() > 1);
     }
 
     @Test
     public void mahdollisetSiirrotPalauttaaOikeinVRatsu() {
         Nappula ratsu = new Ratsu("valkoinen");
-        assertTrue(ratsu.mahdollisetSiirrot(6, 1, pelilauta.getRuudukko()).size() > 1);
+        pelilauta.siirra(7, 1, 3, 3);
+        assertTrue(ratsu.mahdollisetSiirrot(3, 3, pelilauta.getRuudukko()).size() > 1);
+    }
+    
+    @Test
+    public void mahdollisetSiirrotPalauttaaOikeinMRatsuToinen() {
+        Nappula ratsu = new Ratsu("musta");
+        pelilauta.siirra(0, 1, 5, 2);
+        assertTrue(ratsu.mahdollisetSiirrot(5, 2, pelilauta.getRuudukko()).size() > 1 && ratsu.mahdollisetSiirrot(0, 6, pelilauta.getRuudukko()).size() > 1);
+    }
+
+    @Test
+    public void mahdollisetSiirrotPalauttaaOikeinVRatsuToinen() {
+        Nappula ratsu = new Ratsu("valkoinen");
+        pelilauta.siirra(7, 1, 2, 2);
+        
+        assertTrue(ratsu.mahdollisetSiirrot(2, 2, pelilauta.getRuudukko()).size() > 1 && ratsu.mahdollisetSiirrot(7, 6, pelilauta.getRuudukko()).size() > 1);
     }
 
     @Test
@@ -228,5 +263,29 @@ public class NappulaTest {
     public void mahdollisetSiirrotKunShakkiPalauttaaOikein(){
         Nappula torni = new Torni("musta");
         assertTrue(torni.mahdollisetSiirrot(6, 1, pelilauta.getRuudukko()).size() >= 0);
+    }
+    
+    @Test
+    public void enPassantToimiiValkoinen(){
+        pelilauta.siirra(1, 2, 3, 2);
+        pelilauta.siirra(1, 0, 3, 0);
+        pelilauta.siirra(6, 1, 3, 1);
+        pelilauta.getNappula(3, 2).kasvataSiirtojenMaaraa();
+        pelilauta.getNappula(3, 0).kasvataSiirtojenMaaraa();
+        pelilauta.otaEnPassantMahdollisuusPois();
+        assertTrue(pelilauta.getNappula(3, 1).mahdollisetSiirrot(3, 1, pelilauta.getRuudukko()).contains("" + 2 + 0) && 
+                pelilauta.getNappula(3, 1).mahdollisetSiirrot(3, 1, pelilauta.getRuudukko()).contains("" + 2 + 2));
+    }
+    
+    @Test
+    public void enPassantToimiiMusta(){
+        pelilauta.siirra(1, 0, 4, 1);
+        pelilauta.siirra(6, 2, 4, 2);
+        pelilauta.siirra(6, 1, 4, 0);
+        pelilauta.getNappula(4, 2).kasvataSiirtojenMaaraa();
+        pelilauta.getNappula(4, 0).kasvataSiirtojenMaaraa();
+        pelilauta.otaEnPassantMahdollisuusPois();
+        assertTrue(pelilauta.getNappula(4, 1).mahdollisetSiirrot(4, 1, pelilauta.getRuudukko()).contains("" + 5 + 2) && 
+                pelilauta.getNappula(4, 1).mahdollisetSiirrot(4, 1, pelilauta.getRuudukko()).contains("" + 5 + 0));
     }
 }

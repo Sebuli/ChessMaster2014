@@ -33,6 +33,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 /**
+ * Luokka huolehtii ohjelman ulkonaosta
  *
  * @author Sebbe
  */
@@ -45,16 +46,10 @@ public class Kayttoliittyma {
     private final JLabel kenenVuoro = new JLabel("");
     private final JLabel viesti = new JLabel("");
     private static final String COLS = "ABCDEFGH";
-    public static final int KUNINGATAR = 0, KUNINGAS = 1,
-            TORNI = 2, RATSU = 3, LAHETTI = 4, SOTILAS = 5;
-    public static final int[] STARTING_ROW = {
-        TORNI, RATSU, LAHETTI, KUNINGAS, KUNINGATAR, LAHETTI, RATSU, TORNI
-    };
-    public static final int MUSTA = 0, VALKOINEN = 1;
-    private Image[][] chessPieceImages = new Image[2][6];
+    private Pelilaudanpiirtaja piirtaja;
 
     private boolean onkoNaytaMahdollisetSiirrot;
-
+    private boolean valkoisenVuoro;
     private boolean peliAlkanut;
 
     private int ekaX;
@@ -62,21 +57,20 @@ public class Kayttoliittyma {
     private int tokaX;
     private int tokaY;
 
-    private boolean valkoisenVuoro;
-
     public Kayttoliittyma() {
         initComponents();
     }
 
     /**
-     * Metodi luo käyttöjärjestelmälle kaikki tarvittavas komponentit ja alustaa
+     * Metodi luo kayttoliittymalle kaikki tarvittavas komponentit ja alustaa
      * muuttujia.
      */
     @SuppressWarnings("unchecked")
     private void initComponents() {
+        piirtaja = new Pelilaudanpiirtaja();
         this.pelilauta = new Pelilauta();
         peliAlkanut = false;
-        luoNappulaKuvat();
+        piirtaja.luoNappulaKuvat();
         onkoNaytaMahdollisetSiirrot = false;
 
         gui.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -140,14 +134,14 @@ public class Kayttoliittyma {
             public void actionPerformed(ActionEvent e) {
                 if (onkoNaytaMahdollisetSiirrot) {
                     onkoNaytaMahdollisetSiirrot = false;
-                    varitaPelilauta();
+                    piirtaja.varitaPelilauta(ruudukko);
                     if (ekaX != -1) {
                         ruudukko[ekaX][ekaY].setBackground(Color.orange);
                     }
                 } else {
                     onkoNaytaMahdollisetSiirrot = true;
                     if (ekaX != -1) {
-                        varitaMahdollisetSiirrot();
+                        piirtaja.varitaMahdollisetSiirrot(ruudukko, pelilauta, ekaX, ekaY);
                     }
                 }
             }
@@ -225,7 +219,7 @@ public class Kayttoliittyma {
     }
 
     /**
-     * Tyhjentää ruudukon nappuloista
+     * Tyhjentaa ruudukon nappuloista
      */
     private final void annaPeriksi() {
         for (int i = 0; i <= 7; i++) {
@@ -234,15 +228,15 @@ public class Kayttoliittyma {
             }
         }
         peliAlkanut = false;
-        varitaPelilauta();
+        piirtaja.varitaPelilauta(ruudukko);
         pelilauta.uusiPeli();
         viesti.setText("Coward...");
         kenenVuoro.setText("");
     }
 
     /**
-     * Värittää pelilaudan ja laittaa nappulat oikeisiin paikkoihin. Ruutuja voi
-     * metodin suorituksen jälkeen painaa.
+     * Varittaa pelilaudan ja laittaa nappulat oikeisiin paikkoihin. Ruutuja voi
+     * metodin suorituksen jalkeen painaa.
      */
     private final void aloitaPeli() {
         viesti.setText("");
@@ -261,9 +255,9 @@ public class Kayttoliittyma {
 
         valkoisenVuoro = true;
 
-        varitaPelilauta();
-
-        piirraNappulat();
+        piirtaja.varitaPelilauta(ruudukko);
+        viesti.setText("");
+        piirtaja.piirraNappulat(ruudukko, pelilauta);
     }
 
     /**
@@ -281,104 +275,35 @@ public class Kayttoliittyma {
     }
 
     /**
-     * Piirtää pelinappulat niihin sijanteihin missä ne ovat pelilaudassa.
-     */
-    private final void piirraNappulat() {
-        viesti.setText("");
-        for (int i = 0; i <= 7; i++) {
-            for (int t = 0; t <= 7; t++) {
-                ruudukko[i][t].setIcon(null);
-            }
-        }
-        for (int i = 0; i <= 7; i++) {
-            for (int t = 0; t <= 7; t++) {
-                if (pelilauta.getRuudukko()[i][t].getNappula() != null && pelilauta.getRuudukko()[i][t].getNappula().getTyyppi().equals(Nappula.Tyyppi.VKUNINGAS)) {
-                    ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[VALKOINEN][KUNINGATAR]));
-                }
-                if (pelilauta.getRuudukko()[i][t].getNappula() != null && pelilauta.getRuudukko()[i][t].getNappula().getTyyppi().equals(Nappula.Tyyppi.MKUNINGAS)) {
-                    ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[MUSTA][KUNINGATAR]));
-                }
-                if (pelilauta.getRuudukko()[i][t].getNappula() != null && pelilauta.getRuudukko()[i][t].getNappula().getTyyppi().equals(Nappula.Tyyppi.VKUNINGATAR)) {
-                    ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[VALKOINEN][KUNINGAS]));
-                }
-                if (pelilauta.getRuudukko()[i][t].getNappula() != null && pelilauta.getRuudukko()[i][t].getNappula().getTyyppi().equals(Nappula.Tyyppi.MKUNINGATAR)) {
-                    ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[MUSTA][KUNINGAS]));
-                }
-                if (pelilauta.getRuudukko()[i][t].getNappula() != null && pelilauta.getRuudukko()[i][t].getNappula().getTyyppi().equals(Nappula.Tyyppi.VLAHETTI)) {
-                    ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[VALKOINEN][LAHETTI]));
-                }
-                if (pelilauta.getRuudukko()[i][t].getNappula() != null && pelilauta.getRuudukko()[i][t].getNappula().getTyyppi().equals(Nappula.Tyyppi.MLAHETTI)) {
-                    ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[MUSTA][LAHETTI]));
-                }
-                if (pelilauta.getRuudukko()[i][t].getNappula() != null && pelilauta.getRuudukko()[i][t].getNappula().getTyyppi().equals(Nappula.Tyyppi.VRATSU)) {
-                    ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[VALKOINEN][RATSU]));
-                }
-                if (pelilauta.getRuudukko()[i][t].getNappula() != null && pelilauta.getRuudukko()[i][t].getNappula().getTyyppi().equals(Nappula.Tyyppi.MRATSU)) {
-                    ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[MUSTA][RATSU]));
-                }
-                if (pelilauta.getRuudukko()[i][t].getNappula() != null && pelilauta.getRuudukko()[i][t].getNappula().getTyyppi().equals(Nappula.Tyyppi.VSOTILAS)) {
-                    ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[VALKOINEN][SOTILAS]));
-                }
-                if (pelilauta.getRuudukko()[i][t].getNappula() != null && pelilauta.getRuudukko()[i][t].getNappula().getTyyppi().equals(Nappula.Tyyppi.MSOTILAS)) {
-                    ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[MUSTA][SOTILAS]));
-                }
-                if (pelilauta.getRuudukko()[i][t].getNappula() != null && pelilauta.getRuudukko()[i][t].getNappula().getTyyppi().equals(Nappula.Tyyppi.VTORNI)) {
-                    ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[VALKOINEN][TORNI]));
-                }
-                if (pelilauta.getRuudukko()[i][t].getNappula() != null && pelilauta.getRuudukko()[i][t].getNappula().getTyyppi().equals(Nappula.Tyyppi.MTORNI)) {
-                    ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[MUSTA][TORNI]));
-                }
-            }
-
-        }
-    }
-
-    /**
-     * Värittää pelilaudan ruudut mustavalkoisiksi
-     */
-    private void varitaPelilauta() {
-        for (int k = 0; k <= 7; k++) {
-            for (int j = 0; j <= 7; j++) {
-                if ((j % 2 == 1 && k % 2 == 1) || (j % 2 == 0 && k % 2 == 0)) {
-                    ruudukko[k][j].setBackground(Color.WHITE);
-                } else {
-                    ruudukko[k][j].setBackground(Color.BLACK);
-                }
-
-            }
-        }
-    }
-
-    /**
-     * Siirtää nappulan ekaX,ekaY sijainnista tokaX,tokaY sijaintiin.
+     * Siirtaa nappulan ekaX,ekaY sijainnista tokaX,tokaY sijaintiin.
      */
     private void siirra() {
-        pelilauta.getRuudukko()[ekaX][ekaY].getNappula().kasvataSiirtojenMaaraa();
+        pelilauta.getNappula(ekaX, ekaY).kasvataSiirtojenMaaraa();
         pelilauta.siirra(ekaX, ekaY, tokaX, tokaY);
+        pelilauta.otaEnPassantMahdollisuusPois();
 
-        if (tokaX == 0 && pelilauta.getRuudukko()[tokaX][tokaY].getNappula().getTyyppi() == Nappula.Tyyppi.VSOTILAS) {
-            pelilauta.getRuudukko()[tokaX][tokaY].asetaNappula(new Kuningatar("valkoinen"));
+        if (tokaX == 0 && pelilauta.getNappula(tokaX, tokaY).getTyyppi() == Nappula.Tyyppi.VSOTILAS) {
+            pelilauta.asetaNappula(tokaX, tokaY, new Kuningatar("valkoinen"));
         }
 
-        if (tokaX == 7 && pelilauta.getRuudukko()[tokaX][tokaY].getNappula().getTyyppi() == Nappula.Tyyppi.MSOTILAS) {
-            pelilauta.getRuudukko()[tokaX][tokaY].asetaNappula(new Kuningatar("musta"));
+        if (tokaX == 7 && pelilauta.getNappula(tokaX, tokaY).getTyyppi() == Nappula.Tyyppi.MSOTILAS) {
+            pelilauta.asetaNappula(tokaX, tokaY, new Kuningatar("musta"));
         }
-        varitaPelilauta();
+        piirtaja.varitaPelilauta(ruudukko);
         ekaX = -1;
         ekaY = -1;
         tokaX = -1;
         tokaY = -1;
 
-        piirraNappulat();
-        if (pelilauta.onkoMustaShakkiMatti()) {
-            lopetaPeli();
-        } else if (pelilauta.onkoValkoinenShakkiMatti()) {
+        viesti.setText("");
+        piirtaja.piirraNappulat(ruudukko, pelilauta);
+        if (pelilauta.onkoShakkiMatti("valkoinen") || pelilauta.onkoShakkiMatti("musta")) {
             lopetaPeli();
         }
 
-        if (pelilauta.onkoMustaShakki()) {
+        if (pelilauta.onkoShakki("musta")) {
             viesti.setText("Chess against Black!");
-        } else if (pelilauta.onkoValkoinenShakki()) {
+        } else if (pelilauta.onkoShakki("valkoinen")) {
             viesti.setText("Chess against White!");
         }
 
@@ -388,22 +313,6 @@ public class Kayttoliittyma {
         } else {
             valkoisenVuoro = true;
             kenenVuoro.setText("White to move");
-        }
-    }
-
-    private final void luoNappulaKuvat() {
-        try {
-
-            BufferedImage bi = ImageIO.read(new File(System.getProperty("user.dir") + "/Shakkikuva.png"));
-            for (int i = 0; i < 2; i++) {
-                for (int j = 0; j < 6; j++) {
-                    chessPieceImages[i][j] = bi.getSubimage(
-                            j * 64, i * 64, 64, 64);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.exit(1);
         }
     }
 
@@ -421,9 +330,9 @@ public class Kayttoliittyma {
                 for (int i = 0; i <= 7; i++) {
                     for (int t = 0; t <= 7; t++) {
                         if (e.getComponent() == ruudukko[i][t]) {
-                            if (pelilauta.getRuudukko()[i][t].getNappula() != null
-                                    && ((pelilauta.getRuudukko()[i][t].getNappula().getVari().equals("musta") && !valkoisenVuoro)
-                                    || (pelilauta.getRuudukko()[i][t].getNappula().getVari().equals("valkoinen") && valkoisenVuoro))
+                            if (pelilauta.getNappula(i, t) != null
+                                    && ((pelilauta.getNappula(i, t).getVari().equals("musta") && !valkoisenVuoro)
+                                    || (pelilauta.getNappula(i, t).getVari().equals("valkoinen") && valkoisenVuoro))
                                     && ekaX == -1) {
 
                                 ekaX = i;
@@ -432,7 +341,7 @@ public class Kayttoliittyma {
                                 e.getComponent().setBackground(Color.ORANGE);
 
                                 if (onkoNaytaMahdollisetSiirrot) {
-                                    varitaMahdollisetSiirrot();
+                                    piirtaja.varitaMahdollisetSiirrot(ruudukko, pelilauta, ekaX, ekaY);
                                 }
                                 break;
                             } else if (ekaX != -1) {
@@ -440,12 +349,12 @@ public class Kayttoliittyma {
                                 tokaX = i;
                                 tokaY = t;
 
-                                ArrayList<String> mahdollisetSiirrot = pelilauta.getRuudukko()[ekaX][ekaY].getNappula().mahdollisetSiirrot(ekaX, ekaY, pelilauta.getRuudukko());
+                                ArrayList<String> mahdollisetSiirrot = pelilauta.getNappula(ekaX, ekaY).mahdollisetSiirrot(ekaX, ekaY, pelilauta.getRuudukko());
                                 if (mahdollisetSiirrot.contains("" + tokaX + tokaY)) {
                                     siirra();
                                     break;
                                 }
-                                varitaPelilauta();
+                                piirtaja.varitaPelilauta(ruudukko);
                                 if (ekaX != tokaX || ekaY != tokaY) {
                                     viesti.setText("Illeagal move");
                                 }
@@ -482,20 +391,4 @@ public class Kayttoliittyma {
 
     }
 
-    /**
-     * Kun ruutu on valitti niin metodi piirtää sen nappulan joka on ruudusa
-     * mahdolliset siirtoruudut keltaisiksi.
-     */
-    private void varitaMahdollisetSiirrot() {
-        ArrayList<String> mahdolliset = pelilauta.getRuudukko()[ekaX][ekaY].getNappula().mahdollisetSiirrot(ekaX, ekaY, pelilauta.getRuudukko());
-
-        for (int a = 0; a <= 7; a++) {
-            for (int b = 0; b <= 7; b++) {
-
-                if (mahdolliset.contains("" + a + b)) {
-                    ruudukko[a][b].setBackground(Color.yellow);
-                }
-            }
-        }
-    }
 }

@@ -82,33 +82,33 @@ public class PelilautaTest {
 
     @Test
     public void onkoMustaShakkiMattiPalauttaaFalse() {
-        assertEquals(false, lauta.onkoMustaShakkiMatti());
+        assertEquals(false, lauta.onkoShakkiMatti("musta"));
     }
     @Test
     public void onkoValkoinenShakkiMattiPalauttaaFalse() {
-        assertEquals(false, lauta.onkoValkoinenShakkiMatti());
+        assertEquals(false, lauta.onkoShakkiMatti("valkoinen"));
     }
     
     @Test
     public void onkoValkoinenShakkiPalauttaaFalse(){
-        assertEquals(false, lauta.onkoValkoinenShakki());
+        assertEquals(false, lauta.onkoShakki("valkoinen"));
     }
     
     @Test
     public void onkoMustaShakkiPalauttaaFalse(){
-        assertEquals(false, lauta.onkoMustaShakki());
+        assertEquals(false, lauta.onkoShakki("musta"));
     }
     
     @Test
     public void josOnShakkiNiinPalauttaaTrueMusta(){
         lauta.siirra(6, 2, 1, 3);
-        assertTrue(lauta.onkoMustaShakki());
+        assertTrue(lauta.onkoShakki("musta"));
     }
     
     @Test
     public void josOnShakkiNiinPalauttaaTrueValkoinen(){
         lauta.siirra(0, 3, 6, 3);
-        assertTrue(lauta.onkoValkoinenShakki());
+        assertTrue(lauta.onkoShakki("valkoinen"));
     }
     
     @Test
@@ -117,7 +117,7 @@ public class PelilautaTest {
         lauta.siirra(7, 0, 5, 2);
         lauta.siirra(7, 7, 5, 3);
         lauta.siirra(7, 3, 5, 4);
-        assertTrue(lauta.onkoMustaShakkiMatti());
+        assertTrue(lauta.onkoShakkiMatti("musta"));
     }
     
     @Test
@@ -126,7 +126,7 @@ public class PelilautaTest {
         lauta.siirra(0, 0, 3, 2);
         lauta.siirra(0, 7, 3, 3);
         lauta.siirra(0, 3, 3, 4);
-        assertTrue(lauta.onkoValkoinenShakkiMatti());
+        assertTrue(lauta.onkoShakkiMatti("valkoinen"));
     }
     
     @Test
@@ -147,6 +147,20 @@ public class PelilautaTest {
     @Test
     public void ruudukossaOnMustaLahetti(){
         assertEquals(Nappula.Tyyppi.MLAHETTI, lauta.getRuudukko()[0][2].getNappula().getTyyppi());
+    }
+    
+    @Test
+    public void otaEnPassantMahdollisuusPoisToimiiMusta(){
+        lauta.siirra(6, 0, 4, 0);
+        lauta.otaEnPassantMahdollisuusPois();
+        assertEquals(1, lauta.getNappula(4, 0).getSiirtojenMaara());
+    }
+    
+    @Test
+    public void otaEnPassantMahdollisuusPoisToimiiValkoinen(){
+        lauta.siirra(1, 0, 3, 0);
+        lauta.otaEnPassantMahdollisuusPois();
+        assertEquals(1, lauta.getNappula(3, 0).getSiirtojenMaara());
     }
 
 }

@@ -23,7 +23,7 @@ public class Nappula {
     };
 
     /**
-     * Nappulan väri, joko musta tai valkoinen
+     * Nappulan vari, joko musta tai valkoinen
      */
     private String vari;
     /**
@@ -55,7 +55,7 @@ public class Nappula {
 
     /**
      * Metodi kertoo onko nykyisen nappulan väri sama kuin parametrissä saadun
-     * nappulan väri
+     * nappulan vari
      *
      * @param nappula Nappula jonka väriä halutaan verrata
      * @return totuusarvon joka kertoo ovatko nappulat samaa väriä
@@ -109,7 +109,7 @@ public class Nappula {
 
                 Nappula nappula = ruudukko[x][uusiy].getNappula();
                 kopioLauta.siirra(x, y, uusix, uusiy);
-                if ((!kopioLauta.onkoMustaShakki() && vari.equals("musta")) || (!kopioLauta.onkoValkoinenShakki() && vari.equals("valkoinen"))) {
+                if (!kopioLauta.onkoShakki(vari)) {
                     siirrot.add(siirto);
                 }
                 kopioLauta.siirra(uusix, uusiy, x, y);
@@ -117,7 +117,7 @@ public class Nappula {
 
             } else if (ruudukko[uusix][uusiy].getNappula() == null) {
                 kopioLauta.siirra(x, y, uusix, uusiy);
-                if ((!kopioLauta.onkoMustaShakki() && vari.equals("musta")) || (!kopioLauta.onkoValkoinenShakki() && vari.equals("valkoinen"))) {
+                if (!kopioLauta.onkoShakki(vari)) {
                     siirrot.add(siirto);
                 }
                 kopioLauta.siirra(uusix, uusiy, x, y);
@@ -125,7 +125,7 @@ public class Nappula {
             } else if (!ruudukko[uusix][uusiy].getNappula().onkoSamaVari(ruudukko[x][y].getNappula())) {
                 Nappula nappula = ruudukko[uusix][uusiy].getNappula();
                 kopioLauta.siirra(x, y, uusix, uusiy);
-                if ((!kopioLauta.onkoMustaShakki() && vari.equals("musta")) || (!kopioLauta.onkoValkoinenShakki() && vari.equals("valkoinen"))) {
+                if (!kopioLauta.onkoShakki(vari)) {
                     siirrot.add(siirto);
                 }
                 kopioLauta.siirra(uusix, uusiy, x, y);
@@ -143,7 +143,7 @@ public class Nappula {
      * @param y Nappulan y sijainti ruudukossa
      * @param ruudukko Ruudukko ruutuja jossa nappula sijaitsee
      *
-     * @return Lista mahdollisista siirroista
+     * @return Lista mahdollisista siirroista kuninkaalle
      */
     public ArrayList<String> mahdollisetSiirrotKuningas(int x, int y, Ruutu[][] ruudukko) {
 
@@ -185,7 +185,7 @@ public class Nappula {
      * @param y Nappulan y sijainti ruudukossa
      * @param ruudukko Ruudukko ruutuja jossa nappula sijaitsee
      *
-     * @return Lista mahdollisista siirroista
+     * @return Lista mahdollisista siirroista valkoiselle sotilaalle
      */
     public ArrayList<String> mahdollisetSiirrotVSotilas(int x, int y, Ruutu[][] ruudukko) {
         ArrayList<String> siirrot = new ArrayList<>();
@@ -205,11 +205,11 @@ public class Nappula {
             siirrot.add("" + (x - 1) + (y + 1));
         }
         if (x == 3 && y + 1 <= 7 && ruudukko[x - 1][y + 1].getNappula() == null && ruudukko[x][y + 1].getNappula() != null
-                && ruudukko[x][y + 1].getNappula().getTyyppi() == Tyyppi.MSOTILAS && ruudukko[x][y + 1].getNappula().getSiirtojenMaara() == 1) {
+                && ruudukko[x][y + 1].getNappula().getTyyppi() == Tyyppi.MSOTILAS && ruudukko[x][y + 1].getNappula().getSiirtojenMaara() == 2) {
             siirrot.add("" + (x - 1) + (y + 1));
         }
         if (x == 3 && y - 1 >= 0 && ruudukko[x - 1][y - 1].getNappula() == null && ruudukko[x][y - 1].getNappula() != null
-                && ruudukko[x][y - 1].getNappula().getTyyppi() == Tyyppi.MSOTILAS && ruudukko[x][y - 1].getNappula().getSiirtojenMaara() == 1) {
+                && ruudukko[x][y - 1].getNappula().getTyyppi() == Tyyppi.MSOTILAS && ruudukko[x][y - 1].getNappula().getSiirtojenMaara() == 2) {
             siirrot.add("" + (x - 1) + (y - 1));
         }
 
@@ -223,7 +223,7 @@ public class Nappula {
      * @param y Nappulan y sijainti ruudukossa
      * @param ruudukko Ruudukko ruutuja jossa nappula sijaitsee
      *
-     * @return Lista mahdollisista siirroista
+     * @return Lista mahdollisista siirroista mustalle sotilaalle
      */
     public ArrayList<String> mahdollisetSiirrotMSotilas(int x, int y, Ruutu[][] ruudukko) {
 
@@ -242,11 +242,11 @@ public class Nappula {
             siirrot.add("" + (x + 1) + (y - 1));
         }
         if (x == 4 && y + 1 <= 7 && ruudukko[x - 1][y + 1].getNappula() == null && ruudukko[x][y + 1].getNappula() != null
-                && ruudukko[x][y + 1].getNappula().getTyyppi() == Tyyppi.VSOTILAS && ruudukko[x][y + 1].getNappula().getSiirtojenMaara() == 1) {
+                && ruudukko[x][y + 1].getNappula().getTyyppi() == Tyyppi.VSOTILAS && ruudukko[x][y + 1].getNappula().getSiirtojenMaara() == 2) {
             siirrot.add("" + (x + 1) + (y + 1));
         }
         if (x == 4 && y - 1 >= 0 && ruudukko[x - 1][y - 1].getNappula() == null && ruudukko[x][y - 1].getNappula() != null
-                && ruudukko[x][y - 1].getNappula().getTyyppi() == Tyyppi.VSOTILAS && ruudukko[x][y - 1].getNappula().getSiirtojenMaara() == 1) {
+                && ruudukko[x][y - 1].getNappula().getTyyppi() == Tyyppi.VSOTILAS && ruudukko[x][y - 1].getNappula().getSiirtojenMaara() == 2) {
             siirrot.add("" + (x + 1) + (y - 1));
         }
         return siirrot;
@@ -259,7 +259,7 @@ public class Nappula {
      * @param y Nappulan y sijainti ruudukossa
      * @param ruudukko Ruudukko ruutuja jossa nappula sijaitsee
      *
-     * @return Lista mahdollisista siirroista
+     * @return Lista mahdollisista siirroista tornille
      */
     public ArrayList<String> mahdollisetSiirrotTorni(int x, int y, Ruutu[][] ruudukko) {
         ArrayList<String> siirrot = new ArrayList<>();
@@ -324,7 +324,7 @@ public class Nappula {
      * @param y Nappulan y sijainti ruudukossa
      * @param ruudukko Ruudukko ruutuja jossa nappula sijaitsee
      *
-     * @return Lista mahdollisista siirroista
+     * @return Lista mahdollisista siirroista ratsulle
      */
     public ArrayList<String> mahdollisetSiirrotRatsu(int x, int y, Ruutu[][] ruudukko) {
         ArrayList<String> siirrot = new ArrayList<>();
@@ -362,7 +362,7 @@ public class Nappula {
      * @param y Nappulan y sijainti ruudukossa
      * @param ruudukko Ruudukko ruutuja jossa nappula sijaitsee
      *
-     * @return Lista mahdollisista siirroista
+     * @return Lista mahdollisista siirroista lahetille
      */
     public ArrayList<String> mahdollisetSiirrotLahetti(int x, int y, Ruutu[][] ruudukko) {
         ArrayList<String> siirrot = new ArrayList<>();
@@ -424,7 +424,7 @@ public class Nappula {
      * @param y Nappulan y sijainti ruudukossa
      * @param ruudukko Ruudukko ruutuja jossa nappula sijaitsee
      *
-     * @return Lista mahdollisista siirroista
+     * @return Lista mahdollisista siirroista kuningattarelle
      */
     public ArrayList<String> mahdollisetSiirrotKuningatar(int x, int y, Ruutu[][] ruudukko) {
         ArrayList<String> siirrot = new ArrayList<>();

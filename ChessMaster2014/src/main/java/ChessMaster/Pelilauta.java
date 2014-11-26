@@ -104,23 +104,23 @@ public class Pelilauta {
      */
     public void siirra(int vanhaX, int vanhaY, int uusiX, int uusiY) {
 
-        Nappula nappula = ruudukko[vanhaX][vanhaY].getNappula();
-        
-        if (ruudukko[uusiX][uusiY].getNappula() == null) {
-            if (vanhaX == 4 && nappula.getTyyppi() == Nappula.Tyyppi.MSOTILAS && uusiY != vanhaY
-                    && ruudukko[uusiX - 1][uusiY].getNappula() != null && ruudukko[uusiX - 1][uusiY].getNappula().getTyyppi() == Nappula.Tyyppi.VSOTILAS) {
-                ruudukko[uusiX - 1][uusiY].poistaNappula();
-            } else if (vanhaX == 3 && nappula.getTyyppi() == Nappula.Tyyppi.VSOTILAS && uusiY != vanhaY
-                    && ruudukko[uusiX + 1][uusiY].getNappula() != null && ruudukko[uusiX + 1][uusiY].getNappula().getTyyppi() == Nappula.Tyyppi.MSOTILAS) {
-                ruudukko[uusiX + 1][uusiY].poistaNappula();
-            }
-            ruudukko[vanhaX][vanhaY].poistaNappula();
-            ruudukko[uusiX][uusiY].asetaNappula(nappula);
+        Nappula nappula = getNappula(vanhaX, vanhaY);
 
-        } else if (!ruudukko[vanhaX][vanhaY].getNappula().onkoSamaVari(ruudukko[uusiX][uusiY].getNappula())) {
-            ruudukko[vanhaX][vanhaY].poistaNappula();
-            ruudukko[uusiX][uusiY].poistaNappula();
-            ruudukko[uusiX][uusiY].asetaNappula(nappula);
+        if (getNappula(uusiX, uusiY) == null) {
+            if (vanhaX == 4 && nappula.getTyyppi() == Nappula.Tyyppi.MSOTILAS && uusiY != vanhaY
+                    && getNappula(uusiX - 1, uusiY) != null && getNappula(uusiX - 1, uusiY).getTyyppi() == Nappula.Tyyppi.VSOTILAS) {
+                poistaNappula(uusiX - 1, uusiY);
+            } else if (vanhaX == 3 && nappula.getTyyppi() == Nappula.Tyyppi.VSOTILAS && uusiY != vanhaY
+                    && getNappula(uusiX + 1, uusiY) != null && getNappula(uusiX + 1, uusiY).getTyyppi() == Nappula.Tyyppi.MSOTILAS) {
+                poistaNappula(uusiX + 1, uusiY);
+            }
+            poistaNappula(vanhaX, vanhaY);
+            asetaNappula(uusiX, uusiY, nappula);
+
+        } else if (!nappula.onkoSamaVari(getNappula(uusiX, uusiY))) {
+            poistaNappula(vanhaX, vanhaY);
+            poistaNappula(uusiX, uusiY);
+            asetaNappula(uusiX, uusiY, nappula);
         }
     }
 
@@ -132,19 +132,33 @@ public class Pelilauta {
         this.ruudukko = ruudukko;
     }
 
+    public Nappula getNappula(int x, int y) {
+        return ruudukko[x][y].getNappula();
+    }
+
+    public void poistaNappula(int x, int y) {
+        ruudukko[x][y].poistaNappula();
+    }
+
+    public void asetaNappula(int x, int y, Nappula nappula) {
+        ruudukko[x][y].asetaNappula(nappula);
+    }
+
     /**
-     * Metodi tarkistaa uhkaako mikÃ¤Ã¤n valkoinen nappula mustaa kuningasta
+     * Metodia kutsutaan kun halutaan tietää onko vari parametrin maarittama
+     * puoli shakki tilanteessa
      *
-     * @return Palauttaa totta jos valkoinen nappula uhkaa mustaa kuningasta ei
-     * totta muuten
+     * @param vari Vari joka tarkistetaan onko shakki tilanteessa
+     * @return Palauttaa totta jos vari parametrin puoli on shakki tilanteessa
      */
-    public boolean onkoMustaShakki() {
+    public boolean onkoShakki(String vari) {
         int x = 0;
         int y = 0;
 
         for (int i = 0; i <= 7; i++) {
             for (int t = 0; t <= 7; t++) {
-                if (ruudukko[i][t].getNappula() != null && ruudukko[i][t].getNappula().getTyyppi() == Nappula.Tyyppi.MKUNINGAS) {
+                if (getNappula(i, t) != null && ((vari.equals("musta") && getNappula(i, t).getTyyppi() == Nappula.Tyyppi.MKUNINGAS)
+                        || vari.equals("valkoinen") && getNappula(i, t).getTyyppi() == Nappula.Tyyppi.VKUNINGAS)) {
                     x = i;
                     y = t;
                     break;
@@ -154,24 +168,24 @@ public class Pelilauta {
 
         for (int i = 0; i <= 7; i++) {
             for (int t = 0; t <= 7; t++) {
-                if (ruudukko[i][t].getNappula() != null && ruudukko[i][t].getNappula().getVari().equals("valkoinen")) {
+                if (getNappula(i, t) != null && !getNappula(i, t).getVari().equals(vari)) {
                     Pelilauta kopioLauta = new Pelilauta();
                     kopioLauta.setRuudukko(ruudukko);
-                    Nappula.Tyyppi tyyppi = ruudukko[i][t].getNappula().getTyyppi();
-                    Nappula napppula = ruudukko[i][t].getNappula();
+                    Nappula.Tyyppi tyyppi = getNappula(i, t).getTyyppi();
+                    Nappula napppula = getNappula(i, t);
                     ArrayList<String> kaikkiMahdollisetSiirrot = new ArrayList<>();
 
-                    if (tyyppi == Nappula.Tyyppi.VSOTILAS) {
+                    if ((vari.equals("musta") && tyyppi == Nappula.Tyyppi.VSOTILAS) || (vari.equals("valkoinen") && tyyppi == Nappula.Tyyppi.MSOTILAS)) {
                         kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotVSotilas(i, t, ruudukko));
-                    } else if (tyyppi == Nappula.Tyyppi.VRATSU) {
+                    } else if ((vari.equals("musta") && tyyppi == Nappula.Tyyppi.VRATSU) || (vari.equals("valkoinen") && tyyppi == Nappula.Tyyppi.MRATSU)) {
                         kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotRatsu(i, t, ruudukko));
-                    } else if (tyyppi == Nappula.Tyyppi.VTORNI) {
+                    } else if ((vari.equals("musta") && tyyppi == Nappula.Tyyppi.VTORNI) || (vari.equals("valkoinen") && tyyppi == Nappula.Tyyppi.MTORNI)) {
                         kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotTorni(i, t, ruudukko));
-                    } else if (tyyppi == Nappula.Tyyppi.VLAHETTI) {
+                    } else if ((vari.equals("musta") && tyyppi == Nappula.Tyyppi.VLAHETTI) || (vari.equals("valkoinen") && tyyppi == Nappula.Tyyppi.MLAHETTI)) {
                         kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotLahetti(i, t, ruudukko));
-                    } else if (tyyppi == Nappula.Tyyppi.VKUNINGATAR) {
+                    } else if ((vari.equals("musta") && tyyppi == Nappula.Tyyppi.VKUNINGATAR) || (vari.equals("valkoinen") && tyyppi == Nappula.Tyyppi.MKUNINGATAR)) {
                         kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotKuningatar(i, t, ruudukko));
-                    } else if (tyyppi == Nappula.Tyyppi.VKUNINGAS) {
+                    } else if ((vari.equals("musta") && tyyppi == Nappula.Tyyppi.VKUNINGAS) || (vari.equals("valkoinen") && tyyppi == Nappula.Tyyppi.MKUNINGAS)) {
                         kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotKuningas(i, t, ruudukko));
                     }
 
@@ -182,75 +196,23 @@ public class Pelilauta {
             }
 
         }
-
         return false;
     }
 
     /**
-     * Metodi tarkistaa uhkaako mikÃ¤Ã¤n musta nappula valkoista kuningasta
+     * Metodi tarkistaa onko vari parametrin maarittama puoli shakkimatti
+     * tilanteessa.
      *
-     * @return Palauttaa totta jos musta nappula uhkaa valkoista kuningasta ei
-     * totta muuten
+     * @param vari Vari joka tarkistetaan onko shakki tilanteessa
+     * @return Palauttaa totta jos vari parametrin puoli on shakkimatti
+     * tilanteessa
      */
-    public boolean onkoValkoinenShakki() {
-        int x = 0;
-        int y = 0;
+    public boolean onkoShakkiMatti(String vari) {
 
         for (int i = 0; i <= 7; i++) {
             for (int t = 0; t <= 7; t++) {
-                if (ruudukko[i][t].getNappula() != null && ruudukko[i][t].getNappula().getTyyppi() == Nappula.Tyyppi.VKUNINGAS) {
-                    x = i;
-                    y = t;
-                    break;
-                }
-            }
-        }
-
-        for (int i = 0; i <= 7; i++) {
-            for (int t = 0; t <= 7; t++) {
-                if (ruudukko[i][t].getNappula() != null && ruudukko[i][t].getNappula().getVari().equals("musta")) {
-                    Pelilauta kopioLauta = new Pelilauta();
-                    kopioLauta.setRuudukko(ruudukko);
-                    Nappula.Tyyppi tyyppi = ruudukko[i][t].getNappula().getTyyppi();
-                    Nappula napppula = ruudukko[i][t].getNappula();
-                    ArrayList<String> kaikkiMahdollisetSiirrot = new ArrayList<>();
-
-                    if (tyyppi == Nappula.Tyyppi.MSOTILAS) {
-                        kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotVSotilas(i, t, ruudukko));
-                    } else if (tyyppi == Nappula.Tyyppi.MRATSU) {
-                        kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotRatsu(i, t, ruudukko));
-                    } else if (tyyppi == Nappula.Tyyppi.MTORNI) {
-                        kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotTorni(i, t, ruudukko));
-                    } else if (tyyppi == Nappula.Tyyppi.MLAHETTI) {
-                        kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotLahetti(i, t, ruudukko));
-                    } else if (tyyppi == Nappula.Tyyppi.MKUNINGATAR) {
-                        kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotKuningatar(i, t, ruudukko));
-                    } else if (tyyppi == Nappula.Tyyppi.MKUNINGAS) {
-                        kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotKuningas(i, t, ruudukko));
-                    }
-
-                    if (kaikkiMahdollisetSiirrot.contains("" + x + y)) {
-                        return true;
-                    }
-                }
-            }
-
-        }
-
-        return false;
-    }
-
-    /**
-     * Metodi tarkistaa onko mustalla shakkimatti tilanne
-     *
-     * @return Palauttaa totta jos valkoinen on voittanut
-     */
-    public boolean onkoMustaShakkiMatti() {
-
-        for (int i = 0; i <= 7; i++) {
-            for (int t = 0; t <= 7; t++) {
-                if (ruudukko[i][t].getNappula() != null && ruudukko[i][t].getNappula().getVari().equals("musta")
-                        && !ruudukko[i][t].getNappula().mahdollisetSiirrot(i, t, ruudukko).isEmpty()) {
+                if (getNappula(i, t) != null && getNappula(i, t).getVari().equals(vari)
+                        && !getNappula(i, t).mahdollisetSiirrot(i, t, ruudukko).isEmpty()) {
                     return false;
                 }
             }
@@ -260,22 +222,19 @@ public class Pelilauta {
     }
 
     /**
-     * Metodi tarkistaa onko valkoisella shakkimatti tilanne
-     *
-     * @return Palauttaa totta jos musta on voittanut
+     * Metodi lisaa kaikkien sotilaiden jotka ovat joko neljannella tai
+     * viidennella rivilla siirtojenmaaraa. Nain varmistetaan etta En Passant
+     * toimii oikein.
      */
-    public boolean onkoValkoinenShakkiMatti() {
-
+    public void otaEnPassantMahdollisuusPois() {
         for (int i = 0; i <= 7; i++) {
-            for (int t = 0; t <= 7; t++) {
-                if (ruudukko[i][t].getNappula() != null && ruudukko[i][t].getNappula().getVari().equals("valkoinen")
-                        && !ruudukko[i][t].getNappula().mahdollisetSiirrot(i, t, ruudukko).isEmpty()) {
-                    return false;
-                }
+            if (getNappula(3, i) != null && getNappula(3, i).getTyyppi() == Nappula.Tyyppi.MSOTILAS) {
+                getNappula(3, i).kasvataSiirtojenMaaraa();
+            }
+            if (getNappula(4, i) != null && getNappula(4, i).getTyyppi() == Nappula.Tyyppi.VSOTILAS) {
+                getNappula(4, i).kasvataSiirtojenMaaraa();
             }
         }
-
-        return true;
     }
 
 }
