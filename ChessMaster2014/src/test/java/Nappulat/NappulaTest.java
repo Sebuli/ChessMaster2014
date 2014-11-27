@@ -180,7 +180,6 @@ public class NappulaTest {
         pelilauta.siirra(7, 3, 3, 3);
         assertTrue(kuningatar.mahdollisetSiirrot(3, 3, pelilauta.getRuudukko()).size() > 1);
     }
-
     @Test
     public void mahdollisetSiirrotPalauttaaOikeinMKuningatar() {
         Nappula kuningatar = new Kuningatar("musta");
@@ -287,5 +286,11 @@ public class NappulaTest {
         pelilauta.otaEnPassantMahdollisuusPois();
         assertTrue(pelilauta.getNappula(4, 1).mahdollisetSiirrot(4, 1, pelilauta.getRuudukko()).contains("" + 5 + 2) && 
                 pelilauta.getNappula(4, 1).mahdollisetSiirrot(4, 1, pelilauta.getRuudukko()).contains("" + 5 + 0));
+    }
+    
+    @Test
+    public void tavallinenNappulapalauttaaNullMahdollisetSiirrot(){
+        Nappula nappula = new Nappula("musta");
+        assertNull(nappula.kaikkiMahdollisetSiirrot(1, 1, pelilauta.getRuudukko()));
     }
 }

@@ -94,13 +94,13 @@ public class Pelilauta {
     }
 
     /**
-     * Metodi siirtÃ¤Ã¤ nappulan joka sijaitsee vanhaX ja vanhaY koordinaattien
-     * pÃ¤Ã¤ttÃ¤mÃ¤ssÃ¤ paikassa uusiX:n ja uusiY:n mÃ¤Ã¤rittÃ¤mÃ¤Ã¤n paikkaan.
+     * Metodi siirtaa nappulan joka sijaitsee vanhaX ja vanhaY koordinaattien
+     * paattamassa paikassa uusiX:n ja uusiY:n maarittamaan paikkaan.
      *
-     * @param vanhaX Nappulan jota halutaan siirtÃ¤Ã¤ x sijainti ruudukossa
-     * @param vanhaY Nappulan jota halutaan siirtÃ¤Ã¤ y sijainti ruudukossa
-     * @param uusiX x sijainti minne halutaan siirtÃ¤Ã¤ nappula
-     * @param uusiY y sijainti minne halutaan siirtÃ¤Ã¤ nappula
+     * @param vanhaX Nappulan jota halutaan siirtaa x sijainti ruudukossa
+     * @param vanhaY Nappulan jota halutaan siirtaa y sijainti ruudukossa
+     * @param uusiX x sijainti minne halutaan siirtaa nappula
+     * @param uusiY y sijainti minne halutaan siirtaa nappula
      */
     public void siirra(int vanhaX, int vanhaY, int uusiX, int uusiY) {
 
@@ -172,23 +172,10 @@ public class Pelilauta {
                     Pelilauta kopioLauta = new Pelilauta();
                     kopioLauta.setRuudukko(ruudukko);
                     Nappula.Tyyppi tyyppi = getNappula(i, t).getTyyppi();
-                    Nappula napppula = getNappula(i, t);
                     ArrayList<String> kaikkiMahdollisetSiirrot = new ArrayList<>();
-
-                    if ((vari.equals("musta") && tyyppi == Nappula.Tyyppi.VSOTILAS) || (vari.equals("valkoinen") && tyyppi == Nappula.Tyyppi.MSOTILAS)) {
-                        kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotVSotilas(i, t, ruudukko));
-                    } else if ((vari.equals("musta") && tyyppi == Nappula.Tyyppi.VRATSU) || (vari.equals("valkoinen") && tyyppi == Nappula.Tyyppi.MRATSU)) {
-                        kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotRatsu(i, t, ruudukko));
-                    } else if ((vari.equals("musta") && tyyppi == Nappula.Tyyppi.VTORNI) || (vari.equals("valkoinen") && tyyppi == Nappula.Tyyppi.MTORNI)) {
-                        kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotTorni(i, t, ruudukko));
-                    } else if ((vari.equals("musta") && tyyppi == Nappula.Tyyppi.VLAHETTI) || (vari.equals("valkoinen") && tyyppi == Nappula.Tyyppi.MLAHETTI)) {
-                        kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotLahetti(i, t, ruudukko));
-                    } else if ((vari.equals("musta") && tyyppi == Nappula.Tyyppi.VKUNINGATAR) || (vari.equals("valkoinen") && tyyppi == Nappula.Tyyppi.MKUNINGATAR)) {
-                        kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotKuningatar(i, t, ruudukko));
-                    } else if ((vari.equals("musta") && tyyppi == Nappula.Tyyppi.VKUNINGAS) || (vari.equals("valkoinen") && tyyppi == Nappula.Tyyppi.MKUNINGAS)) {
-                        kaikkiMahdollisetSiirrot.addAll(napppula.mahdollisetSiirrotKuningas(i, t, ruudukko));
-                    }
-
+                    
+                    kaikkiMahdollisetSiirrot.addAll(getNappula(i, t).kaikkiMahdollisetSiirrot(i, t, ruudukko));
+                    
                     if (kaikkiMahdollisetSiirrot.contains("" + x + y)) {
                         return true;
                     }
