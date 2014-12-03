@@ -46,3 +46,6 @@
  -2 tuntia  
  -Tein koodista vähän hienomman näköisen ja lisäsin testejä. En passant toimii nytten oikein. Kaikki on suunnilleen valmista.
 
+3.12.2014  
+  -3 tuntia  
+  -Poistin lisää copypastea, muokkasin luokkakaaviota ja lisäsin vielä uuden sekvenssikaavion.
