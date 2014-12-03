@@ -1,0 +1,1916 @@
+<html>
+<head>
+<style type='text/css'>
+html, body, div, span, p, blockquote, pre {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+
+body{
+	line-height: 1;
+	color: black;
+	background: white;
+	margin-left: 20px;
+}
+
+.src { 
+border: 1px solid #dddddd;
+padding-top: 10px;
+padding-right: 5px;
+padding-left: 5px;
+}
+
+
+.covered {background-color: #ddffdd}
+.uncovered {background-color: #ffdddd}
+.killed {background-color: #aaffaa}
+.survived {background-color: #ffaaaa}
+.uncertain {background-color: #dde7ef}
+.run_error {background-color: #dde7ef}
+.na {background-color: #eeeeee}
+.timed_out {background-color: #dde7ef}
+.non_viable {background-color: #aaffaa}
+.memory_error {background-color: #dde7ef}
+.not_started {background-color: #dde7ef; color : red}
+.no_coverage {background-color: #ffaaaa}
+
+</style>
+
+</head>
+<body>
+
+
+<h1>Sotilas.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_1'/>
+1
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_1'></a>
+</td>
+<td class=''><pre><span  class=''>/*</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_2'/>
+2
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_2'></a>
+</td>
+<td class=''><pre><span  class=''> * To change this license header, choose License Headers in Project Properties.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_3'/>
+3
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_3'></a>
+</td>
+<td class=''><pre><span  class=''> * To change this template file, choose Tools | Templates</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_4'/>
+4
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_4'></a>
+</td>
+<td class=''><pre><span  class=''> * and open the template in the editor.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_5'/>
+5
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_5'></a>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_6'/>
+6
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_6'></a>
+</td>
+<td class=''><pre><span  class=''>package Nappulat;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_7'/>
+7
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_7'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_8'/>
+8
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_8'></a>
+</td>
+<td class=''><pre><span  class=''>import ChessMaster.Ruutu;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_9'/>
+9
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_9'></a>
+</td>
+<td class=''><pre><span  class=''>import java.util.ArrayList;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_10'/>
+10
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_10'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_11'/>
+11
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_11'></a>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_12'/>
+12
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_12'></a>
+</td>
+<td class=''><pre><span  class=''> * Luokka perii Nappula luokan ja asettaa tyyppiksi joko VSOTILAS tai MSOTILAS</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_13'/>
+13
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_13'></a>
+</td>
+<td class=''><pre><span  class=''> * @author Sebbe</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_14'/>
+14
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_14'></a>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_15'/>
+15
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_15'></a>
+</td>
+<td class=''><pre><span  class=''>public class Sotilas extends Nappula {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_16'/>
+16
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_16'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_17'/>
+17
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_17'></a>
+</td>
+<td class=''><pre><span  class=''>    public Sotilas(String vari) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_18'/>
+18
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_18'></a>
+</td>
+<td class='covered'><pre><span  class=''>        super(vari);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_19'/>
+19
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_19'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (vari.equals(&#34;valkoinen&#34;)) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_20'/>
+20
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_20'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            setTyyppi(Tyyppi.VSOTILAS);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_21'/>
+21
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_21'></a>
+</td>
+<td class=''><pre><span  class=''>        } else {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_22'/>
+22
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_22'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            setTyyppi(Tyyppi.MSOTILAS);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_23'/>
+23
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_23'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_24'/>
+24
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_24'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_25'/>
+25
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_25'></a>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_26'/>
+26
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_26'></a>
+</td>
+<td class=''><pre><span  class=''>    </span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_27'/>
+27
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_27'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_28'/>
+28
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_28'></a>
+</td>
+<td class=''><pre><span  class=''>     * Metodia kutsutaan kun nappula on Sotilas</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_29'/>
+29
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_29'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_30'/>
+30
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_30'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param x Nappulan x sijainti ruudukossa</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_31'/>
+31
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_31'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param y Nappulan y sijainti ruudukossa</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_32'/>
+32
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_32'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param ruudukko Ruudukko ruutuja jossa nappula sijaitsee</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_33'/>
+33
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_33'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_34'/>
+34
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_34'></a>
+</td>
+<td class=''><pre><span  class=''>     * @return Lista mahdollisista siirroista sotilaalle</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_35'/>
+35
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_35'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_36'/>
+36
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_36'></a>
+</td>
+<td class=''><pre><span  class=''>    @Override</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_37'/>
+37
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_37'></a>
+</td>
+<td class=''><pre><span  class=''>    public ArrayList&#60;String&#62; kaikkiMahdollisetSiirrot(int x, int y, Ruutu[][] ruudukko){</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_38'/>
+38
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_38'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        if ( ruudukko[x][y].getNappula().getVari().equals(&#34;musta&#34;)){</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_39'/>
+39
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_39'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            return mahdollisetSiirrotMSotilas(x, y, ruudukko);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_40'/>
+40
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_40'></a>
+</td>
+<td class=''><pre><span  class=''>        } else {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_41'/>
+41
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_41'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            return mahdollisetSiirrotVSotilas(x, y, ruudukko);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_42'/>
+42
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_42'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_43'/>
+43
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_43'></a>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_44'/>
+44
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_44'></a>
+</td>
+<td class=''><pre><span  class=''>    </span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_45'/>
+45
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_45'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_46'/>
+46
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_46'></a>
+</td>
+<td class=''><pre><span  class=''>     * Metodia kutsutaan kun nappula on valkoinen Sotilas</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_47'/>
+47
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_47'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_48'/>
+48
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_48'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param x Nappulan x sijainti ruudukossa</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_49'/>
+49
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_49'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param y Nappulan y sijainti ruudukossa</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_50'/>
+50
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_50'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param ruudukko Ruudukko ruutuja jossa nappula sijaitsee</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_51'/>
+51
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_51'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_52'/>
+52
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_52'></a>
+</td>
+<td class=''><pre><span  class=''>     * @return Lista mahdollisista siirroista valkoiselle sotilaalle</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_53'/>
+53
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_53'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_54'/>
+54
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_54'></a>
+</td>
+<td class=''><pre><span  class=''>    public ArrayList&#60;String&#62; mahdollisetSiirrotVSotilas(int x, int y, Ruutu[][] ruudukko) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_55'/>
+55
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_55'></a>
+</td>
+<td class='covered'><pre><span  class=''>        ArrayList&#60;String&#62; siirrot = new ArrayList&#60;&#62;();</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_56'/>
+56
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_56'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_57'/>
+57
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_57'>5</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (x == 6 &#38;&#38; (ruudukko[x - 2][y].getNappula() == null &#38;&#38; ruudukko[x - 1][y].getNappula() == null)) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_58'/>
+58
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_58'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            siirrot.add(&#34;&#34; + (x - 2) + (y));</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_59'/>
+59
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_59'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_60'/>
+60
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_60'>5</a>
+</td>
+<td class='covered'><pre><span  class='survived'>        if (x - 1 &#62;= 0 &#38;&#38; ruudukko[x - 1][y].getNappula() == null) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_61'/>
+61
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_61'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            siirrot.add(&#34;&#34; + (x - 1) + (y));</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_62'/>
+62
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_62'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_63'/>
+63
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_63'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_64'/>
+64
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_64'>12</a>
+</td>
+<td class='covered'><pre><span  class='survived'>        if (x - 1 &#62;= 0 &#38;&#38; y - 1 &#62;= 0 &#38;&#38; ruudukko[x - 1][y - 1].getNappula() != null &#38;&#38; !onkoSamaVari(ruudukko[x - 1][y - 1].getNappula())) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_65'/>
+65
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_65'>2</a>
+</td>
+<td class='covered'><pre><span  class='survived'>            siirrot.add(&#34;&#34; + (x - 1) + (y - 1));</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_66'/>
+66
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_66'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_67'/>
+67
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_67'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_68'/>
+68
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_68'>12</a>
+</td>
+<td class='covered'><pre><span  class='survived'>        if (x - 1 &#62;= 0 &#38;&#38; y + 1 &#60;= 7 &#38;&#38; ruudukko[x - 1][y + 1].getNappula() != null &#38;&#38; !onkoSamaVari(ruudukko[x - 1][y + 1].getNappula())) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_69'/>
+69
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_69'>2</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            siirrot.add(&#34;&#34; + (x - 1) + (y + 1));</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_70'/>
+70
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_70'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_71'/>
+71
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_71'>10</a>
+</td>
+<td class='covered'><pre><span  class='survived'>        if (x == 3 &#38;&#38; y + 1 &#60;= 7 &#38;&#38; ruudukko[x - 1][y + 1].getNappula() == null &#38;&#38; ruudukko[x][y + 1].getNappula() != null</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_72'/>
+72
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_72'>3</a>
+</td>
+<td class='covered'><pre><span  class='survived'>                &#38;&#38; ruudukko[x][y + 1].getNappula().getTyyppi() == Tyyppi.MSOTILAS &#38;&#38; ruudukko[x][y + 1].getNappula().getSiirtojenMaara() == 2) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_73'/>
+73
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_73'>2</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            siirrot.add(&#34;&#34; + (x - 1) + (y + 1));</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_74'/>
+74
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_74'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_75'/>
+75
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_75'>10</a>
+</td>
+<td class='covered'><pre><span  class='survived'>        if (x == 3 &#38;&#38; y - 1 &#62;= 0 &#38;&#38; ruudukko[x - 1][y - 1].getNappula() == null &#38;&#38; ruudukko[x][y - 1].getNappula() != null</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_76'/>
+76
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_76'>3</a>
+</td>
+<td class='covered'><pre><span  class='survived'>                &#38;&#38; ruudukko[x][y - 1].getNappula().getTyyppi() == Tyyppi.MSOTILAS &#38;&#38; ruudukko[x][y - 1].getNappula().getSiirtojenMaara() == 2) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_77'/>
+77
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_77'>2</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            siirrot.add(&#34;&#34; + (x - 1) + (y - 1));</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_78'/>
+78
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_78'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_79'/>
+79
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_79'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_80'/>
+80
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_80'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        return siirrot;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_81'/>
+81
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_81'></a>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_82'/>
+82
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_82'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_83'/>
+83
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_83'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_84'/>
+84
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_84'></a>
+</td>
+<td class=''><pre><span  class=''>     * Metodia kutsutaan kun nappula on musta Sotilas</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_85'/>
+85
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_85'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_86'/>
+86
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_86'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param x Nappulan x sijainti ruudukossa</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_87'/>
+87
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_87'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param y Nappulan y sijainti ruudukossa</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_88'/>
+88
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_88'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param ruudukko Ruudukko ruutuja jossa nappula sijaitsee</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_89'/>
+89
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_89'></a>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_90'/>
+90
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_90'></a>
+</td>
+<td class=''><pre><span  class=''>     * @return Lista mahdollisista siirroista mustalle sotilaalle</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_91'/>
+91
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_91'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_92'/>
+92
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_92'></a>
+</td>
+<td class=''><pre><span  class=''>    public ArrayList&#60;String&#62; mahdollisetSiirrotMSotilas(int x, int y, Ruutu[][] ruudukko) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_93'/>
+93
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_93'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_94'/>
+94
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_94'></a>
+</td>
+<td class='covered'><pre><span  class=''>        ArrayList&#60;String&#62; siirrot = new ArrayList&#60;&#62;();</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_95'/>
+95
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_95'>5</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (x == 1 &#38;&#38; (ruudukko[x + 2][y].getNappula() == null &#38;&#38; ruudukko[x + 1][y].getNappula() == null)) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_96'/>
+96
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_96'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            siirrot.add(&#34;&#34; + (x + 2) + (y));</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_97'/>
+97
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_97'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_98'/>
+98
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_98'>5</a>
+</td>
+<td class='covered'><pre><span  class='survived'>        if (x + 1 &#60;= 7 &#38;&#38; ruudukko[x + 1][y].getNappula() == null) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_99'/>
+99
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_99'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            siirrot.add(&#34;&#34; + (x + 1) + (y));</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_100'/>
+100
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_100'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_101'/>
+101
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_101'>12</a>
+</td>
+<td class='covered'><pre><span  class='survived'>        if (x + 1 &#60;= 7 &#38;&#38; y + 1 &#60;= 7 &#38;&#38; ruudukko[x + 1][y + 1].getNappula() != null &#38;&#38; !onkoSamaVari(ruudukko[x + 1][y + 1].getNappula())) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_102'/>
+102
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_102'>2</a>
+</td>
+<td class='covered'><pre><span  class='survived'>            siirrot.add(&#34;&#34; + (x + 1) + (y + 1));</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_103'/>
+103
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_103'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_104'/>
+104
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_104'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_105'/>
+105
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_105'>12</a>
+</td>
+<td class='covered'><pre><span  class='survived'>        if (x + 1 &#60;= 7 &#38;&#38; y - 1 &#62;= 0 &#38;&#38; ruudukko[x + 1][y - 1].getNappula() != null &#38;&#38; !onkoSamaVari(ruudukko[x + 1][y - 1].getNappula())) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_106'/>
+106
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_106'>2</a>
+</td>
+<td class='covered'><pre><span  class='survived'>            siirrot.add(&#34;&#34; + (x + 1) + (y - 1));</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_107'/>
+107
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_107'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_108'/>
+108
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_108'>10</a>
+</td>
+<td class='covered'><pre><span  class='survived'>        if (x == 4 &#38;&#38; y + 1 &#60;= 7 &#38;&#38; ruudukko[x - 1][y + 1].getNappula() == null &#38;&#38; ruudukko[x][y + 1].getNappula() != null</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_109'/>
+109
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_109'>3</a>
+</td>
+<td class='covered'><pre><span  class='survived'>                &#38;&#38; ruudukko[x][y + 1].getNappula().getTyyppi() == Tyyppi.VSOTILAS &#38;&#38; ruudukko[x][y + 1].getNappula().getSiirtojenMaara() == 2) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_110'/>
+110
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_110'>2</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            siirrot.add(&#34;&#34; + (x + 1) + (y + 1));</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_111'/>
+111
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_111'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_112'/>
+112
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_112'>10</a>
+</td>
+<td class='covered'><pre><span  class='survived'>        if (x == 4 &#38;&#38; y - 1 &#62;= 0 &#38;&#38; ruudukko[x - 1][y - 1].getNappula() == null &#38;&#38; ruudukko[x][y - 1].getNappula() != null</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_113'/>
+113
+</td>
+<td class='survived'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_113'>3</a>
+</td>
+<td class='covered'><pre><span  class='survived'>                &#38;&#38; ruudukko[x][y - 1].getNappula().getTyyppi() == Tyyppi.VSOTILAS &#38;&#38; ruudukko[x][y - 1].getNappula().getSiirtojenMaara() == 2) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_114'/>
+114
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_114'>2</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            siirrot.add(&#34;&#34; + (x + 1) + (y - 1));</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_115'/>
+115
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_115'></a>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_116'/>
+116
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_116'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        return siirrot;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_117'/>
+117
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_117'></a>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_118'/>
+118
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_118'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@420a37c7_119'/>
+119
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_119'></a>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_19'>19</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_19'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> ChessMaster.PelilautaTest.eiSiirraRuutuunKunSiinaOnSamanVarinenNappulaValkoinen(ChessMaster.PelilautaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_20'>20</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_20'/> 
+
+<p class='KILLED'>removed call to Nappulat/Sotilas::setTyyppi : KILLED -> ChessMaster.PelilautaTest.eiSiirraRuutuunKunSiinaOnSamanVarinenNappulaValkoinen(ChessMaster.PelilautaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_22'>22</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_22'/> 
+
+<p class='KILLED'>removed call to Nappulat/Sotilas::setTyyppi : KILLED -> ChessMaster.PelilautaTest.siirtaaMustanUuteenRuutuunKunOnTyhja(ChessMaster.PelilautaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_38'>38</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_38'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> ChessMaster.PelilautaTest.josOnShakkiNiinPalauttaaTrueMusta(ChessMaster.PelilautaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_39'>39</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_39'/> 
+
+<p class='KILLED'>mutated return of Object value for Nappulat/Sotilas::kaikkiMahdollisetSiirrot to ( if (x != null) null else throw new RuntimeException ) : KILLED -> ChessMaster.PelilautaTest.onkoValkoinenShakkiPalauttaaFalse(ChessMaster.PelilautaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_41'>41</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_41'/> 
+
+<p class='KILLED'>mutated return of Object value for Nappulat/Sotilas::kaikkiMahdollisetSiirrot to ( if (x != null) null else throw new RuntimeException ) : KILLED -> ChessMaster.PelilautaTest.josOnShakkiNiinPalauttaaTrueMusta(ChessMaster.PelilautaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_57'>57</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_57'/> 
+
+<p class='KILLED'>Replaced integer subtraction with addition : KILLED -> Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinVSotilas(Nappulat.NappulaTest)</p> <p class='KILLED'>Replaced integer subtraction with addition : KILLED -> ChessMaster.PelilautaTest.onkoMustaShakkiPalauttaaFalse(ChessMaster.PelilautaTest)</p> <p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinVSotilas(Nappulat.NappulaTest)</p> <p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinVSotilas(Nappulat.NappulaTest)</p> <p class='KILLED'>negated conditional : KILLED -> ChessMaster.PelilautaTest.josOnShakkiNiinPalauttaaTrueMusta(ChessMaster.PelilautaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_58'>58</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_58'/> 
+
+<p class='KILLED'>Replaced integer subtraction with addition : KILLED -> Nappulat.NappulaTest.mahdollisetSiirrotKunShakkiPalauttaaOikein(Nappulat.NappulaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_60'>60</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_60'/> 
+
+<p class='SURVIVED'>Replaced integer subtraction with addition : SURVIVED</p> <p class='KILLED'>Replaced integer subtraction with addition : KILLED -> Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinVSotilas(Nappulat.NappulaTest)</p> <p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinVSotilas(Nappulat.NappulaTest)</p> <p class='SURVIVED'>changed conditional boundary : SURVIVED</p> <p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinVSotilas(Nappulat.NappulaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_61'>61</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_61'/> 
+
+<p class='KILLED'>Replaced integer subtraction with addition : KILLED -> Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinVSotilas(Nappulat.NappulaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_64'>64</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_64'/> 
+
+<p class='SURVIVED'>changed conditional boundary : SURVIVED</p> <p class='KILLED'>negated conditional : KILLED -> ChessMaster.PelilautaTest.onkoMustaShakkiPalauttaaFalse(ChessMaster.PelilautaTest)</p> <p class='SURVIVED'>negated conditional : SURVIVED</p> <p class='KILLED'>negated conditional : KILLED -> ChessMaster.PelilautaTest.onkoMustaShakkiPalauttaaFalse(ChessMaster.PelilautaTest)</p> <p class='KILLED'>Replaced integer subtraction with addition : KILLED -> ChessMaster.PelilautaTest.onkoMustaShakkiPalauttaaFalse(ChessMaster.PelilautaTest)</p> <p class='SURVIVED'>Replaced integer subtraction with addition : SURVIVED</p> <p class='KILLED'>Replaced integer subtraction with addition : KILLED -> ChessMaster.PelilautaTest.josOnShakkiNiinPalauttaaTrueMusta(ChessMaster.PelilautaTest)</p> <p class='KILLED'>Replaced integer subtraction with addition : KILLED -> Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinMLahetti(Nappulat.NappulaTest)</p> <p class='KILLED'>Replaced integer subtraction with addition : KILLED -> ChessMaster.PelilautaTest.onkoMustaShakkiPalauttaaFalse(ChessMaster.PelilautaTest)</p> <p class='SURVIVED'>negated conditional : SURVIVED</p> <p class='KILLED'>Replaced integer subtraction with addition : KILLED -> ChessMaster.PelilautaTest.onkoMustaShakkiPalauttaaFalse(ChessMaster.PelilautaTest)</p> <p class='SURVIVED'>changed conditional boundary : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_65'>65</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_65'/> 
+
+<p class='SURVIVED'>Replaced integer subtraction with addition : SURVIVED</p> <p class='SURVIVED'>Replaced integer subtraction with addition : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_68'>68</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_68'/> 
+
+<p class='KILLED'>Replaced integer addition with subtraction : KILLED -> ChessMaster.PelilautaTest.onkoMustaShakkiPalauttaaFalse(ChessMaster.PelilautaTest)</p> <p class='SURVIVED'>changed conditional boundary : SURVIVED</p> <p class='KILLED'>negated conditional : KILLED -> ChessMaster.PelilautaTest.josOnShakkiNiinPalauttaaTrueMusta(ChessMaster.PelilautaTest)</p> <p class='KILLED'>Replaced integer subtraction with addition : KILLED -> ChessMaster.PelilautaTest.josOnShakkiNiinPalauttaaTrueMusta(ChessMaster.PelilautaTest)</p> <p class='SURVIVED'>Replaced integer subtraction with addition : SURVIVED</p> <p class='KILLED'>negated conditional : KILLED -> ChessMaster.PelilautaTest.josOnShakkiNiinPalauttaaTrueMusta(ChessMaster.PelilautaTest)</p> <p class='KILLED'>Replaced integer addition with subtraction : KILLED -> ChessMaster.PelilautaTest.onkoMustaShakkiPalauttaaFalse(ChessMaster.PelilautaTest)</p> <p class='KILLED'>Replaced integer addition with subtraction : KILLED -> Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinMLahetti(Nappulat.NappulaTest)</p> <p class='KILLED'>Replaced integer subtraction with addition : KILLED -> ChessMaster.PelilautaTest.josOnShakkiNiinPalauttaaTrueMusta(ChessMaster.PelilautaTest)</p> <p class='KILLED'>negated conditional : KILLED -> ChessMaster.PelilautaTest.josOnShakkiNiinPalauttaaTrueMusta(ChessMaster.PelilautaTest)</p> <p class='KILLED'>changed conditional boundary : KILLED -> ChessMaster.PelilautaTest.josOnShakkiNiinPalauttaaTrueMusta(ChessMaster.PelilautaTest)</p> <p class='KILLED'>negated conditional : KILLED -> ChessMaster.PelilautaTest.josOnShakkiNiinPalauttaaTrueMusta(ChessMaster.PelilautaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_69'>69</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_69'/> 
+
+<p class='KILLED'>Replaced integer subtraction with addition : KILLED -> ChessMaster.PelilautaTest.josOnShakkiNiinPalauttaaTrueMusta(ChessMaster.PelilautaTest)</p> <p class='KILLED'>Replaced integer addition with subtraction : KILLED -> ChessMaster.PelilautaTest.josOnShakkiNiinPalauttaaTrueMusta(ChessMaster.PelilautaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_71'>71</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_71'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.enPassantToimiiValkoinen(Nappulat.NappulaTest)</p> <p class='SURVIVED'>Replaced integer addition with subtraction : SURVIVED</p> <p class='SURVIVED'>Replaced integer addition with subtraction : SURVIVED</p> <p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.enPassantToimiiValkoinen(Nappulat.NappulaTest)</p> <p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.enPassantToimiiValkoinen(Nappulat.NappulaTest)</p> <p class='SURVIVED'>Replaced integer addition with subtraction : SURVIVED</p> <p class='SURVIVED'>Replaced integer addition with subtraction : SURVIVED</p> <p class='SURVIVED'>Replaced integer subtraction with addition : SURVIVED</p> <p class='SURVIVED'>changed conditional boundary : SURVIVED</p> <p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.enPassantToimiiValkoinen(Nappulat.NappulaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_72'>72</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_72'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.enPassantToimiiValkoinen(Nappulat.NappulaTest)</p> <p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.enPassantToimiiValkoinen(Nappulat.NappulaTest)</p> <p class='SURVIVED'>Replaced integer addition with subtraction : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_73'>73</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_73'/> 
+
+<p class='KILLED'>Replaced integer addition with subtraction : KILLED -> Nappulat.NappulaTest.enPassantToimiiValkoinen(Nappulat.NappulaTest)</p> <p class='KILLED'>Replaced integer subtraction with addition : KILLED -> Nappulat.NappulaTest.enPassantToimiiValkoinen(Nappulat.NappulaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_75'>75</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_75'/> 
+
+<p class='SURVIVED'>Replaced integer subtraction with addition : SURVIVED</p> <p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.enPassantToimiiValkoinen(Nappulat.NappulaTest)</p> <p class='SURVIVED'>Replaced integer subtraction with addition : SURVIVED</p> <p class='SURVIVED'>Replaced integer subtraction with addition : SURVIVED</p> <p class='KILLED'>changed conditional boundary : KILLED -> Nappulat.NappulaTest.enPassantToimiiValkoinen(Nappulat.NappulaTest)</p> <p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.enPassantToimiiValkoinen(Nappulat.NappulaTest)</p> <p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.enPassantToimiiValkoinen(Nappulat.NappulaTest)</p> <p class='SURVIVED'>Replaced integer subtraction with addition : SURVIVED</p> <p class='SURVIVED'>Replaced integer subtraction with addition : SURVIVED</p> <p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.enPassantToimiiValkoinen(Nappulat.NappulaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_76'>76</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_76'/> 
+
+<p class='SURVIVED'>Replaced integer subtraction with addition : SURVIVED</p> <p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.enPassantToimiiValkoinen(Nappulat.NappulaTest)</p> <p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.enPassantToimiiValkoinen(Nappulat.NappulaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_77'>77</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_77'/> 
+
+<p class='KILLED'>Replaced integer subtraction with addition : KILLED -> Nappulat.NappulaTest.enPassantToimiiValkoinen(Nappulat.NappulaTest)</p> <p class='KILLED'>Replaced integer subtraction with addition : KILLED -> Nappulat.NappulaTest.enPassantToimiiValkoinen(Nappulat.NappulaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_80'>80</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_80'/> 
+
+<p class='KILLED'>mutated return of Object value for Nappulat/Sotilas::mahdollisetSiirrotVSotilas to ( if (x != null) null else throw new RuntimeException ) : KILLED -> ChessMaster.PelilautaTest.josOnShakkiNiinPalauttaaTrueMusta(ChessMaster.PelilautaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_95'>95</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_95'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinMSotilas(Nappulat.NappulaTest)</p> <p class='KILLED'>Replaced integer addition with subtraction : KILLED -> ChessMaster.PelilautaTest.onkoValkoinenShakkiPalauttaaFalse(ChessMaster.PelilautaTest)</p> <p class='KILLED'>Replaced integer addition with subtraction : KILLED -> Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinMSotilas(Nappulat.NappulaTest)</p> <p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinMSotilas(Nappulat.NappulaTest)</p> <p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinMSotilas(Nappulat.NappulaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_96'>96</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_96'/> 
+
+<p class='KILLED'>Replaced integer addition with subtraction : KILLED -> Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinMSotilas(Nappulat.NappulaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_98'>98</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_98'/> 
+
+<p class='SURVIVED'>Replaced integer addition with subtraction : SURVIVED</p> <p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinMSotilas(Nappulat.NappulaTest)</p> <p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinMSotilas(Nappulat.NappulaTest)</p> <p class='SURVIVED'>changed conditional boundary : SURVIVED</p> <p class='KILLED'>Replaced integer addition with subtraction : KILLED -> Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinMSotilas(Nappulat.NappulaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_99'>99</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_99'/> 
+
+<p class='KILLED'>Replaced integer addition with subtraction : KILLED -> Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinMSotilas(Nappulat.NappulaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_101'>101</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_101'/> 
+
+<p class='SURVIVED'>Replaced integer addition with subtraction : SURVIVED</p> <p class='KILLED'>negated conditional : KILLED -> ChessMaster.PelilautaTest.onkoValkoinenShakkiPalauttaaFalse(ChessMaster.PelilautaTest)</p> <p class='KILLED'>Replaced integer addition with subtraction : KILLED -> ChessMaster.PelilautaTest.onkoValkoinenShakkiPalauttaaFalse(ChessMaster.PelilautaTest)</p> <p class='SURVIVED'>changed conditional boundary : SURVIVED</p> <p class='SURVIVED'>Replaced integer addition with subtraction : SURVIVED</p> <p class='KILLED'>Replaced integer addition with subtraction : KILLED -> ChessMaster.PelilautaTest.onkoValkoinenShakkiPalauttaaFalse(ChessMaster.PelilautaTest)</p> <p class='SURVIVED'>negated conditional : SURVIVED</p> <p class='SURVIVED'>negated conditional : SURVIVED</p> <p class='KILLED'>Replaced integer addition with subtraction : KILLED -> ChessMaster.PelilautaTest.onkoValkoinenShakkiPalauttaaFalse(ChessMaster.PelilautaTest)</p> <p class='KILLED'>negated conditional : KILLED -> ChessMaster.PelilautaTest.onkoValkoinenShakkiPalauttaaFalse(ChessMaster.PelilautaTest)</p> <p class='SURVIVED'>changed conditional boundary : SURVIVED</p> <p class='KILLED'>Replaced integer addition with subtraction : KILLED -> Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinVLahetti(Nappulat.NappulaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_102'>102</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_102'/> 
+
+<p class='SURVIVED'>Replaced integer addition with subtraction : SURVIVED</p> <p class='SURVIVED'>Replaced integer addition with subtraction : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_105'>105</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_105'/> 
+
+<p class='KILLED'>Replaced integer subtraction with addition : KILLED -> ChessMaster.PelilautaTest.onkoValkoinenShakkiPalauttaaFalse(ChessMaster.PelilautaTest)</p> <p class='KILLED'>Replaced integer subtraction with addition : KILLED -> ChessMaster.PelilautaTest.onkoValkoinenShakkiPalauttaaFalse(ChessMaster.PelilautaTest)</p> <p class='SURVIVED'>Replaced integer addition with subtraction : SURVIVED</p> <p class='KILLED'>Replaced integer subtraction with addition : KILLED -> Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinVLahetti(Nappulat.NappulaTest)</p> <p class='KILLED'>Replaced integer addition with subtraction : KILLED -> ChessMaster.PelilautaTest.onkoValkoinenShakkiPalauttaaFalse(ChessMaster.PelilautaTest)</p> <p class='SURVIVED'>Replaced integer addition with subtraction : SURVIVED</p> <p class='SURVIVED'>changed conditional boundary : SURVIVED</p> <p class='KILLED'>negated conditional : KILLED -> ChessMaster.PelilautaTest.onkoValkoinenShakkiPalauttaaFalse(ChessMaster.PelilautaTest)</p> <p class='SURVIVED'>negated conditional : SURVIVED</p> <p class='SURVIVED'>changed conditional boundary : SURVIVED</p> <p class='KILLED'>negated conditional : KILLED -> ChessMaster.PelilautaTest.onkoValkoinenShakkiPalauttaaFalse(ChessMaster.PelilautaTest)</p> <p class='SURVIVED'>negated conditional : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_106'>106</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_106'/> 
+
+<p class='SURVIVED'>Replaced integer addition with subtraction : SURVIVED</p> <p class='SURVIVED'>Replaced integer subtraction with addition : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_108'>108</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_108'/> 
+
+<p class='SURVIVED'>Replaced integer addition with subtraction : SURVIVED</p> <p class='SURVIVED'>changed conditional boundary : SURVIVED</p> <p class='SURVIVED'>Replaced integer addition with subtraction : SURVIVED</p> <p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.enPassantToimiiMusta(Nappulat.NappulaTest)</p> <p class='SURVIVED'>Replaced integer addition with subtraction : SURVIVED</p> <p class='SURVIVED'>Replaced integer addition with subtraction : SURVIVED</p> <p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.enPassantToimiiMusta(Nappulat.NappulaTest)</p> <p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.enPassantToimiiMusta(Nappulat.NappulaTest)</p> <p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.enPassantToimiiMusta(Nappulat.NappulaTest)</p> <p class='SURVIVED'>Replaced integer subtraction with addition : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_109'>109</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_109'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.enPassantToimiiMusta(Nappulat.NappulaTest)</p> <p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.enPassantToimiiMusta(Nappulat.NappulaTest)</p> <p class='SURVIVED'>Replaced integer addition with subtraction : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_110'>110</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_110'/> 
+
+<p class='KILLED'>Replaced integer addition with subtraction : KILLED -> Nappulat.NappulaTest.enPassantToimiiMusta(Nappulat.NappulaTest)</p> <p class='KILLED'>Replaced integer addition with subtraction : KILLED -> Nappulat.NappulaTest.enPassantToimiiMusta(Nappulat.NappulaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_112'>112</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_112'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.enPassantToimiiMusta(Nappulat.NappulaTest)</p> <p class='KILLED'>changed conditional boundary : KILLED -> Nappulat.NappulaTest.enPassantToimiiMusta(Nappulat.NappulaTest)</p> <p class='SURVIVED'>Replaced integer subtraction with addition : SURVIVED</p> <p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.enPassantToimiiMusta(Nappulat.NappulaTest)</p> <p class='SURVIVED'>Replaced integer subtraction with addition : SURVIVED</p> <p class='SURVIVED'>Replaced integer subtraction with addition : SURVIVED</p> <p class='SURVIVED'>Replaced integer subtraction with addition : SURVIVED</p> <p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.enPassantToimiiMusta(Nappulat.NappulaTest)</p> <p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.enPassantToimiiMusta(Nappulat.NappulaTest)</p> <p class='SURVIVED'>Replaced integer subtraction with addition : SURVIVED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_113'>113</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_113'/> 
+
+<p class='SURVIVED'>Replaced integer subtraction with addition : SURVIVED</p> <p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.enPassantToimiiMusta(Nappulat.NappulaTest)</p> <p class='KILLED'>negated conditional : KILLED -> Nappulat.NappulaTest.enPassantToimiiMusta(Nappulat.NappulaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_114'>114</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_114'/> 
+
+<p class='KILLED'>Replaced integer addition with subtraction : KILLED -> Nappulat.NappulaTest.enPassantToimiiMusta(Nappulat.NappulaTest)</p> <p class='KILLED'>Replaced integer subtraction with addition : KILLED -> Nappulat.NappulaTest.enPassantToimiiMusta(Nappulat.NappulaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@420a37c7_116'>116</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@420a37c7_116'/> 
+
+<p class='KILLED'>mutated return of Object value for Nappulat/Sotilas::mahdollisetSiirrotMSotilas to ( if (x != null) null else throw new RuntimeException ) : KILLED -> ChessMaster.PelilautaTest.onkoValkoinenShakkiPalauttaaFalse(ChessMaster.PelilautaTest)</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+
+<li class='mutator'>INCREMENTS_MUTATOR</li>
+
+<li class='mutator'>CONDITIONALS_BOUNDARY_MUTATOR</li>
+
+<li class='mutator'>RETURN_VALS_MUTATOR</li>
+
+<li class='mutator'>VOID_METHOD_CALL_MUTATOR</li>
+
+<li class='mutator'>INVERT_NEGS_MUTATOR</li>
+
+<li class='mutator'>MATH_MUTATOR</li>
+
+<li class='mutator'>NEGATE_CONDITIONALS_MUTATOR</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinMKuningas(Nappulat.NappulaTest) (5 ms)</li><li>Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinVKuningatar(Nappulat.NappulaTest) (0 ms)</li><li>Nappulat.NappulaTest.eiPalautaNullJosTyyppiOnMaaratty(Nappulat.NappulaTest) (4 ms)</li><li>ChessMaster.PelilautaTest.ruudukossaOnValkoinenLahetti(ChessMaster.PelilautaTest) (4 ms)</li><li>Nappulat.NappulaTest.palauttaaOikeanVarin(Nappulat.NappulaTest) (3 ms)</li><li>ChessMaster.PelilautaTest.ruudukossaOnMustaLahetti(ChessMaster.PelilautaTest) (3 ms)</li><li>ChessMaster.PelilautaTest.josOnShakkMattiiNiinPalauttaaTrueMusta(ChessMaster.PelilautaTest) (14 ms)</li><li>Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinMLahettiToinen(Nappulat.NappulaTest) (7 ms)</li><li>Nappulat.NappulaTest.tavallinenNappulapalauttaaNullMahdollisetSiirrot(Nappulat.NappulaTest) (3 ms)</li><li>ChessMaster.PelilautaTest.onkoMustaShakkiMattiPalauttaaFalse(ChessMaster.PelilautaTest) (3 ms)</li><li>Nappulat.NappulaTest.onkoTyyppiToimiiKunOnSamaTyyppi(Nappulat.NappulaTest) (11 ms)</li><li>Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinVLahetti(Nappulat.NappulaTest) (0 ms)</li><li>ChessMaster.PelilautaTest.josOnShakkiNiinPalauttaaTrueValkoinen(ChessMaster.PelilautaTest) (3 ms)</li><li>Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinVTorni(Nappulat.NappulaTest) (6 ms)</li><li>Nappulat.NappulaTest.mustakuningasSaaOikeanTyypin(Nappulat.NappulaTest) (4 ms)</li><li>ChessMaster.PelilautaTest.eiSiirraRuutuunKunSiinaOnSamanVarinenNappulaValkoinen(ChessMaster.PelilautaTest) (4 ms)</li><li>Nappulat.NappulaTest.mustasotilasSaaOikeanTyypin(Nappulat.NappulaTest) (5 ms)</li><li>Nappulat.NappulaTest.onkoTyyppiToimiiKunOnEriTyyppi(Nappulat.NappulaTest) (4 ms)</li><li>ChessMaster.PelilautaTest.eiSiirraRuutuunKunSiinaOnSamanVarinenNappulaMusta(ChessMaster.PelilautaTest) (17 ms)</li><li>Nappulat.NappulaTest.valkoinenkuningasSaaOikeanTyypin(Nappulat.NappulaTest) (4 ms)</li><li>ChessMaster.PelilautaTest.onkoMustaShakkiPalauttaaFalse(ChessMaster.PelilautaTest) (3 ms)</li><li>ChessMaster.PelilautaTest.siirtaaMustanUuteenRuutuunKunOnTyhja(ChessMaster.PelilautaTest) (3 ms)</li><li>ChessMaster.PelilautaTest.syoNappulanJosOnEriVarinenKunSiirretaan(ChessMaster.PelilautaTest) (2 ms)</li><li>ChessMaster.PelilautaTest.otaEnPassantMahdollisuusPoisToimiiValkoinen(ChessMaster.PelilautaTest) (3 ms)</li><li>Nappulat.NappulaTest.palauttaaNullJosVariaEiOleMaaratty(Nappulat.NappulaTest) (5 ms)</li><li>Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaListan(Nappulat.NappulaTest) (4 ms)</li><li>Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinMTorni(Nappulat.NappulaTest) (5 ms)</li><li>ChessMaster.PelilautaTest.poistaaNappulanAlkuperaisestaRuudustaKunSiirretaanRuutuunJossaEriVarinenNappula(ChessMaster.PelilautaTest) (3 ms)</li><li>ChessMaster.PelilautaTest.poistaaNappulanVanhastaRuudustaKunSiirret‰‰nTyhjaan(ChessMaster.PelilautaTest) (3 ms)</li><li>ChessMaster.PelilautaTest.siirtaaValkoisenUuteenRuutuunKunOnTyhja(ChessMaster.PelilautaTest) (3 ms)</li><li>Nappulat.NappulaTest.mustaTorniSaaOikeanTyypin(Nappulat.NappulaTest) (4 ms)</li><li>ChessMaster.PelilautaTest.onkoValkoinenShakkiPalauttaaFalse(ChessMaster.PelilautaTest) (4 ms)</li><li>Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinMSotilas(Nappulat.NappulaTest) (4 ms)</li><li>ChessMaster.PelilautaTest.ruudukkoLuodaanOikein(ChessMaster.PelilautaTest) (3 ms)</li><li>Nappulat.NappulaTest.nappulaSaaOikeanVarinKunSeLuodaan(Nappulat.NappulaTest) (4 ms)</li><li>ChessMaster.PelilautaTest.josOnShakkiNiinPalauttaaTrueMusta(ChessMaster.PelilautaTest) (3 ms)</li><li>Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinVKuningas(Nappulat.NappulaTest) (6 ms)</li><li>Nappulat.NappulaTest.mahdollisetSiirrotKunShakkiPalauttaaOikein(Nappulat.NappulaTest) (4 ms)</li><li>Nappulat.NappulaTest.enPassantToimiiMusta(Nappulat.NappulaTest) (13 ms)</li><li>Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinVLahettiToinen(Nappulat.NappulaTest) (16 ms)</li><li>ChessMaster.PelilautaTest.ruudukossaOnMustaRatsu(ChessMaster.PelilautaTest) (2 ms)</li><li>Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinMKuningatar(Nappulat.NappulaTest) (7 ms)</li><li>Nappulat.NappulaTest.enPassantToimiiValkoinen(Nappulat.NappulaTest) (6 ms)</li><li>Nappulat.NappulaTest.valkoinenkuningatarSaaOikeanTyypin(Nappulat.NappulaTest) (3 ms)</li><li>Nappulat.NappulaTest.mustalahettiSaaOikeanTyypin(Nappulat.NappulaTest) (5 ms)</li><li>Nappulat.NappulaTest.valkoinenratsuSaaOikeanTyypin(Nappulat.NappulaTest) (4 ms)</li><li>Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinMRatsu(Nappulat.NappulaTest) (7 ms)</li><li>Nappulat.NappulaTest.mustaratsuSaaOikeanTyypin(Nappulat.NappulaTest) (3 ms)</li><li>Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinMRatsuToinen(Nappulat.NappulaTest) (5 ms)</li><li>Nappulat.NappulaTest.valkoinenlahettiSaaOikeanTyypin(Nappulat.NappulaTest) (3 ms)</li><li>Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinMLahetti(Nappulat.NappulaTest) (5 ms)</li><li>Nappulat.NappulaTest.valkoinensotilasSaaOikeanTyypin(Nappulat.NappulaTest) (4 ms)</li><li>Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinVRatsu(Nappulat.NappulaTest) (9 ms)</li><li>Nappulat.NappulaTest.mustakuningatarSaaOikeanTyypin(Nappulat.NappulaTest) (4 ms)</li><li>Nappulat.NappulaTest.valkoinenTorniSaaOikeanTyypin(Nappulat.NappulaTest) (7 ms)</li><li>ChessMaster.PelilautaTest.otaEnPassantMahdollisuusPoisToimiiMusta(ChessMaster.PelilautaTest) (3 ms)</li><li>Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinVSotilas(Nappulat.NappulaTest) (4 ms)</li><li>Nappulat.NappulaTest.eiPalautaNullTyyppia(Nappulat.NappulaTest) (4 ms)</li><li>Nappulat.NappulaTest.mahdollisetSiirrotPalauttaaOikeinVRatsuToinen(Nappulat.NappulaTest) (4 ms)</li><li>ChessMaster.PelilautaTest.josOnShakkMattiiNiinPalauttaaTrueValkoinen(ChessMaster.PelilautaTest) (9 ms)</li><li>Nappulat.NappulaTest.kaksiSamanVaristaNappulaaOnSamanvarisia(Nappulat.NappulaTest) (4 ms)</li><li>ChessMaster.PelilautaTest.ruudukossaOnValkoinenRatsu(ChessMaster.PelilautaTest) (5 ms)</li><li>ChessMaster.PelilautaTest.onkoValkoinenShakkiMattiPalauttaaFalse(ChessMaster.PelilautaTest) (8 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 0.30
+
+</body>
+</html>
