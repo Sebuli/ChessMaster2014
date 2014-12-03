@@ -2,9 +2,7 @@ package Nappulat;
 
 import ChessMaster.Pelilauta;
 import ChessMaster.Ruutu;
-import com.sun.org.apache.bcel.internal.generic.InstructionConstants;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  *
@@ -20,6 +18,8 @@ public class Nappula {
 
         VKUNINGAS, VKUNINGATAR, VLAHETTI, VRATSU, VSOTILAS, VTORNI,
         MKUNINGAS, MKUNINGATAR, MLAHETTI, MRATSU, MSOTILAS, MTORNI
+        
+        
     };
 
     /**
@@ -134,5 +134,17 @@ public class Nappula {
 
     public void kasvataSiirtojenMaaraa() {
         siirtojenMaara += 1;
+    }
+    
+    /**
+     * Metodi kertoo onko nappulan tyyppi sama kuin parametrin tyyppi
+     * @param tyyppi Tyyppi johon nappulan tyyppia verrataan
+     * @return True jos tyypit ovat samoja ja false muuten
+     */
+    public boolean onkoTyyppi(Tyyppi tyyppi){
+        if ( this.tyyppi.equals(tyyppi)){
+            return true;
+        }
+        return false;
     }
 }

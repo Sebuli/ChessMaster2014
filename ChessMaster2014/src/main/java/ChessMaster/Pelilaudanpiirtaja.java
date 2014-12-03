@@ -5,7 +5,6 @@
  */
 package ChessMaster;
 
-
 import Nappulat.Nappula;
 import java.awt.Color;
 import java.awt.Image;
@@ -22,7 +21,7 @@ import javax.swing.JButton;
  * @author Sebbe
  */
 public class Pelilaudanpiirtaja {
-    
+
     public static final int KUNINGATAR = 0, KUNINGAS = 1,
             TORNI = 2, RATSU = 3, LAHETTI = 4, SOTILAS = 5;
     public static final int[] STARTING_ROW = {
@@ -30,7 +29,7 @@ public class Pelilaudanpiirtaja {
     };
     public static final int MUSTA = 0, VALKOINEN = 1;
     private Image[][] chessPieceImages = new Image[2][6];
-    
+
     /**
      * Varittaa pelilaudan ruudut mustavalkoisiksi
      */
@@ -46,12 +45,12 @@ public class Pelilaudanpiirtaja {
             }
         }
     }
-    
+
     /**
      * Piirtaa pelinappulat niihin sijanteihin missa ne ovat pelilaudassa.
      */
     public final void piirraNappulat(JButton[][] ruudukko, Pelilauta pelilauta) {
-        
+
         for (int i = 0; i <= 7; i++) {
             for (int t = 0; t <= 7; t++) {
                 ruudukko[i][t].setIcon(null);
@@ -59,47 +58,52 @@ public class Pelilaudanpiirtaja {
         }
         for (int i = 0; i <= 7; i++) {
             for (int t = 0; t <= 7; t++) {
-                if (pelilauta.getRuudukko()[i][t].getNappula() != null && pelilauta.getRuudukko()[i][t].getNappula().getTyyppi().equals(Nappula.Tyyppi.VKUNINGAS)) {
-                    ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[VALKOINEN][KUNINGATAR]));
-                }
-                if (pelilauta.getRuudukko()[i][t].getNappula() != null && pelilauta.getRuudukko()[i][t].getNappula().getTyyppi().equals(Nappula.Tyyppi.MKUNINGAS)) {
-                    ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[MUSTA][KUNINGATAR]));
-                }
-                if (pelilauta.getRuudukko()[i][t].getNappula() != null && pelilauta.getRuudukko()[i][t].getNappula().getTyyppi().equals(Nappula.Tyyppi.VKUNINGATAR)) {
-                    ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[VALKOINEN][KUNINGAS]));
-                }
-                if (pelilauta.getRuudukko()[i][t].getNappula() != null && pelilauta.getRuudukko()[i][t].getNappula().getTyyppi().equals(Nappula.Tyyppi.MKUNINGATAR)) {
-                    ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[MUSTA][KUNINGAS]));
-                }
-                if (pelilauta.getRuudukko()[i][t].getNappula() != null && pelilauta.getRuudukko()[i][t].getNappula().getTyyppi().equals(Nappula.Tyyppi.VLAHETTI)) {
-                    ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[VALKOINEN][LAHETTI]));
-                }
-                if (pelilauta.getRuudukko()[i][t].getNappula() != null && pelilauta.getRuudukko()[i][t].getNappula().getTyyppi().equals(Nappula.Tyyppi.MLAHETTI)) {
-                    ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[MUSTA][LAHETTI]));
-                }
-                if (pelilauta.getRuudukko()[i][t].getNappula() != null && pelilauta.getRuudukko()[i][t].getNappula().getTyyppi().equals(Nappula.Tyyppi.VRATSU)) {
-                    ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[VALKOINEN][RATSU]));
-                }
-                if (pelilauta.getRuudukko()[i][t].getNappula() != null && pelilauta.getRuudukko()[i][t].getNappula().getTyyppi().equals(Nappula.Tyyppi.MRATSU)) {
-                    ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[MUSTA][RATSU]));
-                }
-                if (pelilauta.getRuudukko()[i][t].getNappula() != null && pelilauta.getRuudukko()[i][t].getNappula().getTyyppi().equals(Nappula.Tyyppi.VSOTILAS)) {
-                    ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[VALKOINEN][SOTILAS]));
-                }
-                if (pelilauta.getRuudukko()[i][t].getNappula() != null && pelilauta.getRuudukko()[i][t].getNappula().getTyyppi().equals(Nappula.Tyyppi.MSOTILAS)) {
-                    ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[MUSTA][SOTILAS]));
-                }
-                if (pelilauta.getRuudukko()[i][t].getNappula() != null && pelilauta.getRuudukko()[i][t].getNappula().getTyyppi().equals(Nappula.Tyyppi.VTORNI)) {
-                    ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[VALKOINEN][TORNI]));
-                }
-                if (pelilauta.getRuudukko()[i][t].getNappula() != null && pelilauta.getRuudukko()[i][t].getNappula().getTyyppi().equals(Nappula.Tyyppi.MTORNI)) {
-                    ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[MUSTA][TORNI]));
+
+                Nappula nappula = pelilauta.getRuudukko()[i][t].getNappula();
+
+                if (nappula != null) {
+
+                    if (nappula.onkoTyyppi(Nappula.Tyyppi.VKUNINGAS)) {
+                        ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[VALKOINEN][KUNINGATAR]));
+                    }
+                    if (nappula.onkoTyyppi(Nappula.Tyyppi.MKUNINGAS)) {
+                        ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[MUSTA][KUNINGATAR]));
+                    }
+                    if (nappula.onkoTyyppi(Nappula.Tyyppi.VKUNINGATAR)) {
+                        ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[VALKOINEN][KUNINGAS]));
+                    }
+                    if (nappula.onkoTyyppi(Nappula.Tyyppi.MKUNINGATAR)) {
+                        ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[MUSTA][KUNINGAS]));
+                    }
+                    if (nappula.onkoTyyppi(Nappula.Tyyppi.VLAHETTI)) {
+                        ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[VALKOINEN][LAHETTI]));
+                    }
+                    if (nappula.onkoTyyppi(Nappula.Tyyppi.MLAHETTI)) {
+                        ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[MUSTA][LAHETTI]));
+                    }
+                    if (nappula.onkoTyyppi(Nappula.Tyyppi.VRATSU)) {
+                        ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[VALKOINEN][RATSU]));
+                    }
+                    if (nappula.onkoTyyppi(Nappula.Tyyppi.MRATSU)) {
+                        ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[MUSTA][RATSU]));
+                    }
+                    if (nappula.onkoTyyppi(Nappula.Tyyppi.VSOTILAS)) {
+                        ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[VALKOINEN][SOTILAS]));
+                    }
+                    if (nappula.onkoTyyppi(Nappula.Tyyppi.MSOTILAS)) {
+                        ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[MUSTA][SOTILAS]));
+                    }
+                    if (nappula.onkoTyyppi(Nappula.Tyyppi.VTORNI)) {
+                        ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[VALKOINEN][TORNI]));
+                    }
+                    if (nappula.onkoTyyppi(Nappula.Tyyppi.MTORNI)) {
+                        ruudukko[i][t].setIcon(new ImageIcon(chessPieceImages[MUSTA][TORNI]));
+                    }
                 }
             }
-
         }
     }
-    
+
     /**
      * Metodi lataa kuvat nappuloista ruudukkoon
      */
@@ -118,7 +122,7 @@ public class Pelilaudanpiirtaja {
             System.exit(1);
         }
     }
-    
+
     /**
      * Kun ruutu on valitti niin metodi piirtaa sen nappulan joka on ruudusa
      * mahdolliset siirtoruudut keltaisiksi.
@@ -135,5 +139,5 @@ public class Pelilaudanpiirtaja {
             }
         }
     }
-    
+
 }

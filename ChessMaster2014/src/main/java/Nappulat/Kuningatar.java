@@ -40,101 +40,99 @@ public class Kuningatar extends Nappula {
         for (int i = 1; i <= 7; i++) {
             if (x + i <= 7 && y + i <= 7 && ruudukko[x + i][y + i].getNappula() == null) {
                 siirrot.add("" + (x + i) + (y + i));
+                continue;
             }
-            if (x + i <= 7 && y + i <= 7 && ruudukko[x + i][y + i].getNappula() != null && !onkoSamaVari(ruudukko[x + i][y + i].getNappula())) {
+            if (x + i <= 7 && y + i <= 7 && !onkoSamaVari(ruudukko[x + i][y + i].getNappula())) {
                 siirrot.add("" + (x + i) + (y + i));
-                break;
+
             }
-            if (x + i <= 7 && y + i <= 7 && ruudukko[x + i][y + i].getNappula() != null && onkoSamaVari(ruudukko[x + i][y + i].getNappula())) {
-                break;
-            }
+            break;
         }
         for (int i = 1; i <= 7; i++) {
             if (x - i >= 0 && y - i >= 0 && ruudukko[x - i][y - i].getNappula() == null) {
                 siirrot.add("" + (x - i) + (y - i));
+                continue;
             }
-            if (x - i >= 0 && y - i >= 0 && ruudukko[x - i][y - i].getNappula() != null && !onkoSamaVari(ruudukko[x - i][y - i].getNappula())) {
+            if (x - i >= 0 && y - i >= 0 && !onkoSamaVari(ruudukko[x - i][y - i].getNappula())) {
                 siirrot.add("" + (x - i) + (y - i));
-                break;
+
             }
-            if (x - i >= 0 && y - i >= 0 && ruudukko[x - i][y - i].getNappula() != null && onkoSamaVari(ruudukko[x - i][y - i].getNappula())) {
-                break;
-            }
+            break;
         }
         for (int i = 1; i <= 7; i++) {
             if (x - i >= 0 && y + i <= 7 && ruudukko[x - i][y + i].getNappula() == null) {
                 siirrot.add("" + (x - i) + (y + i));
+                continue;
             }
-            if (x - i >= 0 && y + i <= 7 && ruudukko[x - i][y + i].getNappula() != null && !onkoSamaVari(ruudukko[x - i][y + i].getNappula())) {
+            if (x - i >= 0 && y + i <= 7 && !onkoSamaVari(ruudukko[x - i][y + i].getNappula())) {
                 siirrot.add("" + (x - i) + (y + i));
-                break;
+
             }
-            if (x - i >= 0 && y + i <= 7 && ruudukko[x - i][y + i].getNappula() != null && onkoSamaVari(ruudukko[x - i][y + i].getNappula())) {
-                break;
-            }
+            break;
+
         }
         for (int i = 1; i <= 7; i++) {
             if (x + i <= 7 && y - i >= 0 && ruudukko[x + i][y - i].getNappula() == null) {
                 siirrot.add("" + (x + i) + (y - i));
+                continue;
             }
-            if (x + i <= 7 && y - i >= 0 && ruudukko[x + i][y - i].getNappula() != null && !onkoSamaVari(ruudukko[x + i][y - i].getNappula())) {
+            if (x + i <= 7 && y - i >= 0 && !onkoSamaVari(ruudukko[x + i][y - i].getNappula())) {
                 siirrot.add("" + (x + i) + (y - i));
-                break;
+
             }
-            if (x + i <= 7 && y - i >= 0 && ruudukko[x + i][y - i].getNappula() != null && onkoSamaVari(ruudukko[x + i][y - i].getNappula())) {
-                break;
-            }
+            break;
+
         }
         for (int i = x + 1; i <= 7; i++) {
             if (ruudukko[i][y].getNappula() == null) {
                 siirrot.add("" + (i) + (y));
+                continue;
             }
-            if (ruudukko[i][y].getNappula() != null && !onkoSamaVari(ruudukko[i][y].getNappula())) {
+            if (!onkoSamaVari(ruudukko[i][y].getNappula())) {
                 siirrot.add("" + (i) + (y));
-                break;
+
             }
-            if (ruudukko[i][y].getNappula() != null && onkoSamaVari(ruudukko[i][y].getNappula())) {
-                break;
-            }
+            break;
+
         }
 
         for (int i = x - 1; i >= 0; i--) {
             if (ruudukko[i][y].getNappula() == null) {
                 siirrot.add("" + (i) + (y));
+                continue;
             }
-            if (ruudukko[i][y].getNappula() != null && !onkoSamaVari(ruudukko[i][y].getNappula())) {
+            if (!onkoSamaVari(ruudukko[i][y].getNappula())) {
                 siirrot.add("" + (i) + (y));
-                break;
+
             }
-            if (ruudukko[i][y].getNappula() != null && onkoSamaVari(ruudukko[i][y].getNappula())) {
-                break;
-            }
+            break;
+
         }
 
         for (int i = y + 1; i <= 7; i++) {
             if (ruudukko[x][i].getNappula() == null) {
                 siirrot.add("" + (x) + (i));
+                continue;
             }
-            if (ruudukko[x][i].getNappula() != null && !onkoSamaVari(ruudukko[x][i].getNappula())) {
+            if (!onkoSamaVari(ruudukko[x][i].getNappula())) {
                 siirrot.add("" + (x) + (i));
-                break;
+
             }
-            if (ruudukko[x][i].getNappula() != null && onkoSamaVari(ruudukko[x][i].getNappula())) {
-                break;
-            }
+            break;
+
         }
 
         for (int i = y - 1; i >= 0; i--) {
             if (ruudukko[x][i].getNappula() == null) {
                 siirrot.add("" + (x) + (i));
+                continue;
             }
-            if (ruudukko[x][i].getNappula() != null && !onkoSamaVari(ruudukko[x][i].getNappula())) {
+            if (!onkoSamaVari(ruudukko[x][i].getNappula())) {
                 siirrot.add("" + (x) + (i));
-                break;
+
             }
-            if (ruudukko[x][i].getNappula() != null && onkoSamaVari(ruudukko[x][i].getNappula())) {
-                break;
-            }
+            break;
+
         }
         return siirrot;
 

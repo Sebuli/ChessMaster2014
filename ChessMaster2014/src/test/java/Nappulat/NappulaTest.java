@@ -293,4 +293,15 @@ public class NappulaTest {
         Nappula nappula = new Nappula("musta");
         assertNull(nappula.kaikkiMahdollisetSiirrot(1, 1, pelilauta.getRuudukko()));
     }
+    
+    @Test
+    public void onkoTyyppiToimiiKunOnSamaTyyppi(){
+        Torni torni = new Torni("valkoinen");
+        assertTrue(torni.onkoTyyppi(Nappula.Tyyppi.VTORNI));
+    }
+    @Test
+    public void onkoTyyppiToimiiKunOnEriTyyppi(){
+        Torni torni = new Torni("musta");
+        assertFalse(torni.onkoTyyppi(Nappula.Tyyppi.VTORNI));
+    }
 }
