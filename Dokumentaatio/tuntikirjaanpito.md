@@ -48,4 +48,8 @@
 
 3.12.2014  
   -3 tuntia  
-  -Poistin lisää copypastea, muokkasin luokkakaaviota ja lisäsin vielä uuden sekvenssikaavion.
+  -Poistin lisää copypastea, muokkasin luokkakaaviota ja lisäsin vielä uuden sekvenssikaavion.  
+  
+8.12.2014  
+ -3 tuntia  
+ -Laitoin dokumentaation kuntoon ja tein nopeasti random AI:n. Random AI ei tee paljon fiksua mutta toimii kuitenkin.
