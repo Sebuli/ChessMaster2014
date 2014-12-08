@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 /**
  * Luokka perii Nappula luokan ja asettaa tyyppiksi joko VLAHETTI tai MLAHETTI
+ *
  * @author Sebbe
  */
 public class Lahetti extends Nappula {
@@ -22,7 +23,7 @@ public class Lahetti extends Nappula {
             setTyyppi(Tyyppi.MLAHETTI);
         }
     }
-    
+
     /**
      * Metodia kutsutaan kun nappula on Lahetti
      *

@@ -31,8 +31,5 @@ public class KayttoliittymaTest {
     public void luoKayttojarjestelmanOikein() {
         assertNotNull(kayttis.getGui());
     }
-    
-    
-    
 
 }

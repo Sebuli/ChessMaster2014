@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 /**
  * Luokka perii Nappula luokan ja asettaa tyyppiksi joko VSOTILAS tai MSOTILAS
+ *
  * @author Sebbe
  */
 public class Sotilas extends Nappula {
@@ -23,7 +24,7 @@ public class Sotilas extends Nappula {
         }
 
     }
-    
+
     /**
      * Metodia kutsutaan kun nappula on Sotilas
      *
@@ -34,14 +35,14 @@ public class Sotilas extends Nappula {
      * @return Lista mahdollisista siirroista sotilaalle
      */
     @Override
-    public ArrayList<String> kaikkiMahdollisetSiirrot(int x, int y, Ruutu[][] ruudukko){
-        if ( ruudukko[x][y].getNappula().getVari().equals("musta")){
+    public ArrayList<String> kaikkiMahdollisetSiirrot(int x, int y, Ruutu[][] ruudukko) {
+        if (ruudukko[x][y].getNappula().getVari().equals("musta")) {
             return mahdollisetSiirrotMSotilas(x, y, ruudukko);
         } else {
             return mahdollisetSiirrotVSotilas(x, y, ruudukko);
         }
     }
-    
+
     /**
      * Metodia kutsutaan kun nappula on valkoinen Sotilas
      *

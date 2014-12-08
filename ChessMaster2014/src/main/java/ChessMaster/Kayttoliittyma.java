@@ -1,5 +1,6 @@
 package ChessMaster;
 
+import AI.RandomAI;
 import Nappulat.Kuningatar;
 import Nappulat.Nappula;
 import java.awt.BorderLayout;
@@ -42,7 +43,10 @@ public class Kayttoliittyma {
     private final JLabel viesti = new JLabel("");
     private static final String COLS = "ABCDEFGH";
     private Pelilaudanpiirtaja piirtaja;
+    private RandomAI randomAI;
 
+    private boolean onkoMustaRandomAIpaalla;
+    private boolean onkoValkoinenRandomAIpaalla;
     private boolean onkoNaytaMahdollisetSiirrot;
     private boolean valkoisenVuoro;
     private boolean peliAlkanut;
@@ -67,6 +71,9 @@ public class Kayttoliittyma {
         peliAlkanut = false;
         piirtaja.luoNappulaKuvat();
         onkoNaytaMahdollisetSiirrot = false;
+        onkoMustaRandomAIpaalla = false;
+        onkoValkoinenRandomAIpaalla = false;
+        randomAI = new RandomAI();
 
         gui.setBorder(new EmptyBorder(5, 5, 5, 5));
         JToolBar tools = new JToolBar();
@@ -142,12 +149,103 @@ public class Kayttoliittyma {
             }
         });
 
-        naytaMahdollisetSiirrot.setText("Enable help");
+        JCheckBox mustaRandomAI = new JCheckBox(new Action() {
+
+            @Override
+            public Object getValue(String key) {
+                return null;
+            }
+
+            @Override
+            public void putValue(String key, Object value) {
+            }
+
+            @Override
+            public void setEnabled(boolean b) {
+                onkoMustaRandomAIpaalla = b;
+            }
+
+            @Override
+            public boolean isEnabled() {
+                return true;
+            }
+
+            @Override
+            public void addPropertyChangeListener(PropertyChangeListener listener) {
+            }
+
+            @Override
+            public void removePropertyChangeListener(PropertyChangeListener listener) {
+            }
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (onkoMustaRandomAIpaalla) {
+                    onkoMustaRandomAIpaalla = false;
+
+                } else {
+                    onkoMustaRandomAIpaalla = true;
+
+                }
+            }
+        });
+
+        JCheckBox valkoinenRandomAI = new JCheckBox(new Action() {
+
+            @Override
+            public Object getValue(String key) {
+                return null;
+            }
+
+            @Override
+            public void putValue(String key, Object value) {
+            }
+
+            @Override
+            public void setEnabled(boolean b) {
+                onkoValkoinenRandomAIpaalla = b;
+            }
+
+            @Override
+            public boolean isEnabled() {
+                return true;
+            }
+
+            @Override
+            public void addPropertyChangeListener(PropertyChangeListener listener) {
+            }
+
+            @Override
+            public void removePropertyChangeListener(PropertyChangeListener listener) {
+            }
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (onkoValkoinenRandomAIpaalla) {
+                    onkoValkoinenRandomAIpaalla = false;
+
+                } else {
+                    onkoValkoinenRandomAIpaalla = true;
+
+                }
+            }
+        });
+
+        naytaMahdollisetSiirrot.setText(
+                "Enable help");
+
+        mustaRandomAI.setText("Black Random AI");
+        valkoinenRandomAI.setText("White Random AI");
 
         tools.add(naytaMahdollisetSiirrot);
+        tools.add(mustaRandomAI);
+        tools.add(valkoinenRandomAI);
         tools.addSeparator();
+
         tools.add(kenenVuoro);
+
         tools.addSeparator();
+
         tools.add(viesti);
 
         shakkiLauta = new JPanel(new GridLayout(0, 9)) {
@@ -172,14 +270,20 @@ public class Kayttoliittyma {
         };
 
         Color vari = new Color(204, 204, 255);
+
         shakkiLauta.setBackground(vari);
         JPanel boardConstrain = new JPanel(new GridBagLayout());
+
         boardConstrain.setBackground(vari);
+
         boardConstrain.add(shakkiLauta);
+
         gui.add(boardConstrain);
 
         Insets buttonMargin = new Insets(0, 0, 0, 0);
-        for (int i = 0; i < ruudukko.length; i++) {
+        for (int i = 0;
+                i < ruudukko.length;
+                i++) {
             for (int j = 0; j < ruudukko[i].length; j++) {
                 JButton b = new JButton();
                 b.setMargin(buttonMargin);
@@ -195,12 +299,16 @@ public class Kayttoliittyma {
             }
 
         }
-        shakkiLauta.add(new JLabel(""));
-        for (int i = 0; i < 8; i++) {
+
+        shakkiLauta.add(
+                new JLabel(""));
+        for (int i = 0;
+                i < 8; i++) {
             shakkiLauta.add(new JLabel(COLS.substring(i, i + 1), SwingConstants.CENTER));
         }
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0;
+                i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 switch (j) {
                     case 0:
@@ -294,6 +402,7 @@ public class Kayttoliittyma {
         piirtaja.piirraNappulat(ruudukko, pelilauta);
         if (pelilauta.onkoShakkiMatti("valkoinen") || pelilauta.onkoShakkiMatti("musta")) {
             lopetaPeli();
+            return;
         }
 
         if (pelilauta.onkoShakki("musta")) {
@@ -309,10 +418,31 @@ public class Kayttoliittyma {
             valkoisenVuoro = true;
             kenenVuoro.setText("White to move");
         }
+
+        if ((!valkoisenVuoro && onkoMustaRandomAIpaalla) || (valkoisenVuoro && onkoValkoinenRandomAIpaalla)) {
+            String siirto = "";
+            if (valkoisenVuoro) {
+                siirto = randomAI.haeSiirto(pelilauta, "valkoinen");
+            } else {
+                siirto = randomAI.haeSiirto(pelilauta, "musta");
+            }
+            ekaX = Integer.parseInt("" + siirto.charAt(0));
+            ekaY = Integer.parseInt("" + siirto.charAt(1));
+            tokaX = Integer.parseInt("" + siirto.charAt(2));
+            tokaY = Integer.parseInt("" + siirto.charAt(3));
+
+            if (pelilauta.onkoShakkiMatti("valkoinen") || pelilauta.onkoShakkiMatti("musta") || pelilauta.siirtojenMaara() > 50) {
+                lopetaPeli();
+                return;
+            }
+            siirra();
+
+        }
     }
 
     public final JComponent getGui() {
         return gui;
+
     }
 
     public class Mouse implements MouseListener {
@@ -351,7 +481,7 @@ public class Kayttoliittyma {
                                 }
                                 piirtaja.varitaPelilauta(ruudukko);
                                 if (ekaX != tokaX || ekaY != tokaY) {
-                                    viesti.setText("Illeagal move");
+                                    viesti.setText("Illegal move");
                                 }
                                 ekaX = -1;
                                 ekaY = -1;

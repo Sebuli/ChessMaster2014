@@ -17,25 +17,24 @@ import static org.junit.Assert.*;
  * @author Sebbe
  */
 public class TorniTest {
-    
+
     public TorniTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
 
-    
 }

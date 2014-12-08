@@ -8,7 +8,9 @@ package ChessMaster;
 import Nappulat.Nappula;
 
 /**
- * Ruutuja luodaan 64 kappaletta ja ne laitetaan 2d taulukkoon pelilaudassa. Joillakin ruuduilla on nappula mutta ei kaikilla.
+ * Ruutuja luodaan 64 kappaletta ja ne laitetaan 2d taulukkoon pelilaudassa.
+ * Joillakin ruuduilla on nappula mutta ei kaikilla.
+ *
  * @author Sebbe
  */
 public class Ruutu {

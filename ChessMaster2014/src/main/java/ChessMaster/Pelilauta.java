@@ -173,9 +173,9 @@ public class Pelilauta {
                     kopioLauta.setRuudukko(ruudukko);
                     Nappula.Tyyppi tyyppi = getNappula(i, t).getTyyppi();
                     ArrayList<String> kaikkiMahdollisetSiirrot = new ArrayList<>();
-                    
+
                     kaikkiMahdollisetSiirrot.addAll(getNappula(i, t).kaikkiMahdollisetSiirrot(i, t, ruudukko));
-                    
+
                     if (kaikkiMahdollisetSiirrot.contains("" + x + y)) {
                         return true;
                     }
@@ -222,6 +222,23 @@ public class Pelilauta {
                 getNappula(4, i).kasvataSiirtojenMaaraa();
             }
         }
+    }
+
+    /**
+     * Metodi palauttaa kaikkien nappuloiden siirtojen maarat yhteen laskettuna
+     *
+     * @return summa nappuloiden siirtoejen maarasta
+     */
+    public int siirtojenMaara() {
+        int summa = 0;
+        for (int i = 0; i <= 7; i++) {
+            for (int t = 0; t <= 7; t++) {
+                if (getNappula(i, t) != null) {
+                    summa += getNappula(i, t).getSiirtojenMaara();
+                }
+            }
+        }
+        return summa;
     }
 
 }

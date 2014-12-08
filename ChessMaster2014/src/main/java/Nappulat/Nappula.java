@@ -18,8 +18,7 @@ public class Nappula {
 
         VKUNINGAS, VKUNINGATAR, VLAHETTI, VRATSU, VSOTILAS, VTORNI,
         MKUNINGAS, MKUNINGATAR, MLAHETTI, MRATSU, MSOTILAS, MTORNI
-        
-        
+
     };
 
     /**
@@ -63,8 +62,6 @@ public class Nappula {
     public boolean onkoSamaVari(Nappula nappula) {
         return vari.equals(nappula.getVari());
     }
-
-    
 
     /**
      * Metodi palauttaa listan mahdollisia siirtoja nappulalle. Mahdolliset
@@ -123,8 +120,7 @@ public class Nappula {
         return siirrot;
     }
 
-
-    public ArrayList<String> kaikkiMahdollisetSiirrot(int x, int y, Ruutu[][] ruudukko){
+    public ArrayList<String> kaikkiMahdollisetSiirrot(int x, int y, Ruutu[][] ruudukko) {
         return null;
     }
 
@@ -135,14 +131,15 @@ public class Nappula {
     public void kasvataSiirtojenMaaraa() {
         siirtojenMaara += 1;
     }
-    
+
     /**
      * Metodi kertoo onko nappulan tyyppi sama kuin parametrin tyyppi
+     *
      * @param tyyppi Tyyppi johon nappulan tyyppia verrataan
      * @return True jos tyypit ovat samoja ja false muuten
      */
-    public boolean onkoTyyppi(Tyyppi tyyppi){
-        if ( this.tyyppi.equals(tyyppi)){
+    public boolean onkoTyyppi(Tyyppi tyyppi) {
+        if (this.tyyppi.equals(tyyppi)) {
             return true;
         }
         return false;

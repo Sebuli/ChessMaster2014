@@ -18,61 +18,61 @@ import static org.junit.Assert.*;
  * @author Sebbe
  */
 public class RuutuTest {
-    
+
     private Ruutu ruutu;
-    
+
     @Before
     public void setUp() {
         ruutu = new Ruutu();
     }
 
     @Test
-    public void kunLuodaanRuutuSillaEiOleNappulaa(){
+    public void kunLuodaanRuutuSillaEiOleNappulaa() {
         assertEquals(null, ruutu.getNappula());
     }
-    
+
     @Test
-    public void pystyyLisataNappulanRuutuun(){
+    public void pystyyLisataNappulanRuutuun() {
         Nappula nappula = new Kuningas("musta");
         ruutu.asetaNappula(nappula);
         assertEquals(nappula, ruutu.getNappula());
     }
-    
+
     @Test
-    public void pystyyPoistamaanNappulanRuudusta(){
+    public void pystyyPoistamaanNappulanRuudusta() {
         Nappula nappula = new Kuningas("musta");
         ruutu.asetaNappula(nappula);
         ruutu.poistaNappula();
         assertEquals(null, ruutu.getNappula());
     }
-    
+
     @Test
-    public void voiVaihtaaRuudunNappulanAsettamallaSilleUusiNappula(){
+    public void voiVaihtaaRuudunNappulanAsettamallaSilleUusiNappula() {
         Nappula nappula = new Kuningas("musta");
         Nappula uusiNappula = new Kuningatar("valkoinen");
         ruutu.asetaNappula(nappula);
         ruutu.asetaNappula(uusiNappula);
         assertEquals(Nappula.Tyyppi.VKUNINGATAR, ruutu.getNappula().getTyyppi());
     }
-    
+
     @Test
-    public void palauttaaOikeanNappulan(){
+    public void palauttaaOikeanNappulan() {
         Nappula nappula = new Kuningas("musta");
         ruutu.asetaNappula(nappula);
         assertEquals(nappula, ruutu.getNappula());
     }
-    
+
     @Test
-    public void eiPalautaNullNappulaaJosNappulaOnMaaritelty(){
+    public void eiPalautaNullNappulaaJosNappulaOnMaaritelty() {
         Nappula nappula = new Kuningas("musta");
         ruutu.asetaNappula(nappula);
         assertNotNull(ruutu.getNappula());
     }
-    
-     @Test
-    public void palauttaaNullNappulaJosNappulaaEiOleMaaritelty(){
+
+    @Test
+    public void palauttaaNullNappulaJosNappulaaEiOleMaaritelty() {
         Nappula nappula = new Kuningas("musta");
-        
+
         assertNull(ruutu.getNappula());
     }
 }

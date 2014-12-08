@@ -84,80 +84,81 @@ public class PelilautaTest {
     public void onkoMustaShakkiMattiPalauttaaFalse() {
         assertEquals(false, lauta.onkoShakkiMatti("musta"));
     }
+
     @Test
     public void onkoValkoinenShakkiMattiPalauttaaFalse() {
         assertEquals(false, lauta.onkoShakkiMatti("valkoinen"));
     }
-    
+
     @Test
-    public void onkoValkoinenShakkiPalauttaaFalse(){
+    public void onkoValkoinenShakkiPalauttaaFalse() {
         assertEquals(false, lauta.onkoShakki("valkoinen"));
     }
-    
+
     @Test
-    public void onkoMustaShakkiPalauttaaFalse(){
+    public void onkoMustaShakkiPalauttaaFalse() {
         assertEquals(false, lauta.onkoShakki("musta"));
     }
-    
+
     @Test
-    public void josOnShakkiNiinPalauttaaTrueMusta(){
+    public void josOnShakkiNiinPalauttaaTrueMusta() {
         lauta.siirra(6, 2, 1, 3);
         assertTrue(lauta.onkoShakki("musta"));
     }
-    
+
     @Test
-    public void josOnShakkiNiinPalauttaaTrueValkoinen(){
+    public void josOnShakkiNiinPalauttaaTrueValkoinen() {
         lauta.siirra(0, 3, 6, 3);
         assertTrue(lauta.onkoShakki("valkoinen"));
     }
-    
+
     @Test
-    public void josOnShakkMattiiNiinPalauttaaTrueMusta(){
+    public void josOnShakkMattiiNiinPalauttaaTrueMusta() {
         lauta.siirra(0, 4, 3, 3);
         lauta.siirra(7, 0, 5, 2);
         lauta.siirra(7, 7, 5, 3);
         lauta.siirra(7, 3, 5, 4);
         assertTrue(lauta.onkoShakkiMatti("musta"));
     }
-    
+
     @Test
-    public void josOnShakkMattiiNiinPalauttaaTrueValkoinen(){
+    public void josOnShakkMattiiNiinPalauttaaTrueValkoinen() {
         lauta.siirra(7, 4, 4, 3);
         lauta.siirra(0, 0, 3, 2);
         lauta.siirra(0, 7, 3, 3);
         lauta.siirra(0, 3, 3, 4);
         assertTrue(lauta.onkoShakkiMatti("valkoinen"));
     }
-    
+
     @Test
-    public void ruudukossaOnValkoinenRatsu(){
+    public void ruudukossaOnValkoinenRatsu() {
         assertEquals(Nappula.Tyyppi.VRATSU, lauta.getRuudukko()[7][1].getNappula().getTyyppi());
     }
-    
+
     @Test
-    public void ruudukossaOnMustaRatsu(){
+    public void ruudukossaOnMustaRatsu() {
         assertEquals(Nappula.Tyyppi.MRATSU, lauta.getRuudukko()[0][1].getNappula().getTyyppi());
     }
-    
+
     @Test
-    public void ruudukossaOnValkoinenLahetti(){
+    public void ruudukossaOnValkoinenLahetti() {
         assertEquals(Nappula.Tyyppi.VLAHETTI, lauta.getRuudukko()[7][2].getNappula().getTyyppi());
     }
-    
+
     @Test
-    public void ruudukossaOnMustaLahetti(){
+    public void ruudukossaOnMustaLahetti() {
         assertEquals(Nappula.Tyyppi.MLAHETTI, lauta.getRuudukko()[0][2].getNappula().getTyyppi());
     }
-    
+
     @Test
-    public void otaEnPassantMahdollisuusPoisToimiiMusta(){
+    public void otaEnPassantMahdollisuusPoisToimiiMusta() {
         lauta.siirra(6, 0, 4, 0);
         lauta.otaEnPassantMahdollisuusPois();
         assertEquals(1, lauta.getNappula(4, 0).getSiirtojenMaara());
     }
-    
+
     @Test
-    public void otaEnPassantMahdollisuusPoisToimiiValkoinen(){
+    public void otaEnPassantMahdollisuusPoisToimiiValkoinen() {
         lauta.siirra(1, 0, 3, 0);
         lauta.otaEnPassantMahdollisuusPois();
         assertEquals(1, lauta.getNappula(3, 0).getSiirtojenMaara());

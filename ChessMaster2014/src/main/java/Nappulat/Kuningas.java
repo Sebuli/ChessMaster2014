@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 /**
  * Luokka perii Nappula luokan ja asettaa tyyppiksi joko VKUNINGAS tai MKUNINGAS
+ *
  * @author Sebbe
  */
 public class Kuningas extends Nappula {
@@ -22,7 +23,7 @@ public class Kuningas extends Nappula {
             setTyyppi(Tyyppi.MKUNINGAS);
         }
     }
-    
+
     /**
      * Metodia kutsutaan kun nappula on Kuningas
      *

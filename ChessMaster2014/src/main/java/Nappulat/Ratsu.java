@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 /**
  * Luokka perii Nappula luokan ja asettaa tyyppiksi joko VRATSU tai MRATSU
+ *
  * @author Sebbe
  */
 public class Ratsu extends Nappula {
@@ -22,7 +23,7 @@ public class Ratsu extends Nappula {
             setTyyppi(Tyyppi.MRATSU);
         }
     }
-    
+
     /**
      * Metodia kutsutaan kun nappula on Ratsu
      *
