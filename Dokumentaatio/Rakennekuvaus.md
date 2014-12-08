@@ -1,0 +1,5 @@
+Ohjelmani sisältää ensinnäkin käyttöliittymän. Tällä käyttöliittymä on Pelilauta ja Pelilaudanpiirtaja. Pelilaudanpiirtaja piirtaa  
+pelilaudan aina kun jotain muutoksia sattuu. Pelilauta sisältää 64 ruutua jotka ovat kaksiuloitteisessa taulukossa. Pelilaudalla  
+on eri metodeja joita käyttäen voi muuttaa pelilaudan tilaa ja tarkistaa onko pelilauta missään erikoisessa tilassa.  
+Jokaisella ruudulla voi olla nappula tai sitten ei. Nappula voi olla yksi kuudesta eri tyypistä. Nappuloilla on metodi jonka  
+avulla saadaan tietää minne ne voidaan siirtää.
