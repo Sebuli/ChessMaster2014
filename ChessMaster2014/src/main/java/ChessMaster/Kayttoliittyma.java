@@ -16,6 +16,8 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
@@ -380,7 +382,7 @@ public class Kayttoliittyma {
     /**
      * Siirtaa nappulan ekaX,ekaY sijainnista tokaX,tokaY sijaintiin.
      */
-    private void siirra() {
+    private void siirra(){
         pelilauta.getNappula(ekaX, ekaY).kasvataSiirtojenMaaraa();
         pelilauta.siirra(ekaX, ekaY, tokaX, tokaY);
         pelilauta.otaEnPassantMahdollisuusPois();
@@ -420,6 +422,7 @@ public class Kayttoliittyma {
         }
 
         if ((!valkoisenVuoro && onkoMustaRandomAIpaalla) || (valkoisenVuoro && onkoValkoinenRandomAIpaalla)) {
+            
             String siirto = "";
             if (valkoisenVuoro) {
                 siirto = randomAI.haeSiirto(pelilauta, "valkoinen");
@@ -431,10 +434,11 @@ public class Kayttoliittyma {
             tokaX = Integer.parseInt("" + siirto.charAt(2));
             tokaY = Integer.parseInt("" + siirto.charAt(3));
 
-            if (pelilauta.onkoShakkiMatti("valkoinen") || pelilauta.onkoShakkiMatti("musta") || pelilauta.siirtojenMaara() > 50) {
+            if ( (pelilauta.onkoShakkiMatti("valkoinen") || pelilauta.onkoShakkiMatti("musta")) ||
+                    (pelilauta.siirtojenMaara() > 50 && onkoMustaRandomAIpaalla && onkoValkoinenRandomAIpaalla)) {
                 lopetaPeli();
                 return;
-            }
+            } 
             siirra();
 
         }
